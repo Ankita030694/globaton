@@ -1,11 +1,12 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultationForm from "@/components/ConsultationForm";
 
-export default function FormPage() {
+function FormContent() {
   const searchParams = useSearchParams();
   const service = searchParams.get('service');
 
@@ -100,5 +101,31 @@ export default function FormPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function FormPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex flex-col bg-white">
+        <Navbar />
+        <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-2xl sm:text-3xl font-bold text-center text-[#1B6B50] mb-4 sm:mb-8">
+              Get Started with Your Business Journey
+            </h1>
+            <p className="text-sm sm:text-base text-gray-600 text-center mb-8 sm:mb-12 px-2 sm:px-0">
+              Fill out the form below and our experts will get back to you shortly
+            </p>
+            <div className="animate-pulse">
+              <div className="h-64 bg-gray-200 rounded-lg"></div>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    }>
+      <FormContent />
+    </Suspense>
   );
 }
