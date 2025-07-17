@@ -24,7 +24,7 @@ const serviceCategories: ServiceCategory[] = [
     startingPrice: 999,
     icon: (
       <Image
-        src="/card1.PNG"
+        src="/card1.png"
         alt="Register your Company"
         width={80}
         height={80}
@@ -45,7 +45,7 @@ const serviceCategories: ServiceCategory[] = [
     startingPrice: 4999,
     icon: (
       <Image
-        src="/card2.PNG"
+        src="/card2.png"
         alt="Accounting & Tax"
         width={80}
         height={80}
@@ -66,7 +66,7 @@ const serviceCategories: ServiceCategory[] = [
     startingPrice: 599,
     icon: (
       <Image
-        src="/card3.PNG"
+        src="/card3.png"
         alt="GST Filing"
         width={80}
         height={80}
@@ -86,7 +86,7 @@ const serviceCategories: ServiceCategory[] = [
     startingPrice: 1499,
     icon: (
       <Image
-        src="/card4.PNG"
+        src="/card4.png"
         alt="Intellectual Property"
         width={80}
         height={80}
@@ -107,7 +107,7 @@ const serviceCategories: ServiceCategory[] = [
     startingPrice: 999,
     icon: (
       <Image
-        src="/card5.PNG"
+        src="/card5.png"
         alt="Licenses & Documentation"
         width={80}
         height={80}
