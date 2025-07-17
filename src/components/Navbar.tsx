@@ -171,29 +171,29 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="w-full flex items-center justify-between px-4 lg:px-20 bg-white z-10 relative py-1 shadow-lg">
+    <nav className="w-full flex items-center justify-between px-4 lg:px-20 bg-white z-10 relative py-2 shadow-lg">
       <div className="flex items-center">
         <Link href="/">
           <Image 
-            src="/logo.JPG" 
+            src="/globatonlogo.png" 
             alt="Globaton Logo" 
-            width={120} 
-            height={120} 
-            className="lg:w-[200px] lg:h-[100px] object-contain" 
+            width={500} 
+            height={500} 
+            className="w-[180px] h-[90px] object-cover mt-3" 
             priority 
           />
         </Link>
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden lg:flex items-center space-x-6 max-w-2xl justify-center">
+      <div className="hidden lg:flex items-center space-x-8 max-w-3xl justify-center">
         <div
           className="relative group"
           onMouseEnter={() => handleDropdownAreaEnter("business")}
           onMouseLeave={() => handleDropdownAreaLeave()}
         >
-          <button className="flex items-center hover:text-[#1B6B50] transition-colors py-1 text-black text-xs">
-            Business Setup <span className="ml-1"><Image src="/droparrow.png" alt="Down Arrow" width={20} height={20} /></span>
+          <button className="flex items-center hover:text-[#1B6B50] transition-colors py-2 text-black text-sm font-medium">
+            Business Setup <span className="ml-1"><Image src="/droparrow.png" alt="Down Arrow" width={16} height={16} /></span>
           </button>
 
           {/* Dropdown Menu */}
@@ -314,6 +314,20 @@ const Navbar = () => {
                 className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs"
               >
                 Change Company Name
+              </Link>
+
+              <Link
+                href="/form?service=insolvency-liquidation"
+                className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs"
+              >
+                Insolvency & Liquidation
+              </Link>
+
+              <Link
+                href="/form?service=valuation-of-business"
+                className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs"
+              >
+                Valuation of Business
               </Link>
 
               {/* Licenses & Registration with nested dropdown */}
@@ -1113,6 +1127,20 @@ const Navbar = () => {
                     onClick={handleMobileMenuItemClick}
                   >
                     Change Company Name
+                  </Link>
+                  <Link 
+                    href="/form?service=insolvency-liquidation" 
+                    className="block text-sm text-gray-600 hover:text-[#1B6B50]"
+                    onClick={handleMobileMenuItemClick}
+                  >
+                    Insolvency & Liquidation
+                  </Link>
+                  <Link 
+                    href="/form?service=valuation-of-business" 
+                    className="block text-sm text-gray-600 hover:text-[#1B6B50]"
+                    onClick={handleMobileMenuItemClick}
+                  >
+                    Valuation of Business
                   </Link>
                   {/* Licenses & Registration Submenu */}
                   <div className="space-y-2">
