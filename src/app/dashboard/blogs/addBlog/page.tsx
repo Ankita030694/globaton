@@ -5,6 +5,8 @@ import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase
 import { db } from '@/firebase/firebase';
 import dynamic from 'next/dynamic';
 import ImageUpload from '@/components/ImageUpload';
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 // Dynamically import Tiptap editor with client-side rendering only
 const TiptapEditor = dynamic(() => import('./TiptapEditor'), { 
@@ -49,6 +51,8 @@ const BlogsDashboard = () => {
     author: 'Anuj Anand Malik'
   });
   const [showPublishedModal, setShowPublishedModal] = useState(false);
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(blogs.length / itemsPerPage);
@@ -57,35 +61,73 @@ const BlogsDashboard = () => {
   const currentBlogs = blogs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const blogsCollection = collection(db, 'blogs');
-        const blogsSnapshot = await getDocs(blogsCollection);
-        const blogsList = blogsSnapshot.docs.map(doc => {
-          const docData = doc.data();
-          return {
-            id: doc.id,
-            title: docData.title || '',
-            subtitle: docData.subtitle || '',
-            description: docData.description || '',
-            date: docData.date || '',
-            image: docData.image || '',
-            created: docData.created || Date.now(),
-            metaTitle: docData.metaTitle || '',
-            metaDescription: docData.metaDescription || '',
-            slug: docData.slug || '',
-            faqs: docData.faqs || [],
-            author: docData.author || 'Anuj Anand Malik'
-          };
-        });
-        setBlogs(blogsList);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
+    if (!authLoading) {
+      if (!user) {
+        // Redirect to login if not authenticated
+        router.push('/login');
+      } else {
+        fetchBlogs();
+        
+        // Check if there's edit data in localStorage
+        const editBlogData = localStorage.getItem('editBlogData');
+        if (editBlogData) {
+          try {
+            const blogData = JSON.parse(editBlogData);
+            setFormData({
+              ...blogData,
+              date: blogData.date || new Date().toISOString().split('T')[0]
+            });
+            setEditingBlogId(blogData.id);
+            // Clear the localStorage data
+            localStorage.removeItem('editBlogData');
+          } catch (error) {
+            console.error('Error parsing edit blog data:', error);
+          }
+        }
       }
-    };
+    }
+  }, [user, authLoading, router, submitStatus]);
 
-    fetchBlogs();
-  }, [submitStatus]);
+  const fetchBlogs = async () => {
+    try {
+      const blogsCollection = collection(db, 'blogs');
+      const blogsSnapshot = await getDocs(blogsCollection);
+      const blogsList = blogsSnapshot.docs.map(doc => {
+        const docData = doc.data();
+        return {
+          id: doc.id,
+          title: docData.title || '',
+          subtitle: docData.subtitle || '',
+          description: docData.description || '',
+          date: docData.date || '',
+          image: docData.image || '',
+          created: docData.created || Date.now(),
+          metaTitle: docData.metaTitle || '',
+          metaDescription: docData.metaDescription || '',
+          slug: docData.slug || '',
+          faqs: docData.faqs || [],
+          author: docData.author || 'Anuj Anand Malik'
+        };
+      });
+      setBlogs(blogsList);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    }
+  };
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#165D3F]"></div>
+      </div>
+    );
+  }
+
+  // Redirect if not authenticated
+  if (!user) {
+    return null;
+  }
 
   // Generate slug from title
   const generateSlug = (title: string) => {

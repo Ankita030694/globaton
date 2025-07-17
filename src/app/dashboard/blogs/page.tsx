@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { collection, getDocs, deleteDoc, doc, updateDoc, query, orderBy, limit, startAfter } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, orderBy, limit, startAfter } from 'firebase/firestore';
 import { ref, deleteObject } from 'firebase/storage';
 import { db, storage } from '@/firebase/firebase';
 import { Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import ImageUpload from '@/components/ImageUpload';
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 interface Blog {
   id: string;
@@ -27,8 +28,6 @@ interface Blog {
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
-  const [editBlog, setEditBlog] = useState<Blog | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [sortField, setSortField] = useState<string>('created');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
@@ -36,10 +35,19 @@ export default function BlogsPage() {
   const [blogsPerPage] = useState(10);
   const [totalBlogs, setTotalBlogs] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    fetchBlogs();
-  }, [sortField, sortDirection]);
+    if (!authLoading) {
+      if (!user) {
+        // Redirect to login if not authenticated
+        router.push('/login');
+      } else {
+        fetchBlogs();
+      }
+    }
+  }, [user, authLoading, router, sortField, sortDirection]);
 
   const fetchBlogs = async () => {
     try {
@@ -74,13 +82,10 @@ export default function BlogsPage() {
   };
 
   const openEditModal = (blog: Blog) => {
-    setEditBlog(blog);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setEditBlog(null);
+    // Store blog data in localStorage for the addBlog page to access
+    localStorage.setItem('editBlogData', JSON.stringify(blog));
+    // Navigate to addBlog page
+    router.push('/dashboard/blogs/addBlog');
   };
 
   const confirmDeleteBlog = (id: string) => {
@@ -117,40 +122,25 @@ export default function BlogsPage() {
     }
   };
 
-  const handleSaveChanges = async () => {
-    if (!editBlog) return;
-    
-    try {
-      await updateDoc(doc(db, 'blogs', editBlog.id), {
-        title: editBlog.title,
-        author: editBlog.author,
-        date: editBlog.date,
-        slug: editBlog.slug,
-        metaTitle: editBlog.metaTitle,
-        metaDescription: editBlog.metaDescription,
-        description: editBlog.description,
-        image: editBlog.image,
-        subtitle: editBlog.subtitle
-      });
-      
-      // Update the local state
-      setBlogs(blogs.map(blog => 
-        blog.id === editBlog.id ? editBlog : blog
-      ));
-      
-      closeModal();
-    } catch (error) {
-      console.error("Error updating blog:", error);
-    }
-  };
-
   // Format date for display
   const formatDate = (timestamp: number): string => {
-    return new Date(timestamp).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
+    const date = new Date(timestamp);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+  // Format date string to dd/mm/yyyy
+  const formatDateString = (dateString: string): string => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString; // Return original if invalid date
+    
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   };
 
   // Get first few words of text
@@ -182,6 +172,20 @@ export default function BlogsPage() {
   }, [searchQuery]);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#165D3F]"></div>
+      </div>
+    );
+  }
+
+  // Redirect if not authenticated
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="p-8 bg-white min-h-screen">
@@ -244,7 +248,10 @@ export default function BlogsPage() {
             <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
               <thead className="bg-gray-100">
                 <tr>
-                <th onClick={() => handleSort('title')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
+                <th onClick={() => handleSort('date')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
+                    Date {sortField === 'date' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th onClick={() => handleSort('title')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
                     Image {sortField === 'title' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th onClick={() => handleSort('title')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
@@ -252,9 +259,6 @@ export default function BlogsPage() {
                   </th>
                   <th onClick={() => handleSort('author')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
                     Author {sortField === 'author' && (sortDirection === 'asc' ? '↑' : '↓')}
-                  </th>
-                  <th onClick={() => handleSort('created')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
-                    Date {sortField === 'created' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
                     Description
@@ -267,6 +271,9 @@ export default function BlogsPage() {
               <tbody className="divide-y divide-gray-200">
                 {currentBlogs.map((blog) => (
                   <tr key={blog.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {blog.date ? formatDateString(blog.date) : formatDate(blog.created)}
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="w-16 h-16 rounded-lg overflow-hidden border border-gray-200">
                         {blog.image ? (
@@ -295,9 +302,6 @@ export default function BlogsPage() {
                         </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {blog.author}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {blog.date || formatDate(blog.created)}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
                       {getPreview(blog.description)}
@@ -362,110 +366,111 @@ export default function BlogsPage() {
       )}
 
       {/* Edit Modal */}
-      {isModalOpen && editBlog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Edit Blog</h2>
-              <button 
-                onClick={closeModal}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                <input
-                  type="text"
-                  value={editBlog.title}
-                  onChange={(e) => setEditBlog({...editBlog, title: e.target.value})}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Author</label>
-                <input
-                  type="text"
-                  value={editBlog.author}
-                  onChange={(e) => setEditBlog({...editBlog, author: e.target.value})}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
-                <input
-                  type="date"
-                  value={editBlog.date}
-                  onChange={(e) => setEditBlog({...editBlog, date: e.target.value})}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
-                <input
-                  type="text"
-                  value={editBlog.slug}
-                  onChange={(e) => setEditBlog({...editBlog, slug: e.target.value})}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black"
-                />
-              </div>
-              <div className="col-span-1 md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title</label>
-                <input
-                  type="text"
-                  value={editBlog.metaTitle}
-                  onChange={(e) => setEditBlog({...editBlog, metaTitle: e.target.value})}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black"
-                />
-              </div>
-              <div className="col-span-1 md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
-                <textarea
-                  value={editBlog.metaDescription}
-                  onChange={(e) => setEditBlog({...editBlog, metaDescription: e.target.value})}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black"
-                  rows={2}
-                ></textarea>
-              </div>
-              <div className="col-span-1 md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea
-                  value={editBlog.description}
-                  onChange={(e) => setEditBlog({...editBlog, description: e.target.value})}
-                  className="w-full p-2 border border-gray-300 rounded-md text-black"
-                  rows={8}
-                ></textarea>
-              </div>
-              <div className="col-span-1 md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
-                <ImageUpload
-                  currentImageUrl={editBlog.image}
-                  onImageUpload={(url) => setEditBlog({...editBlog, image: url})}
-                  className="w-full"
-                />
-              </div>
-            </div>
-            <div className="mt-8 flex justify-end">
-              <button
-                onClick={closeModal}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 mr-2"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSaveChanges}
-                className="bg-[#165D3F] text-white px-4 py-2 rounded-md hover:bg-[#124E33]"
-              >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* This block is removed as editing is now handled by navigation */}
+      {/* {isModalOpen && editBlog && ( */}
+      {/*   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"> */}
+      {/*     <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto"> */}
+      {/*       <div className="flex justify-between items-center mb-6"> */}
+      {/*         <h2 className="text-2xl font-bold text-gray-900">Edit Blog</h2> */}
+      {/*         <button  */}
+      {/*           onClick={closeModal} */}
+      {/*           className="text-gray-500 hover:text-gray-700" */}
+      {/*         > */}
+      {/*           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"> */}
+      {/*             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /> */}
+      {/*           </svg> */}
+      {/*         </button> */}
+      {/*       </div> */}
+      {/*       <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> */}
+      {/*         <div> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Title</label> */}
+      {/*           <input */}
+      {/*             type="text" */}
+      {/*             value={editBlog.title} */}
+      {/*             onChange={(e) => setEditBlog({...editBlog, title: e.target.value})} */}
+      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
+      {/*           /> */}
+      {/*         </div> */}
+      {/*         <div> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Author</label> */}
+      {/*           <input */}
+      {/*             type="text" */}
+      {/*             value={editBlog.author} */}
+      {/*             onChange={(e) => setEditBlog({...editBlog, author: e.target.value})} */}
+      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
+      {/*           /> */}
+      {/*         </div> */}
+      {/*         <div> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Date</label> */}
+      {/*           <input */}
+      {/*             type="date" */}
+      {/*             value={editBlog.date} */}
+      {/*             onChange={(e) => setEditBlog({...editBlog, date: e.target.value})} */}
+      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
+      {/*           /> */}
+      {/*         </div> */}
+      {/*         <div> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label> */}
+      {/*           <input */}
+      {/*             type="text" */}
+      {/*             value={editBlog.slug} */}
+      {/*             onChange={(e) => setEditBlog({...editBlog, slug: e.target.value})} */}
+      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
+      {/*           /> */}
+      {/*         </div> */}
+      {/*         <div className="col-span-1 md:col-span-2"> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title</label> */}
+      {/*           <input */}
+      {/*             type="text" */}
+      {/*             value={editBlog.metaTitle} */}
+      {/*             onChange={(e) => setEditBlog({...editBlog, metaTitle: e.target.value})} */}
+      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
+      {/*           /> */}
+      {/*         </div> */}
+      {/*         <div className="col-span-1 md:col-span-2"> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label> */}
+      {/*           <textarea */}
+      {/*             value={editBlog.metaDescription} */}
+      {/*             onChange={(e) => setEditBlog({...editBlog, metaDescription: e.target.value})} */}
+      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
+      {/*             rows={2} */}
+      {/*           ></textarea> */}
+      {/*         </div> */}
+      {/*         <div className="col-span-1 md:col-span-2"> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Description</label> */}
+      {/*           <textarea */}
+      {/*             value={editBlog.description} */}
+      {/*             onChange={(e) => setEditBlog({...editBlog, description: e.target.value})} */}
+      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
+      {/*             rows={8} */}
+      {/*           ></textarea> */}
+      {/*         </div> */}
+      {/*         <div className="col-span-1 md:col-span-2"> */}
+      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Image</label> */}
+      {/*           <ImageUpload */}
+      {/*             currentImageUrl={editBlog.image} */}
+      {/*             onImageUpload={(url) => setEditBlog({...editBlog, image: url})} */}
+      {/*             className="w-full" */}
+      {/*           /> */}
+      {/*         </div> */}
+      {/*       </div> */}
+      {/*       <div className="mt-8 flex justify-end"> */}
+      {/*         <button */}
+      {/*           onClick={closeModal} */}
+      {/*           className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 mr-2" */}
+      {/*         > */}
+      {/*           Cancel */}
+      {/*         </button> */}
+      {/*         <button */}
+      {/*           onClick={handleSaveChanges} */}
+      {/*           className="bg-[#165D3F] text-white px-4 py-2 rounded-md hover:bg-[#124E33]" */}
+      {/*         > */}
+      {/*           Save Changes */}
+      {/*         </button> */}
+      {/*       </div> */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/* )} */}
 
       {/* Delete Confirmation Modal */}
       {confirmDelete && (

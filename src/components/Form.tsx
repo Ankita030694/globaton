@@ -99,7 +99,7 @@ const Form = () => {
       // Add document to 'consultations' collection
       await addDoc(collection(db, 'consultations'), {
         ...formData,
-        timestamp: new Date()
+        createdAt: new Date()
       });
       
       // Reset form and show success message

@@ -1,8 +1,10 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 export default function DashboardLayout({
   children,
@@ -10,6 +12,46 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      // Redirect to login if not authenticated
+      router.push('/login');
+    }
+  }, [user, authLoading, router]);
+
+  // Close sidebar when clicking outside on mobile
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sidebarOpen && window.innerWidth < 1024) {
+        const sidebar = document.querySelector('aside');
+        const toggleButton = document.querySelector('[data-sidebar-toggle]');
+        if (sidebar && !sidebar.contains(event.target as Node) && 
+            toggleButton && !toggleButton.contains(event.target as Node)) {
+          setSidebarOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [sidebarOpen]);
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#165D3F]"></div>
+      </div>
+    );
+  }
+
+  // Redirect if not authenticated
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -17,6 +59,17 @@ export default function DashboardLayout({
      <Navbar />
       
       <div className="flex flex-1">
+        {/* Sidebar Toggle Button */}
+        <button
+          data-sidebar-toggle
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="lg:hidden fixed top-20 left-4 z-50 p-2 bg-white rounded-md shadow-md border"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        
         {/* Sidebar */}
         <aside 
           className={`${
@@ -29,24 +82,21 @@ export default function DashboardLayout({
               <Link 
                 href="/dashboard" 
                 className="block px-4 py-3 rounded-lg hover:bg-gray-200 text-gray-800"
+                onClick={() => setSidebarOpen(false)}
               >
-                Dashboard Home
-              </Link>
-              <Link 
-                href="/dashboard/plans" 
-                className="block px-4 py-3 rounded-lg hover:bg-gray-200 text-gray-800"
-              >
-                Manage Plans
+                Home
               </Link>
               <Link 
                 href="/dashboard/leads" 
                 className="block px-4 py-3 rounded-lg hover:bg-gray-200 text-gray-800"
+                onClick={() => setSidebarOpen(false)}
               >
                 Leads
               </Link>
               <Link 
                 href="/dashboard/blogs" 
                 className="block px-4 py-3 rounded-lg hover:bg-gray-200 text-gray-800"
+                onClick={() => setSidebarOpen(false)}
               >
                 Blogs
               </Link>
@@ -54,16 +104,17 @@ export default function DashboardLayout({
           </div>
         </aside>
         
-        {/* Backdrop */}
+        {/* Backdrop - only show when sidebar is actually open on mobile */}
         {sidebarOpen && (
           <div 
             className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
             onClick={() => setSidebarOpen(false)}
+            style={{ display: 'block' }}
           />
         )}
         
         {/* Main Content */}
-        <main className="flex-1">
+        <main className="flex-1 lg:ml-0">
           {children}
         </main>
       </div>

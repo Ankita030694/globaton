@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 const AddPlanPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,24 +21,47 @@ const AddPlanPage = () => {
     buttonText: 'Get Started',
     isHighlighted: false,
   });
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchPlans = async () => {
-      try {
-        const plansCollection = collection(db, 'plans');
-        const plansSnapshot = await getDocs(plansCollection);
-        const plansList = plansSnapshot.docs.map(doc => ({ 
-          docId: doc.id, // Store the actual Firestore document ID
-          ...doc.data() 
-        }));
-        setPlans(plansList);
-      } catch (error) {
-        console.error("Error fetching plans:", error);
+    if (!authLoading) {
+      if (!user) {
+        // Redirect to login if not authenticated
+        router.push('/login');
+      } else {
+        fetchPlans();
       }
-    };
+    }
+  }, [user, authLoading, router, submitStatus]);
 
-    fetchPlans();
-  }, [submitStatus]);
+  const fetchPlans = async () => {
+    try {
+      const plansCollection = collection(db, 'plans');
+      const plansSnapshot = await getDocs(plansCollection);
+      const plansList = plansSnapshot.docs.map(doc => ({ 
+        docId: doc.id, // Store the actual Firestore document ID
+        ...doc.data() 
+      }));
+      setPlans(plansList);
+    } catch (error) {
+      console.error("Error fetching plans:", error);
+    }
+  };
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#165D3F]"></div>
+      </div>
+    );
+  }
+
+  // Redirect if not authenticated
+  if (!user) {
+    return null;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target as HTMLInputElement;

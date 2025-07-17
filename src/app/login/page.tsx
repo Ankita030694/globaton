@@ -1,9 +1,75 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/firebase/firebase';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if user is already authenticated
+    if (!authLoading && user) {
+      // User is already logged in, redirect to dashboard
+      router.push('/dashboard');
+    }
+  }, [user, authLoading, router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // Redirect to dashboard on successful login
+      router.push('/dashboard');
+    } catch (error: any) {
+      console.error('Login error:', error);
+      // Provide user-friendly error messages
+      let errorMessage = 'Failed to sign in. Please check your credentials.';
+      
+      if (error.code === 'auth/user-not-found') {
+        errorMessage = 'No account found with this email address.';
+      } else if (error.code === 'auth/wrong-password') {
+        errorMessage = 'Incorrect password. Please try again.';
+      } else if (error.code === 'auth/invalid-email') {
+        errorMessage = 'Please enter a valid email address.';
+      } else if (error.code === 'auth/too-many-requests') {
+        errorMessage = 'Too many failed attempts. Please try again later.';
+      } else if (error.code === 'auth/user-disabled') {
+        errorMessage = 'This account has been disabled.';
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3B5229]"></div>
+      </div>
+    );
+  }
+
+  // Redirect if already authenticated
+  if (user) {
+    return null;
+  }
+
   return (
     <div className="flex min-h-screen bg-white">
       {/* Left side - Form */}
@@ -11,13 +77,21 @@ export default function Login() {
         <h1 className="text-4xl font-bold mb-8 text-black">Welcome Back</h1>
         <p className="text-gray-600 mb-8 max-w-md">Sign in to your account to continue</p>
         
-        <form className="space-y-6 max-w-md">
+        <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+              {error}
+            </div>
+          )}
           
           <div>
             <label className="block mb-2 text-black font-medium">Email address</label>
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
+              required
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B5229] focus:outline-none text-black"
             />
           </div>
@@ -26,35 +100,43 @@ export default function Login() {
             <label className="block mb-2 text-black font-medium">Password</label>
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
+              required
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B5229] focus:outline-none text-black"
             />
           </div>
           
-          {/* <div className="flex items-center">
-            <input type="checkbox" id="terms" className="mr-2 h-4 w-4 accent-[#3B5229]" />
-            <label htmlFor="terms" className="text-black">I agree to the terms & policy</label>
-          </div> */}
-          
-          <button className="w-full bg-[#3B5229] text-white py-3 rounded-lg hover:bg-[#2A3D1E] transition-colors shadow-md">
-            Sign In
+          <button 
+            type="submit"
+            disabled={loading}
+            className="w-full bg-[#3B5229] text-white py-3 rounded-lg hover:bg-[#2A3D1E] transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? 'Signing In...' : 'Sign In'}
           </button>
           
           <div className="text-center my-4 text-black">Or</div>
           
           <div className="flex gap-4">
-            <button className="flex-1 border border-gray-300 p-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-black shadow-sm">
+            <button 
+              type="button"
+              className="flex-1 border border-gray-300 p-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-black shadow-sm"
+            >
               <Image src="/google.svg" alt="Google" width={20} height={20} />
               Sign in with Google
             </button>
-            <button className="flex-1 border border-gray-300 p-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-black shadow-sm">
+            <button 
+              type="button"
+              className="flex-1 border border-gray-300 p-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-black shadow-sm"
+            >
               <Image src="/apple.svg" alt="Apple" width={20} height={20} />
               Sign in with Apple
             </button>
           </div>
           
           <div className="text-center mt-6">
-            <span className="text-black">Have an account?</span> <Link href="/signin" className="text-[#3B5229] font-medium hover:underline">Sign In</Link>
+            <span className="text-black">Don't have an account?</span> <Link href="/signup" className="text-[#3B5229] font-medium hover:underline">Sign Up</Link>
           </div>
         </form>
       </div>
@@ -67,19 +149,6 @@ export default function Login() {
           fill
           className="object-cover"
         />
-        {/* <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white backdrop-blur-sm">
-          <Image
-            src="/logo.svg"
-            alt="Globaton Logo"
-            width={120}
-            height={120}
-            className="mb-6"
-          />
-          <h1 className="text-5xl font-bold mb-4">GLOBATON</h1>
-          <p className="text-xl text-center max-w-md">
-            Strategic Minds, Transformative Solutions
-          </p>
-        </div> */}
       </div>
     </div>
   );

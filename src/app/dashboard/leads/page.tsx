@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase';
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 interface Consultation {
   id: string;
@@ -19,6 +21,8 @@ export default function LeadsPage() {
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [filteredConsultations, setFilteredConsultations] = useState<Consultation[]>([]);
   const [loading, setLoading] = useState(true);
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
   
   // Filters
   const [searchTerm, setSearchTerm] = useState('');
@@ -34,37 +38,17 @@ export default function LeadsPage() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  // Authentication effect
   useEffect(() => {
-    const fetchConsultations = async () => {
-      try {
-        const consultationsCollection = collection(db, 'consultations');
-        const consultationsSnapshot = await getDocs(consultationsCollection);
-        
-        const consultationsData = consultationsSnapshot.docs.map(doc => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            name: data.name || '',
-            email: data.email || '',
-            phone: data.phone || '',
-            address: data.address || '',
-            services: data.services || '',
-            source: data.source || '',
-            createdAt: data.createdAt?.toDate() || new Date(),
-          } as Consultation;
-        });
-        
-        setConsultations(consultationsData);
-        setFilteredConsultations(consultationsData);
-      } catch (error) {
-        console.error("Error fetching consultations:", error);
-      } finally {
-        setLoading(false);
+    if (!authLoading) {
+      if (!user) {
+        // Redirect to login if not authenticated
+        router.push('/login');
+      } else {
+        fetchConsultations();
       }
-    };
-
-    fetchConsultations();
-  }, []);
+    }
+  }, [user, authLoading, router]);
 
   // Apply filters effect
   useEffect(() => {
@@ -116,6 +100,53 @@ export default function LeadsPage() {
     setFilteredConsultations(result);
     setCurrentPage(1); // Reset to first page on filter change
   }, [searchTerm, serviceFilter, sourceFilter, dateFilter, consultations]);
+
+  const fetchConsultations = async () => {
+    try {
+      const consultationsCollection = collection(db, 'consultations');
+      const consultationsSnapshot = await getDocs(consultationsCollection);
+      
+      const consultationsData = consultationsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          name: data.name || '',
+          email: data.email || '',
+          phone: data.phone || '',
+          address: data.address || '',
+          services: data.services || '',
+          source: data.source || '',
+          createdAt: data.createdAt?.toDate() || new Date(),
+        } as Consultation;
+      });
+      
+      // Sort by createdAt in descending order (latest first)
+      const sortedConsultations = consultationsData.sort((a, b) => 
+        b.createdAt.getTime() - a.createdAt.getTime()
+      );
+      
+      setConsultations(sortedConsultations);
+      setFilteredConsultations(sortedConsultations);
+    } catch (error) {
+      console.error("Error fetching consultations:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Show loading while checking authentication
+  if (authLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#165D3F]"></div>
+      </div>
+    );
+  }
+
+  // Redirect if not authenticated
+  if (!user) {
+    return null;
+  }
   
   // Get unique service and source options for filters
   const serviceOptions = [...new Set(consultations.map(item => item.services))].filter(Boolean);
@@ -245,32 +276,32 @@ export default function LeadsPage() {
           </div>
           
           <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto max-w-full">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Date
+                    </th>
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Name
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Email
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Phone
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Address
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Services
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Source
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Created At
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -278,35 +309,35 @@ export default function LeadsPage() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {currentItems.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="px-6 py-4 text-center text-sm text-gray-500">
+                      <td colSpan={8} className="px-3 py-4 text-center text-sm text-gray-500">
                         No leads found
                       </td>
                     </tr>
                   ) : (
                     currentItems.map((consultation) => (
                       <tr key={consultation.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {consultation.name}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {consultation.email}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {consultation.phone}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {consultation.address}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {consultation.services}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {consultation.source}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
                           {formatDate(consultation.createdAt)}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {consultation.name}
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {consultation.email}
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {consultation.phone}
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {consultation.address}
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {consultation.services}
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {consultation.source}
+                        </td>
+                        <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <button
                             onClick={() => confirmDelete(consultation.id)}
                             className="text-red-600 hover:text-red-900"
