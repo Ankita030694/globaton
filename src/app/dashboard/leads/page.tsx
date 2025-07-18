@@ -149,8 +149,8 @@ export default function LeadsPage() {
   }
   
   // Get unique service and source options for filters
-  const serviceOptions = [...new Set(consultations.map(item => item.services))].filter(Boolean);
-  const sourceOptions = [...new Set(consultations.map(item => item.source))].filter(Boolean);
+  const serviceOptions = [...new Set(consultations.map(item => item.services))].filter(Boolean).sort();
+  const sourceOptions = [...new Set(consultations.map(item => item.source))].filter(Boolean).sort();
 
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat('en-IN', {
@@ -161,6 +161,20 @@ export default function LeadsPage() {
       minute: 'numeric',
       hour12: true,
     }).format(date);
+  };
+
+  const formatService = (service: string) => {
+    // Handle predefined services with better formatting
+    const serviceMap: { [key: string]: string } = {
+      'business-setup': 'Business Setup',
+      'financial-planning': 'Financial & Tax Planning',
+      'tax-planning': 'ITR Filing',
+      'registration-compliance': 'Registration and Compliance',
+      'ip-others': 'IP & Others'
+    };
+    
+    // Return mapped service name or the original service (for custom entries)
+    return serviceMap[service] || service;
   };
   
   const confirmDelete = (id: string) => {
@@ -239,7 +253,7 @@ export default function LeadsPage() {
               >
                 <option value="">All Services</option>
                 {serviceOptions.map(service => (
-                  <option key={service} value={service}>{service}</option>
+                  <option key={service} value={service}>{formatService(service)}</option>
                 ))}
               </select>
             </div>

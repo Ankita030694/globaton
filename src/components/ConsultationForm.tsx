@@ -14,12 +14,13 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
     phone: "",
     address: "",
     services: "",
+    customService: "", // Add custom service field
   });
   const [loading, setLoading] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
@@ -33,13 +34,17 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
     setError("");
     
     try {
+      // Use custom service if "others" is selected, otherwise use the selected service
+      const serviceToSubmit = formData.services === "others" ? formData.customService : formData.services;
+      
       await addDoc(collection(db, "consultations"), {
         ...formData,
+        services: serviceToSubmit, // Store the final service value
         source,
         createdAt: new Date()
       });
       
-      setFormData({ name: "", email: "", phone: "", address: "", services: "" });
+      setFormData({ name: "", email: "", phone: "", address: "", services: "", customService: "" });
       setFormSubmitted(true);
     } catch (err) {
       console.error("Error submitting form: ", err);
@@ -129,12 +134,28 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
             >
               <option value="">Choose one</option>
               <option value="business-setup">Business Setup</option>
-              <option value="financial-planning">Financial Planning</option>
-              <option value="tax-planning">Tax Planning</option>
+              <option value="financial-planning">Financial & Tax Planning</option>
+              <option value="tax-planning">ITR Filing</option>
               <option value="registration-compliance">Registration and Compliance</option>
-              <option value="ip-others">IP & Others</option>
+              <option value="others">Others</option>
             </select>
           </div>
+
+          {/* Conditional textarea for custom service */}
+          {formData.services === "others" && (
+            <div className="text-left">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Please specify the service you need *</label>
+              <textarea
+                name="customService"
+                value={formData.customService}
+                onChange={handleChange}
+                placeholder="Please describe the service you need..."
+                required
+                rows={3}
+                className="w-full px-4 py-2 rounded-lg focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100 resize-none"
+              />
+            </div>
+          )}
 
           {error && (
             <p className="text-red-500 text-sm">{error}</p>
