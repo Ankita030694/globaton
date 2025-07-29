@@ -129,7 +129,7 @@ const Form = () => {
             About Globaton
           </h1>
           
-         
+
 
           <div className="mb-8 md:mb-12">
             <div className="text-lg md:text-xl italic mb-4 md:mb-6 text-[#A6A6A6]">
@@ -174,13 +174,13 @@ const Form = () => {
             
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="block mb-2 text-black text-sm md:text-base">Name *</label>
+                <label className="block mb-2 text-black text-sm md:text-base">Name <span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Enter your full name"
+                  placeholder="e.g. John Carlos"
                   className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
                   required
                 />
@@ -188,19 +188,19 @@ const Form = () => {
 
               <div className="flex flex-col md:flex-row gap-4 mb-4">
                 <div className="flex-1">
-                  <label className="block mb-2 text-black text-sm md:text-base">Email *</label>
+                  <label className="block mb-2 text-black text-sm md:text-base">Email <span className="text-red-500">*</span></label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Enter your email"
+                    placeholder="e.g. johnxxxxx@xyz.com"
                     className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
                     required
                   />
                 </div>
                 <div className="flex-1">
-                  <label className="block mb-2 text-black text-sm md:text-base">Phone *</label>
+                  <label className="block mb-2 text-black text-sm md:text-base">Phone <span className="text-red-500">*</span></label>
                   <div className="flex">
                     <select className="p-2 md:p-3 rounded-lg bg-gray-50 text-sm md:text-base">
                       <option className="text-black">🇮🇳 +91</option>
@@ -217,20 +217,8 @@ const Form = () => {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <label className="block mb-2 text-black text-sm md:text-base">Address</label>
-                <input
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  placeholder="Enter your address"
-                  className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
-                />
-              </div>
-
               <div className="mb-6">
-                <label className="block mb-2 text-black text-sm md:text-base">Services needed *</label>
+                <label className="block mb-2 text-black text-sm md:text-base">Services needed <span className="text-red-500">*</span></label>
                 <select 
                   name="services"
                   value={formData.services}
