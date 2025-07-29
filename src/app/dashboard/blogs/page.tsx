@@ -35,8 +35,20 @@ export default function BlogsPage() {
   const [blogsPerPage] = useState(10);
   const [totalBlogs, setTotalBlogs] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (!authLoading) {
@@ -188,38 +200,38 @@ export default function BlogsPage() {
   }
 
   return (
-    <div className="p-8 bg-white min-h-screen">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Blog Management</h1>
+    <div className="p-3 sm:p-8 bg-white min-h-screen w-full">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-4">
+        <h1 className="text-xl sm:text-3xl font-bold text-gray-900">Blog Management</h1>
         <Link
           href="/dashboard/blogs/addBlog"
-          className="bg-[#165D3F] text-white px-4 py-2 rounded-md hover:bg-[#124E33] transition-colors"
+          className="bg-[#165D3F] text-white px-3 sm:px-4 py-2 rounded-md hover:bg-[#124E33] transition-colors text-sm sm:text-base w-full sm:w-auto text-center"
         >
           Add New Blog
         </Link>
       </div>
 
-      {/* Add search box before the table */}
+      {/* Search box */}
       <div className="mb-4">
         <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
-          <div className="pl-3 pr-2 py-2 text-gray-500">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <div className="pl-2 sm:pl-3 pr-1 sm:pr-2 py-2 text-gray-500">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path>
             </svg>
           </div>
           <input
             type="text"
-            placeholder="Search blogs by title, author, or content..."
-            className="px-2 py-2 w-full focus:outline-none"
+            placeholder="Search blogs..."
+            className="px-2 py-2 w-full focus:outline-none text-sm sm:text-base"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           {searchQuery && (
             <button 
               onClick={() => setSearchQuery('')} 
-              className="px-3 py-2 text-gray-500 hover:text-gray-700"
+              className="px-2 sm:px-3 py-2 text-gray-500 hover:text-gray-700"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
@@ -232,19 +244,75 @@ export default function BlogsPage() {
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#165D3F]"></div>
         </div>
       ) : blogs.length === 0 ? (
-        <div className="bg-gray-50 rounded-lg p-12 text-center">
-          <h3 className="text-xl font-medium text-gray-600 mb-4">No blogs found</h3>
-          <p className="text-gray-500 mb-6">Start creating great content for your website.</p>
+        <div className="bg-gray-50 rounded-lg p-4 sm:p-12 text-center">
+          <h3 className="text-lg sm:text-xl font-medium text-gray-600 mb-4">No blogs found</h3>
+          <p className="text-gray-500 mb-6 text-sm sm:text-base">Start creating great content for your website.</p>
           <Link
             href="/dashboard/blogs/addBlog"
-            className="bg-[#165D3F] text-white px-4 py-2 rounded-md hover:bg-[#124E33] transition-colors"
+            className="bg-[#165D3F] text-white px-4 py-2 rounded-md hover:bg-[#124E33] transition-colors text-sm sm:text-base"
           >
             Create Your First Blog
           </Link>
         </div>
       ) : (
         <>
-          <div className="overflow-x-auto">
+          {/* Mobile Card View */}
+          <div className="block sm:hidden space-y-3">
+            {currentBlogs.map((blog) => (
+              <div key={blog.id} className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+                <div className="flex items-start space-x-3">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
+                    {blog.image ? (
+                      <img 
+                        src={blog.image} 
+                        alt={blog.title} 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/image.png';
+                          target.alt = 'Image not available';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="text-xs text-gray-500">
+                        {blog.date ? formatDateString(blog.date) : formatDate(blog.created)}
+                      </p>
+                      <div className="flex space-x-1">
+                        <button
+                          onClick={() => openEditModal(blog)}
+                          className="text-[#165D3F] hover:text-[#124E33] text-xs px-1 py-0.5"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => confirmDeleteBlog(blog.id)}
+                          className="text-red-600 hover:text-red-800 text-xs px-1 py-0.5"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <h3 className="text-sm font-medium text-gray-900 mb-1 truncate">{blog.title}</h3>
+                    <p className="text-xs text-gray-500 mb-1 truncate">{blog.slug}</p>
+                    <p className="text-xs text-gray-600 mb-1">By {blog.author}</p>
+                    <p className="text-xs text-gray-500 line-clamp-2">{getPreview(blog.description, 6)}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto">
             <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
               <thead className="bg-gray-100">
                 <tr>
@@ -333,29 +401,40 @@ export default function BlogsPage() {
                 <button
                   onClick={() => paginate(Math.max(1, currentPage - 1))}
                   disabled={currentPage === 1}
-                  className="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-2 sm:px-3 py-2 rounded-l-md border border-gray-300 bg-white text-xs sm:text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Previous
                 </button>
                 
-                {Array.from({ length: totalPages }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => paginate(index + 1)}
-                    className={`px-3 py-2 border border-gray-300 text-sm font-medium ${
-                      currentPage === index + 1
-                        ? 'bg-[#165D3F] text-white'
-                        : 'bg-white text-gray-500 hover:bg-gray-50'
-                    }`}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
+                {/* Show limited page numbers on mobile */}
+                {(() => {
+                  const pages = [];
+                  const maxVisiblePages = isMobile ? 3 : 5;
+                  const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                  const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                  
+                  for (let i = startPage; i <= endPage; i++) {
+                    pages.push(
+                      <button
+                        key={i}
+                        onClick={() => paginate(i)}
+                        className={`px-2 sm:px-3 py-2 border border-gray-300 text-xs sm:text-sm font-medium ${
+                          currentPage === i
+                            ? 'bg-[#165D3F] text-white'
+                            : 'bg-white text-gray-500 hover:bg-gray-50'
+                        }`}
+                      >
+                        {i}
+                      </button>
+                    );
+                  }
+                  return pages;
+                })()}
                 
                 <button
                   onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
                   disabled={currentPage === totalPages}
-                  className="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-2 sm:px-3 py-2 rounded-r-md border border-gray-300 bg-white text-xs sm:text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Next
                 </button>
@@ -365,131 +444,24 @@ export default function BlogsPage() {
         </>
       )}
 
-      {/* Edit Modal */}
-      {/* This block is removed as editing is now handled by navigation */}
-      {/* {isModalOpen && editBlog && ( */}
-      {/*   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"> */}
-      {/*     <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto"> */}
-      {/*       <div className="flex justify-between items-center mb-6"> */}
-      {/*         <h2 className="text-2xl font-bold text-gray-900">Edit Blog</h2> */}
-      {/*         <button  */}
-      {/*           onClick={closeModal} */}
-      {/*           className="text-gray-500 hover:text-gray-700" */}
-      {/*         > */}
-      {/*           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"> */}
-      {/*             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /> */}
-      {/*           </svg> */}
-      {/*         </button> */}
-      {/*       </div> */}
-      {/*       <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> */}
-      {/*         <div> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Title</label> */}
-      {/*           <input */}
-      {/*             type="text" */}
-      {/*             value={editBlog.title} */}
-      {/*             onChange={(e) => setEditBlog({...editBlog, title: e.target.value})} */}
-      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
-      {/*           /> */}
-      {/*         </div> */}
-      {/*         <div> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Author</label> */}
-      {/*           <input */}
-      {/*             type="text" */}
-      {/*             value={editBlog.author} */}
-      {/*             onChange={(e) => setEditBlog({...editBlog, author: e.target.value})} */}
-      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
-      {/*           /> */}
-      {/*         </div> */}
-      {/*         <div> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Date</label> */}
-      {/*           <input */}
-      {/*             type="date" */}
-      {/*             value={editBlog.date} */}
-      {/*             onChange={(e) => setEditBlog({...editBlog, date: e.target.value})} */}
-      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
-      {/*           /> */}
-      {/*         </div> */}
-      {/*         <div> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label> */}
-      {/*           <input */}
-      {/*             type="text" */}
-      {/*             value={editBlog.slug} */}
-      {/*             onChange={(e) => setEditBlog({...editBlog, slug: e.target.value})} */}
-      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
-      {/*           /> */}
-      {/*         </div> */}
-      {/*         <div className="col-span-1 md:col-span-2"> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title</label> */}
-      {/*           <input */}
-      {/*             type="text" */}
-      {/*             value={editBlog.metaTitle} */}
-      {/*             onChange={(e) => setEditBlog({...editBlog, metaTitle: e.target.value})} */}
-      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
-      {/*           /> */}
-      {/*         </div> */}
-      {/*         <div className="col-span-1 md:col-span-2"> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label> */}
-      {/*           <textarea */}
-      {/*             value={editBlog.metaDescription} */}
-      {/*             onChange={(e) => setEditBlog({...editBlog, metaDescription: e.target.value})} */}
-      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
-      {/*             rows={2} */}
-      {/*           ></textarea> */}
-      {/*         </div> */}
-      {/*         <div className="col-span-1 md:col-span-2"> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Description</label> */}
-      {/*           <textarea */}
-      {/*             value={editBlog.description} */}
-      {/*             onChange={(e) => setEditBlog({...editBlog, description: e.target.value})} */}
-      {/*             className="w-full p-2 border border-gray-300 rounded-md text-black" */}
-      {/*             rows={8} */}
-      {/*           ></textarea> */}
-      {/*         </div> */}
-      {/*         <div className="col-span-1 md:col-span-2"> */}
-      {/*           <label className="block text-sm font-medium text-gray-700 mb-1">Image</label> */}
-      {/*           <ImageUpload */}
-      {/*             currentImageUrl={editBlog.image} */}
-      {/*             onImageUpload={(url) => setEditBlog({...editBlog, image: url})} */}
-      {/*             className="w-full" */}
-      {/*           /> */}
-      {/*         </div> */}
-      {/*       </div> */}
-      {/*       <div className="mt-8 flex justify-end"> */}
-      {/*         <button */}
-      {/*           onClick={closeModal} */}
-      {/*           className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 mr-2" */}
-      {/*         > */}
-      {/*           Cancel */}
-      {/*         </button> */}
-      {/*         <button */}
-      {/*           onClick={handleSaveChanges} */}
-      {/*           className="bg-[#165D3F] text-white px-4 py-2 rounded-md hover:bg-[#124E33]" */}
-      {/*         > */}
-      {/*           Save Changes */}
-      {/*         </button> */}
-      {/*       </div> */}
-      {/*     </div> */}
-      {/*   </div> */}
-      {/* )} */}
-
       {/* Delete Confirmation Modal */}
       {confirmDelete && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Confirm Deletion</h2>
-            <p className="text-gray-700 mb-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md mx-4">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Confirm Deletion</h2>
+            <p className="text-gray-700 mb-6 text-sm sm:text-base">
               Are you sure you want to delete this blog? This action cannot be undone.
             </p>
-            <div className="flex justify-end">
+            <div className="flex flex-col sm:flex-row justify-end gap-2">
               <button
                 onClick={cancelDelete}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 mr-2"
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 order-2 sm:order-1 text-sm sm:text-base"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDelete(confirmDelete)}
-                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 order-1 sm:order-2 text-sm sm:text-base"
               >
                 Delete
               </button>

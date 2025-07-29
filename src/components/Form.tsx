@@ -129,10 +129,7 @@ const Form = () => {
             About Globaton
           </h1>
           
-          <p className="text-[#A6A6A6] mb-8 md:mb-12 text-sm md:text-base">
-            Everything you need to accept to payment and grow your<br className="hidden md:block" />
-            money of manage anywhere on planet
-          </p>
+         
 
           <div className="mb-8 md:mb-12">
             <div className="text-lg md:text-xl italic mb-4 md:mb-6 text-[#A6A6A6]">

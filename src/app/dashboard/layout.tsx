@@ -54,16 +54,16 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
       {/* Navigation Bar */}
      <Navbar />
       
-      <div className="flex flex-1">
+      <div className="flex flex-1 relative">
         {/* Sidebar Toggle Button */}
         <button
           data-sidebar-toggle
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="lg:hidden fixed top-20 left-4 z-50 p-2 bg-white rounded-md shadow-md border"
+          className="lg:hidden fixed top-20 right-4 z-50 p-2 bg-white rounded-md shadow-md border"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -114,8 +114,10 @@ export default function DashboardLayout({
         )}
         
         {/* Main Content */}
-        <main className="flex-1 lg:ml-0">
-          {children}
+        <main className="flex-1 lg:ml-0 w-full max-w-full overflow-x-hidden">
+          <div className="w-full max-w-full">
+            {children}
+          </div>
         </main>
       </div>
     </div>

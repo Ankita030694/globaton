@@ -191,33 +191,32 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="p-8 bg-white min-h-screen overflow-hidden">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <div className="flex items-center gap-4">
-          <span className="text-gray-600">Welcome, {user.email}</span>
+    <div className="p-4 sm:p-6 lg:p-8 bg-white min-h-screen">
+      {/* Header Section - Mobile Optimized */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Dashboard</h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <span className="text-sm sm:text-base text-gray-600">Welcome, {user.email}</span>
           <button
             onClick={handleSignOut}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+            className="w-full sm:w-auto bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm sm:text-base"
           >
             Sign Out
           </button>
         </div>
       </div>
       
-      {/* Dashboard Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-
-
+      {/* Dashboard Overview - Mobile Optimized Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
         {/* Leads Count Card */}
-        <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Leads</p>
-              <p className="text-2xl font-bold text-gray-900">{loading ? '...' : totalLeadsCount}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Total Leads</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{loading ? '...' : totalLeadsCount}</p>
             </div>
-            <div className="bg-blue-100 p-3 rounded-full">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-blue-100 p-2 sm:p-3 rounded-full">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
               </svg>
             </div>
@@ -225,14 +224,14 @@ export default function DashboardPage() {
         </div>
 
         {/* Blogs Count Card */}
-        <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Blogs</p>
-              <p className="text-2xl font-bold text-gray-900">{loading ? '...' : totalBlogsCount}</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Total Blogs</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{loading ? '...' : totalBlogsCount}</p>
             </div>
-            <div className="bg-[#EABE4C]/10 p-3 rounded-full">
-              <svg className="w-6 h-6 text-[#EABE4C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-[#EABE4C]/10 p-2 sm:p-3 rounded-full">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#EABE4C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
               </svg>
             </div>
@@ -240,32 +239,32 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick Actions Card */}
-        <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-          <div className="flex items-center justify-between">
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 border border-gray-100 sm:col-span-2 lg:col-span-1">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
             <div>
-              <p className="text-sm font-medium text-gray-600">Quick Actions</p>
-              <p className="text-sm text-gray-500">Manage content</p>
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Quick Actions</p>
+              <p className="text-xs sm:text-sm text-gray-500">Manage content</p>
             </div>
-            <div className="bg-green-100 p-3 rounded-full">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-green-100 p-2 sm:p-3 rounded-full">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
               </svg>
             </div>
           </div>
-          <div className="mt-4 space-y-2">
-            <Link href="/dashboard/leads" className="block text-sm text-[#165D3F] hover:underline">View Leads</Link>
-            <Link href="/dashboard/blogs" className="block text-sm text-[#165D3F] hover:underline">Create Blog Post</Link>
+          <div className="space-y-2">
+            <Link href="/dashboard/leads" className="block text-sm text-[#165D3F] hover:underline py-1">View Leads</Link>
+            <Link href="/dashboard/blogs" className="block text-sm text-[#165D3F] hover:underline py-1">Create Blog Post</Link>
           </div>
         </div>
       </div>
 
-      {/* Recent Leads Section */}
-      <div className="mt-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Today's Leads</h2>
+      {/* Recent Leads Section - Mobile Optimized */}
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Today's Leads</h2>
           <Link 
             href="/dashboard/leads"
-            className="text-sm text-[#165D3F] hover:underline flex items-center gap-1"
+            className="text-sm text-[#165D3F] hover:underline flex items-center gap-1 self-start sm:self-auto"
           >
             View All Leads
             <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -275,14 +274,14 @@ export default function DashboardPage() {
         </div>
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
           {loading ? (
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <div className="animate-pulse space-y-4">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="flex items-center space-x-4">
-                    <div className="rounded-full bg-gray-200 h-10 w-10"></div>
+                  <div key={i} className="flex items-center space-x-3 sm:space-x-4">
+                    <div className="rounded-full bg-gray-200 h-8 w-8 sm:h-10 sm:w-10"></div>
                     <div className="flex-1 space-y-2">
-                      <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-                      <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                      <div className="h-3 sm:h-4 bg-gray-200 rounded w-1/4"></div>
+                      <div className="h-2 sm:h-3 bg-gray-200 rounded w-1/2"></div>
                     </div>
                   </div>
                 ))}
@@ -291,23 +290,23 @@ export default function DashboardPage() {
           ) : recentLeads.length > 0 ? (
             <div className="divide-y divide-gray-200">
               {recentLeads.map((lead) => (
-                <div key={lead.id} className="p-6 hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-[#165D3F]/10 p-2 rounded-full">
-                        <svg className="w-5 h-5 text-[#165D3F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div key={lead.id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                    <div className="flex items-start sm:items-center space-x-3 sm:space-x-4">
+                      <div className="bg-[#165D3F]/10 p-2 rounded-full flex-shrink-0">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#165D3F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
                       </div>
-                      <div>
-                        <p className="font-medium text-gray-900">{lead.name || 'Unknown'}</p>
-                        <p className="text-sm text-gray-600">{lead.email || 'No email'}</p>
-                        {lead.phone && <p className="text-sm text-gray-600">{lead.phone}</p>}
-                        {lead.services && <p className="text-sm text-gray-500">{lead.services}</p>}
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium text-gray-900 text-sm sm:text-base truncate">{lead.name || 'Unknown'}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 truncate">{lead.email || 'No email'}</p>
+                        {lead.phone && <p className="text-xs sm:text-sm text-gray-600 truncate">{lead.phone}</p>}
+                        {lead.services && <p className="text-xs sm:text-sm text-gray-500 truncate">{lead.services}</p>}
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-600">
+                    <div className="text-left sm:text-right">
+                      <p className="text-xs sm:text-sm text-gray-600">
                         {lead.createdAt ? 
                           (lead.createdAt.toDate ? 
                             new Date(lead.createdAt.toDate()).toLocaleDateString() : 
@@ -315,7 +314,7 @@ export default function DashboardPage() {
                           ) : 'Unknown date'}
                       </p>
                       {lead.status && (
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full mt-1 ${
                           lead.status === 'new' ? 'bg-green-100 text-green-800' :
                           lead.status === 'contacted' ? 'bg-blue-100 text-blue-800' :
                           'bg-gray-100 text-gray-800'
@@ -333,19 +332,19 @@ export default function DashboardPage() {
               <svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
               </svg>
-              <p>No leads found today</p>
+              <p className="text-sm sm:text-base">No leads found today</p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Recent Blogs Section */}
-      <div className="mt-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Today's Blogs</h2>
+      {/* Recent Blogs Section - Mobile Optimized */}
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Today's Blogs</h2>
           <Link 
             href="/dashboard/blogs"
-            className="text-sm text-[#165D3F] hover:underline flex items-center gap-1"
+            className="text-sm text-[#165D3F] hover:underline flex items-center gap-1 self-start sm:self-auto"
           >
             View All Blogs
             <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -355,14 +354,14 @@ export default function DashboardPage() {
         </div>
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
           {loading ? (
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <div className="animate-pulse space-y-4">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="flex items-center space-x-4">
-                    <div className="rounded-full bg-gray-200 h-10 w-10"></div>
+                  <div key={i} className="flex items-center space-x-3 sm:space-x-4">
+                    <div className="rounded-full bg-gray-200 h-8 w-8 sm:h-10 sm:w-10"></div>
                     <div className="flex-1 space-y-2">
-                      <div className="h-4 bg-gray-200 rounded w-1/3"></div>
-                      <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                      <div className="h-3 sm:h-4 bg-gray-200 rounded w-1/3"></div>
+                      <div className="h-2 sm:h-3 bg-gray-200 rounded w-2/3"></div>
                     </div>
                   </div>
                 ))}
@@ -371,25 +370,25 @@ export default function DashboardPage() {
           ) : recentBlogs.length > 0 ? (
             <div className="divide-y divide-gray-200">
               {recentBlogs.map((blog) => (
-                <div key={blog.id} className="p-6 hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-[#EABE4C]/10 p-2 rounded-full">
-                        <svg className="w-5 h-5 text-[#EABE4C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div key={blog.id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                    <div className="flex items-start sm:items-center space-x-3 sm:space-x-4">
+                      <div className="bg-[#EABE4C]/10 p-2 rounded-full flex-shrink-0">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#EABE4C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
                         </svg>
                       </div>
-                      <div>
-                        <p className="font-medium text-gray-900">{blog.title || 'Untitled'}</p>
-                        <p className="text-sm text-gray-600 line-clamp-2">{blog.excerpt || 'No content available'}...</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium text-gray-900 text-sm sm:text-base line-clamp-1">{blog.title || 'Untitled'}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{blog.excerpt || 'No content available'}...</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-600">
+                    <div className="text-left sm:text-right">
+                      <p className="text-xs sm:text-sm text-gray-600">
                         {blog.date || (blog.created ? new Date(blog.created).toLocaleDateString() : 'Unknown date')}
                       </p>
                       {blog.status && (
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full mt-1 ${
                           blog.status === 'published' ? 'bg-green-100 text-green-800' :
                           blog.status === 'draft' ? 'bg-yellow-100 text-yellow-800' :
                           'bg-gray-100 text-gray-800'
@@ -407,7 +406,7 @@ export default function DashboardPage() {
               <svg className="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
               </svg>
-              <p>No blogs found today</p>
+              <p className="text-sm sm:text-base">No blogs found today</p>
             </div>
           )}
         </div>

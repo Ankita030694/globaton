@@ -71,83 +71,68 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex min-h-screen bg-white flex-col lg:flex-row">
       {/* Left side - Form */}
-      <div className="w-1/2 p-24 flex flex-col justify-center">
-        <h1 className="text-4xl font-bold mb-8 text-black">Welcome Back</h1>
-        <p className="text-gray-600 mb-8 max-w-md">Sign in to your account to continue</p>
-        
-        <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-              {error}
+      <div className="w-full lg:w-1/2 p-6 sm:p-8 md:p-12 lg:p-24 flex flex-col justify-center order-2 lg:order-1">
+        <div className="max-w-md mx-auto w-full">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-black">Welcome Back</h1>
+          <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">Sign in to your account to continue</p>
+          
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
+            
+            <div>
+              <label className="block mb-2 text-black font-medium text-sm sm:text-base">Email address</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="w-full p-3 sm:p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B5229] focus:outline-none text-black text-base"
+                style={{ minHeight: '44px' }} // Ensure touch target size
+              />
             </div>
-          )}
-          
-          <div>
-            <label className="block mb-2 text-black font-medium">Email address</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B5229] focus:outline-none text-black"
-            />
-          </div>
-          
-          <div>
-            <label className="block mb-2 text-black font-medium">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B5229] focus:outline-none text-black"
-            />
-          </div>
-          
-          <button 
-            type="submit"
-            disabled={loading}
-            className="w-full bg-[#3B5229] text-white py-3 rounded-lg hover:bg-[#2A3D1E] transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Signing In...' : 'Sign In'}
-          </button>
-          
-          <div className="text-center my-4 text-black">Or</div>
-          
-          <div className="flex gap-4">
+            
+            <div>
+              <label className="block mb-2 text-black font-medium text-sm sm:text-base">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+                className="w-full p-3 sm:p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3B5229] focus:outline-none text-black text-base"
+                style={{ minHeight: '44px' }} // Ensure touch target size
+              />
+            </div>
+            
             <button 
-              type="button"
-              className="flex-1 border border-gray-300 p-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-black shadow-sm"
+              type="submit"
+              disabled={loading}
+              className="w-full bg-[#3B5229] text-white py-3 sm:py-4 rounded-lg hover:bg-[#2A3D1E] transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed text-base font-medium"
+              style={{ minHeight: '48px' }} // Ensure touch target size
             >
-              <Image src="/google.svg" alt="Google" width={20} height={20} />
-              Sign in with Google
+              {loading ? 'Signing In...' : 'Sign In'}
             </button>
-            <button 
-              type="button"
-              className="flex-1 border border-gray-300 p-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-black shadow-sm"
-            >
-              <Image src="/apple.svg" alt="Apple" width={20} height={20} />
-              Sign in with Apple
-            </button>
-          </div>
-          
-          <div className="text-center mt-6">
-            <span className="text-black">Don't have an account?</span> <Link href="/signup" className="text-[#3B5229] font-medium hover:underline">Sign Up</Link>
-          </div>
-        </form>
+            
+            
+          </form>
+        </div>
       </div>
       
       {/* Right side - Image */}
-      <div className="w-1/2 relative">
+      <div className="w-full lg:w-1/2 relative order-1 lg:order-2 h-48 sm:h-64 md:h-80 lg:h-auto sm:h-auto">
         <Image
           src="/login.png"
           alt="Globaton Strategic Solutions"
           fill
-          className="object-cover"
+          className="object-cover "
+          priority
         />
       </div>
     </div>

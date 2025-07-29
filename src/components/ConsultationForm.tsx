@@ -72,13 +72,13 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
       ) : (
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="text-left">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Name <span className="text-red-500">*</span></label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your full name"
+              placeholder="e.g. John Carlos"
               required
               className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
             />
@@ -86,19 +86,19 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="text-left">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email <span className="text-red-500">*</span></label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Enter your email"
+                placeholder="e.g. johnxxxxx@xyz.com"
                 required
                 className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
               />
             </div>
             <div className="text-left">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Phone <span className="text-red-500">*</span></label>
               <input
                 type="tel"
                 name="phone"
@@ -118,13 +118,13 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              placeholder="Enter your address"
+              placeholder=""
               className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
             />
           </div>
 
           <div className="text-left">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Services needed *</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Services needed <span className="text-red-500">*</span></label>
             <select 
               name="services"
               value={formData.services}
@@ -144,7 +144,7 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
           {/* Conditional textarea for custom service */}
           {formData.services === "others" && (
             <div className="text-left">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Please specify the service you need *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Please specify the service you need <span className="text-red-500">*</span></label>
               <textarea
                 name="customService"
                 value={formData.customService}
