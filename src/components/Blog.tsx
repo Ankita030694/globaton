@@ -57,6 +57,7 @@ const Blog: React.FC<BlogProps> = ({ blogPosts }) => {
                   alt={post.title}
                   fill
                   className="object-cover"
+                  unoptimized
                 />
               </div>
               <h3 className="text-xl font-semibold mb-2 flex items-center gap-2 text-black">

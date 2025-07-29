@@ -83,10 +83,13 @@ export default async function BlogPost({ params }: Props) {
           {/* Featured Image */}
           {blog.image && (
             <div className="relative w-full h-96 mb-8">
-              <img
+              <Image
                 src={blog.image}
                 alt={blog.title}
-                className="w-full h-full object-cover rounded-lg"
+                fill
+                className="object-cover rounded-lg"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                unoptimized
               />
             </div>
           )}

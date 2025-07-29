@@ -345,10 +345,13 @@ export default function BlogsPage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="w-16 h-16 rounded-lg overflow-hidden border border-gray-200">
                         {blog.image ? (
-                          <img 
+                          <Image 
                             src={blog.image} 
                             alt={blog.title} 
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="64px"
+                            unoptimized
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.src = '/image.png'; // Use existing placeholder image

@@ -63,19 +63,15 @@ export default async function BlogPage() {
                 className="bg-white rounded-lg overflow-hidden shadow transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 hover:border-[#1B6B50] border border-transparent cursor-pointer flex flex-col h-full"
               >
                 <div className="relative h-64 w-full">
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
-                    className="object-cover w-full h-full"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized
                   />
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="bg-white/70 backdrop-blur-sm px-4 py-1 rounded-full text-sm text-black">
-                      {post.subtitle}
-                    </span>
-                    <span className="bg-white/70 backdrop-blur-sm px-4 py-1 rounded-full text-sm text-black">
-                      {post.metaTitle}
-                    </span>
-                  </div>
+                 
                 </div>
 
                 <div className="p-6 flex-grow flex flex-col">
