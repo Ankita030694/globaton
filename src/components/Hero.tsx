@@ -6,20 +6,7 @@ import Link from "next/link"
 const Hero = () => {
   return (
     <div className="w-full flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-16 py-8 sm:py-12 lg:py-16 bg-white">
-      {/* Image - Mobile First (above text), Desktop (right side) */}
-      <div className="w-full lg:w-1/2 lg:order-2 lg:mt-0 mt-8 sm:mt-12">
-        <div className="relative w-full aspect-[4/3]">
-          <Image
-            src="/gbhero.png"
-            alt="Business Illustration"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* Left Content - Mobile (below image), Desktop (left side) */}
+      {/* Left Content - Mobile (top), Desktop (left side) */}
       <div className="w-full lg:w-1/2 lg:order-1 pr-0 lg:pr-12">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
           <span className="text-[#CBA135]">Simplifying</span>{" "}
@@ -53,6 +40,19 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* Image - Mobile (between features and buttons), Desktop (hidden - shown on right) */}
+        <div className="w-full lg:hidden mb-6 sm:mb-8">
+          <div className="relative w-full aspect-[4/3]">
+            <Image
+              src="/gbhero.png"
+              alt="Business Illustration"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
           <Link 
             href="/form?service=start-now"
@@ -76,6 +76,19 @@ const Hero = () => {
               <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
+        </div>
+      </div>
+
+      {/* Image - Desktop only (right side) */}
+      <div className="hidden lg:block lg:w-1/2 lg:order-2 lg:mt-0">
+        <div className="relative w-full aspect-[4/3]">
+          <Image
+            src="/gbhero.png"
+            alt="Business Illustration"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
       </div>
     </div>

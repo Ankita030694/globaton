@@ -142,7 +142,7 @@ const ServiceCard: React.FC<ServiceCategory & { active: boolean; onClick: () => 
           border border-transparent
           transition-all duration-300 ease-out
           ${active || isHighlighted
-            ? 'bg-gradient-to-br from-amber-400 via-yellow-400 to-orange-400 text-gray-800 scale-105 shadow-2xl shadow-yellow-400/30 animate-selected-pop'
+            ? 'bg-[#CBA135] text-gray-800 scale-105 shadow-2xl shadow-[#CBA135]/30 animate-selected-pop'
             : 'bg-gray-200 text-gray-700'}
         `}
         onClick={onClick}

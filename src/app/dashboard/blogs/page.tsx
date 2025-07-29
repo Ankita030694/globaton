@@ -316,22 +316,22 @@ export default function BlogsPage() {
             <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
               <thead className="bg-gray-100">
                 <tr>
-                <th onClick={() => handleSort('date')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
+                  <th onClick={() => handleSort('date')} className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
                     Date {sortField === 'date' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('title')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
-                    Image {sortField === 'title' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                    Image
                   </th>
-                  <th onClick={() => handleSort('title')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
+                  <th onClick={() => handleSort('title')} className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
                     Title {sortField === 'title' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('author')} className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
+                  <th onClick={() => handleSort('author')} className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-200">
                     Author {sortField === 'author' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                     Description
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -339,48 +339,45 @@ export default function BlogsPage() {
               <tbody className="divide-y divide-gray-200">
                 {currentBlogs.map((blog) => (
                   <tr key={blog.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-4 py-3 whitespace-nowrap text-xs text-gray-500">
                       {blog.date ? formatDateString(blog.date) : formatDate(blog.created)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="w-16 h-16 rounded-lg overflow-hidden border border-gray-200">
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      <div className="w-12 h-12 rounded-md overflow-hidden border border-gray-200 flex-shrink-0">
                         {blog.image ? (
-                          <Image 
+                          <img 
                             src={blog.image} 
                             alt={blog.title} 
-                            fill
-                            className="object-cover"
-                            sizes="64px"
-                            unoptimized
+                            className="w-full h-full object-cover"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
-                              target.src = '/image.png'; // Use existing placeholder image
+                              target.src = '/image.png';
                               target.alt = 'Image not available';
                             }}
                           />
                         ) : (
                           <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                            <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                           </div>
                         )}
                       </div>
                     </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">{blog.title}</div>
-                        <div className="text-sm text-gray-500">{blog.slug}</div>
-                        </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-4 py-3">
+                      <div className="text-sm font-medium text-gray-900 max-w-xs truncate">{blog.title}</div>
+                      <div className="text-xs text-gray-500 max-w-xs truncate">{blog.slug}</div>
+                    </td>
+                    <td className="px-4 py-3 whitespace-nowrap text-xs text-gray-500">
                       {blog.author}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                      {getPreview(blog.description)}
+                    <td className="px-4 py-3 text-xs text-gray-500 max-w-xs">
+                      <div className="truncate">{getPreview(blog.description, 8)}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <td className="px-4 py-3 whitespace-nowrap text-xs font-medium">
                       <button
                         onClick={() => openEditModal(blog)}
-                        className="text-[#165D3F] hover:text-[#124E33] mr-4"
+                        className="text-[#165D3F] hover:text-[#124E33] mr-3"
                       >
                         Edit
                       </button>
