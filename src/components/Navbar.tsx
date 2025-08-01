@@ -170,6 +170,14 @@ const Navbar = () => {
     setIsMobileMenuOpen(false)
   }
 
+  // Function to handle form link clicks - closes all dropdowns
+  const handleFormLinkClick = () => {
+    setActiveDropdown(null)
+    setActiveSubmenu(null)
+    setBurgerOpen(false)
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <nav className="w-full flex items-center justify-between px-4 lg:px-10 bg-white z-10 relative py-2 shadow-lg">
       {/* Left Container - Logo */}
@@ -217,8 +225,9 @@ const Navbar = () => {
                 onMouseLeave={() => handleSubMenuLeave()}
               >
                 <Link
-                  href="/services/company-registration"
+                  href="/form?service=company-registration"
                   className="block px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
+                  onClick={handleFormLinkClick}
                 >
                   Company Registration
                   <svg
@@ -275,10 +284,10 @@ const Navbar = () => {
                       >
                         Sole Proprietorship
                       </Link>
-                      <Link href="/form?service=nidhi-company" className="block hover:text-[#1B6B50] text-black text-xs">
+                      <Link href="/form?service=nidhi-company" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>
                         Nidhi Company
                       </Link>
-                      <Link href="/form?service=producer-company" className="block hover:text-[#1B6B50] text-black text-xs">
+                      <Link href="/form?service=producer-company" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>
                         Producer Company
                       </Link>
                       <Link 
@@ -287,7 +296,7 @@ const Navbar = () => {
                       >
                         Partnership Firm
                       </Link>
-                      <Link href="/form?service=startup-india" className="block hover:text-[#1B6B50] text-black text-xs">
+                      <Link href="/form?service=startup-india" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>
                         Start-Up India Registration
                       </Link>
                     </div>
@@ -301,7 +310,7 @@ const Navbar = () => {
                           </svg>
                         </div>
                         <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                           Book an appointment
                         </Link>
                       </div>
@@ -313,6 +322,7 @@ const Navbar = () => {
               <Link
                 href="/form?service=change-company-name"
                 className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs"
+                onClick={handleFormLinkClick}
               >
                 Change Company Name
               </Link>
@@ -320,6 +330,7 @@ const Navbar = () => {
               <Link
                 href="/form?service=insolvency-liquidation"
                 className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs"
+                onClick={handleFormLinkClick}
               >
                 Insolvency & Liquidation
               </Link>
@@ -327,6 +338,7 @@ const Navbar = () => {
               <Link
                 href="/form?service=valuation-of-business"
                 className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs"
+                onClick={handleFormLinkClick}
               >
                 Valuation of Business
               </Link>
@@ -340,6 +352,7 @@ const Navbar = () => {
                 <Link
                   href="/form?service=licenses-registration"
                   className="block px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
+                  onClick={handleFormLinkClick}
                 >
                   Licenses & Registration
                   <svg
@@ -372,21 +385,21 @@ const Navbar = () => {
 
                   <div className="py-4">
                     <div className="px-6 space-y-3">
-                      <Link href="/form?service=dsc" className="block hover:text-[#1B6B50] text-black text-xs">DSC</Link>
-                      <Link href="/form?service=udyam-registration" className="block hover:text-[#1B6B50] text-black text-xs">Udyam Registration</Link>
-                      <Link href="/form?service=msme-registration" className="block hover:text-[#1B6B50] text-black text-xs">MSME Registration</Link>
-                      <Link href="/form?service=iso-certification" className="block hover:text-[#1B6B50] text-black text-xs">ISO Certification</Link>
-                      <Link href="/form?service=fssai-license" className="block hover:text-[#1B6B50] text-black text-xs">FSSAI (Food License)</Link>
-                      <Link href="/form?service=iec-code" className="block hover:text-[#1B6B50] text-black text-xs">IEC (Import/Export Code)</Link>
-                      <Link href="/form?service=apeda-rcme" className="block hover:text-[#1B6B50] text-black text-xs">Apeda RCME</Link>
-                      <Link href="/form?service=spice-board" className="block hover:text-[#1B6B50] text-black text-xs">Spice Board Registration</Link>
-                      <Link href="/form?service=fieo-registration" className="block hover:text-[#1B6B50] text-black text-xs">FIEO Registration</Link>
-                      <Link href="/form?service=legal-metrology" className="block hover:text-[#1B6B50] text-black text-xs">Legal Metrology</Link>
-                      <Link href="/form?service=hallmark-registration" className="block hover:text-[#1B6B50] text-black text-xs">Hallmark Registration</Link>
-                      <Link href="/form?service=bis-registration" className="block hover:text-[#1B6B50] text-black text-xs">BIS Registration</Link>
-                      <Link href="/form?service=liquor-license" className="block hover:text-[#1B6B50] text-black text-xs">Liquor License</Link>
-                      <Link href="/form?service=clra-registration" className="block hover:text-[#1B6B50] text-black text-xs">CLRA Registration & Licensing</Link>
-                      <Link href="/form?service=ad-code-registration" className="block hover:text-[#1B6B50] text-black text-xs">AD Code Registration</Link>
+                      <Link href="/form?service=dsc" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>DSC</Link>
+                      <Link href="/form?service=udyam-registration" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Udyam Registration</Link>
+                      <Link href="/form?service=msme-registration" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>MSME Registration</Link>
+                      <Link href="/form?service=iso-certification" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>ISO Certification</Link>
+                      <Link href="/form?service=fssai-license" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>FSSAI (Food License)</Link>
+                      <Link href="/form?service=iec-code" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>IEC (Import/Export Code)</Link>
+                      <Link href="/form?service=apeda-rcme" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Apeda RCME</Link>
+                      <Link href="/form?service=spice-board" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Spice Board Registration</Link>
+                      <Link href="/form?service=fieo-registration" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>FIEO Registration</Link>
+                      <Link href="/form?service=legal-metrology" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Legal Metrology</Link>
+                      <Link href="/form?service=hallmark-registration" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Hallmark Registration</Link>
+                      <Link href="/form?service=bis-registration" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>BIS Registration</Link>
+                      <Link href="/form?service=liquor-license" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Liquor License</Link>
+                      <Link href="/form?service=clra-registration" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>CLRA Registration & Licensing</Link>
+                      <Link href="/form?service=ad-code-registration" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>AD Code Registration</Link>
                     </div>
 
                     {/* Book Appointment Section */}
@@ -398,7 +411,7 @@ const Navbar = () => {
                           </svg>
                         </div>
                         <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                           Book an appointment
                         </Link>
                       </div>
@@ -473,7 +486,7 @@ const Navbar = () => {
                           </svg>
                         </div>
                         <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                           Book an appointment
                         </Link>
                       </div>
@@ -532,12 +545,14 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=itr-filing" 
                       className="block hover:text-[#1B6B50] text-black text-xs"
+                      onClick={handleFormLinkClick}
                     >
                       ITR Filing
                     </Link>
                     <Link 
                       href="/form?service=itr-notice" 
                       className="block hover:text-[#1B6B50] text-black text-xs"
+                      onClick={handleFormLinkClick}
                     >
                       ITR Notice Reply
                     </Link>
@@ -552,7 +567,7 @@ const Navbar = () => {
                         </svg>
                       </div>
                       <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                      <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                      <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                         Book an appointment
                       </Link>
                     </div>
@@ -630,7 +645,7 @@ const Navbar = () => {
                         </svg>
                       </div>
                       <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                      <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                      <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                         Book an appointment
                       </Link>
                     </div>
@@ -693,7 +708,7 @@ const Navbar = () => {
                           </svg>
                         </div>
                         <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                           Book an appointment
                         </Link>
                       </div>
@@ -703,13 +718,13 @@ const Navbar = () => {
               </div>
             </div>
             
-            <Link href="/form?service=copyright-registration" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=copyright-registration" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Copyright Registration
             </Link>
-            <Link href="/form?service=patent-filing" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=patent-filing" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Patent Filing
             </Link>
-            <Link href="/form?service=design-registration" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=design-registration" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Design Registration
             </Link>
           </div>
@@ -741,6 +756,7 @@ const Navbar = () => {
                 <Link 
                   href="/form?service=legal-agreements" 
                   className="block px-6 py-1 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
+                  onClick={handleFormLinkClick}
                 >
                   Legal Agreements
                 </Link>
@@ -756,10 +772,10 @@ const Navbar = () => {
                   
                   <div className="py-1">
                     <div className="px-6 space-y-1">
-                      <Link href="/form?service=employment-agreement" className="block hover:text-[#1B6B50] text-black text-xs">Employment Agreement</Link>
-                      <Link href="/form?service=consulting-agreement" className="block hover:text-[#1B6B50] text-black text-xs">Consulting Agreement</Link>
-                      <Link href="/form?service=partnership-agreement" className="block hover:text-[#1B6B50] text-black text-xs">Partnership Agreement</Link>
-                      <Link href="/form?service=vendor-agreement" className="block hover:text-[#1B6B50] text-black text-xs">Vendor Agreement</Link>
+                      <Link href="/form?service=employment-agreement" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Employment Agreement</Link>
+                      <Link href="/form?service=consulting-agreement" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Consulting Agreement</Link>
+                      <Link href="/form?service=partnership-agreement" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Partnership Agreement</Link>
+                      <Link href="/form?service=vendor-agreement" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Vendor Agreement</Link>
                     </div>
                     
                     {/* Book Appointment Section */}
@@ -771,7 +787,7 @@ const Navbar = () => {
                           </svg>
                         </div>
                         <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                           Book an appointment
                         </Link>
                       </div>
@@ -781,13 +797,13 @@ const Navbar = () => {
               </div>
             </div>
             
-            <Link href="/form?service=moa-aoa" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=moa-aoa" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               MOA & AOA
             </Link>
-            <Link href="/form?service=business-contracts" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=business-contracts" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Business Contracts
             </Link>
-            <Link href="/form?service=nda-agreements" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=nda-agreements" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               NDA Agreements
             </Link>
           </div>
@@ -819,6 +835,7 @@ const Navbar = () => {
                 <Link 
                   href="/form?service=legal-advisory" 
                   className="block px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
+                  onClick={handleFormLinkClick}
                 >
                   Legal Advisory
                 </Link>
@@ -834,10 +851,10 @@ const Navbar = () => {
                   
                   <div className="py-4">
                     <div className="px-6 space-y-3">
-                      <Link href="/form?service=business-legal-advisory" className="block hover:text-[#1B6B50] text-black text-xs">Business Legal Advisory</Link>
-                      <Link href="/form?service=startup-advisory" className="block hover:text-[#1B6B50] text-black text-xs">Startup Advisory</Link>
-                      <Link href="/form?service=compliance-advisory" className="block hover:text-[#1B6B50] text-black text-xs">Compliance Advisory</Link>
-                      <Link href="/form?service=regulatory-advisory" className="block hover:text-[#1B6B50] text-black text-xs">Regulatory Advisory</Link>
+                      <Link href="/form?service=business-legal-advisory" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Business Legal Advisory</Link>
+                      <Link href="/form?service=startup-advisory" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Startup Advisory</Link>
+                      <Link href="/form?service=compliance-advisory" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Compliance Advisory</Link>
+                      <Link href="/form?service=regulatory-advisory" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Regulatory Advisory</Link>
                     </div>
                     
                     {/* Book Appointment Section */}
@@ -849,7 +866,7 @@ const Navbar = () => {
                           </svg>
                         </div>
                         <span className="text-gray-600">Prefer to talk to a professional first?</span>
-                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline">
+                        <Link href="/form?service=book-appointment" className="text-[#00D2AA] hover:underline" onClick={handleFormLinkClick}>
                           Book an appointment
                         </Link>
                       </div>
@@ -859,13 +876,13 @@ const Navbar = () => {
               </div>
             </div>
             
-            <Link href="/form?service=business-support" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=business-support" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Business Support
             </Link>
-            <Link href="/form?service=investor-relations" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=investor-relations" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Investor Relations
             </Link>
-            <Link href="/form?service=faqs" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs">
+            <Link href="/form?service=faqs" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               FAQs
             </Link>
           </div>
@@ -877,6 +894,7 @@ const Navbar = () => {
         <Link 
           href="/form?service=consult-expert"
           className="bg-[#C4942D] text-white px-4 py-2 rounded hover:bg-[#b38528] transition-colors text-xs"
+          onClick={handleFormLinkClick}
         >
           Consult an Expert
         </Link>
@@ -929,7 +947,10 @@ const Navbar = () => {
               <Link 
                 href="/form?service=contact-us"
                 className="block px-4 py-2 text-black hover:bg-gray-100 hover:text-[#1B6B50] transition-colors"
-                onClick={() => setBurgerOpen(false)}
+                onClick={() => {
+                  setBurgerOpen(false)
+                  handleFormLinkClick()
+                }}
               >
                 Contact Us
               </Link>
@@ -1097,7 +1118,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/pvltd" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             PVT Ltd Company
@@ -1105,7 +1129,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/llp" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             LLP
@@ -1113,7 +1140,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/opc" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             OPC
@@ -1121,7 +1151,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/soleprop" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Sole Proprietorship
@@ -1129,7 +1162,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=nidhi-company" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Nidhi Company
@@ -1137,7 +1173,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=producer-company" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Producer Company
@@ -1145,7 +1184,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/partnership" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Partnership Firm
@@ -1153,7 +1195,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=startup-india" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Start-Up India Registration
@@ -1164,7 +1209,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=change-company-name" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
                       Change Company Name
@@ -1172,7 +1220,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=insolvency-liquidation" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
                       Insolvency & Liquidation
@@ -1180,7 +1231,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=valuation-of-business" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
                       Valuation of Business
@@ -1221,49 +1275,94 @@ const Navbar = () => {
                       </button>
                       {openMobileDropdowns?.['mobile-licenses-registration'] && (
                         <div className="bg-white/60 rounded-lg p-3 ml-4 space-y-2 max-h-60 overflow-y-auto">
-                          <Link href="/form?service=dsc" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=dsc" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>DSC
                           </Link>
-                          <Link href="/form?service=udyam-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=udyam-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>Udyam Registration
                           </Link>
-                          <Link href="/form?service=msme-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=msme-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>MSME Registration
                           </Link>
-                          <Link href="/form?service=iso-certification" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=iso-certification" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>ISO Certification
                           </Link>
-                          <Link href="/form?service=fssai-license" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=fssai-license" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>FSSAI (Food License)
                           </Link>
-                          <Link href="/form?service=iec-code" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=iec-code" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>IEC (Import/Export Code)
                           </Link>
-                          <Link href="/form?service=apeda-rcme" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=apeda-rcme" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>Apeda RCME
                           </Link>
-                          <Link href="/form?service=spice-board" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=spice-board" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>Spice Board Registration
                           </Link>
-                          <Link href="/form?service=fieo-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=fieo-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>FIEO Registration
                           </Link>
-                          <Link href="/form?service=legal-metrology" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=legal-metrology" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>Legal Metrology
                           </Link>
-                          <Link href="/form?service=hallmark-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=hallmark-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>Hallmark Registration
                           </Link>
-                          <Link href="/form?service=bis-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=bis-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>BIS Registration
                           </Link>
-                          <Link href="/form?service=liquor-license" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=liquor-license" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>Liquor License
                           </Link>
-                          <Link href="/form?service=clra-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=clra-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>CLRA Registration & Licensing
                           </Link>
-                          <Link href="/form?service=ad-code-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={handleMobileMenuItemClick}>
+                          <Link href="/form?service=ad-code-registration" className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200" onClick={() => {
+                            handleMobileMenuItemClick()
+                            handleFormLinkClick()
+                          }}>
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>AD Code Registration
                           </Link>
                         </div>
@@ -1347,7 +1446,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/gst" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             GST Registration
@@ -1355,7 +1457,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/gstfiling" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             GST Filing
@@ -1363,7 +1468,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/gstnotice" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             GST Notice
@@ -1406,7 +1514,10 @@ const Navbar = () => {
                           <Link 
                             href="/services/accounting-&-bookkeeping" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Accounting & Bookkeeping
@@ -1414,7 +1525,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=itr-filing" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             ITR Filing
@@ -1422,7 +1536,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=itr-notice" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             ITR Notice Reply
@@ -1560,7 +1677,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=copyright-registration" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                       Copyright Registration
@@ -1568,7 +1688,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=patent-filing" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
                       Patent Filing
@@ -1576,7 +1699,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=design-registration" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
                       Design Registration
@@ -1662,7 +1788,10 @@ const Navbar = () => {
                           <Link 
                             href="/form" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Employment Agreement
@@ -1670,7 +1799,10 @@ const Navbar = () => {
                           <Link 
                             href="/form" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Consulting Agreement
@@ -1678,7 +1810,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=partnership-agreement" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Partnership Agreement
@@ -1686,7 +1821,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=vendor-agreement" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Vendor Agreement
@@ -1697,7 +1835,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=moa-aoa" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                       MOA & AOA
@@ -1705,7 +1846,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=business-contracts" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                       Business Contracts
@@ -1713,7 +1857,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=nda-agreements" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
                       NDA Agreements
@@ -1792,7 +1939,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=business-legal-advisory" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Business Legal Advisory
@@ -1800,7 +1950,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=startup-advisory" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Startup Advisory
@@ -1808,7 +1961,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=compliance-advisory" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Compliance Advisory
@@ -1816,7 +1972,10 @@ const Navbar = () => {
                           <Link 
                             href="/form?service=regulatory-advisory" 
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
-                            onClick={handleMobileMenuItemClick}
+                            onClick={() => {
+                              handleMobileMenuItemClick()
+                              handleFormLinkClick()
+                            }}
                           >
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Regulatory Advisory
@@ -1827,7 +1986,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=business-support" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                       Business Support
@@ -1835,7 +1997,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=investor-relations" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                       Investor Relations
@@ -1843,7 +2008,10 @@ const Navbar = () => {
                     <Link 
                       href="/form?service=faqs" 
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
-                      onClick={handleMobileMenuItemClick}
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
                     >
                       <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
                       FAQs
@@ -1860,7 +2028,10 @@ const Navbar = () => {
                 <Link 
                   href="/about"
                   className="flex items-center py-3 px-4 text-gray-700 hover:text-[#1B6B50] hover:bg-white/60 rounded-lg transition-all duration-200"
-                  onClick={handleMobileMenuItemClick}
+                  onClick={() => {
+                    handleMobileMenuItemClick()
+                    handleFormLinkClick()
+                  }}
                 >
                   <div className="w-6 h-6 bg-gradient-to-r from-gray-400 to-gray-500 rounded-md flex items-center justify-center mr-3">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -1873,7 +2044,10 @@ const Navbar = () => {
                 <Link 
                   href="/blog"
                   className="flex items-center py-3 px-4 text-gray-700 hover:text-[#1B6B50] hover:bg-white/60 rounded-lg transition-all duration-200"
-                  onClick={handleMobileMenuItemClick}
+                  onClick={() => {
+                    handleMobileMenuItemClick()
+                    handleFormLinkClick()
+                  }}
                 >
                   <div className="w-6 h-6 bg-gradient-to-r from-blue-400 to-blue-500 rounded-md flex items-center justify-center mr-3">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -1886,7 +2060,10 @@ const Navbar = () => {
                 <Link 
                   href="/form?service=contact-us"
                   className="flex items-center py-3 px-4 text-gray-700 hover:text-[#1B6B50] hover:bg-white/60 rounded-lg transition-all duration-200"
-                  onClick={handleMobileMenuItemClick}
+                  onClick={() => {
+                    handleMobileMenuItemClick()
+                    handleFormLinkClick()
+                  }}
                 >
                   <div className="w-6 h-6 bg-gradient-to-r from-green-400 to-green-500 rounded-md flex items-center justify-center mr-3">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -1920,7 +2097,10 @@ const Navbar = () => {
           <Link 
             href="/form?service=consult-expert"
             className="block w-full bg-gradient-to-r from-[#C4942D] to-[#d4a03d] text-white text-center px-6 py-4 rounded-xl hover:from-[#b38528] hover:to-[#c4942d] transition-all duration-200 text-lg font-semibold shadow-lg transform hover:scale-105"
-            onClick={handleMobileMenuItemClick}
+            onClick={() => {
+              handleMobileMenuItemClick()
+              handleFormLinkClick()
+            }}
           >
             <div className="flex items-center justify-center">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-2">
