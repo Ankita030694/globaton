@@ -1645,14 +1645,13 @@ const Navbar = () => {
                   <div className="py-3 px-4 space-y-1">
                     {/* Trademark Registration Submenu */}
                     <div className="space-y-1">
-                      <button
-                        className="flex items-center justify-between w-full text-left py-3 px-3 text-gray-700 hover:bg-white/60 rounded-lg transition-all duration-200 font-medium"
-                        onClick={() =>
-                          setOpenMobileDropdowns((prev: any) => ({
-                            ...prev,
-                            'mobile-trademark-registration': !prev['mobile-trademark-registration'],
-                          }))
-                        }
+                      <Link 
+                        href="/services/trademark" 
+                        className="flex items-center py-3 px-3 text-gray-700 hover:bg-white/60 rounded-lg transition-all duration-200 font-medium"
+                        onClick={() => {
+                          handleMobileMenuItemClick()
+                          handleFormLinkClick()
+                        }}
                       >
                         <div className="flex items-center">
                           <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-pink-600 rounded-md flex items-center justify-center mr-2">
@@ -1662,17 +1661,7 @@ const Navbar = () => {
                           </div>
                           Trademark Registration
                         </div>
-                        <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-trademark-registration'] ? 'rotate-180' : ''
-                          }`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
+                      </Link>
                     </div>
                     <Link 
                       href="/form?service=copyright-registration" 
