@@ -76,7 +76,7 @@ const Blog: React.FC<BlogProps> = ({ blogPosts }) => {
               <div className="flex items-center gap-3">
                 <div className="relative w-10 h-10 rounded-full overflow-hidden">
                   <Image
-                    src="/author.png"
+                    src="/logo3.jpg"
                     alt={post.author}
                     fill
                     className="object-cover"

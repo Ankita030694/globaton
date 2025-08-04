@@ -105,7 +105,7 @@ export default function BlogPage() {
                     <div className="flex items-center space-x-3 md:space-x-4 mb-3 md:mb-4 text-xs md:text-sm">
                       <div className="flex items-center gap-2">
                         <Image
-                          src="/author.png"
+                          src="/logo3.jpg"
                           alt={post.author}
                           width={20}
                           height={20}
