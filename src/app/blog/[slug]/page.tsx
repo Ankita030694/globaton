@@ -66,7 +66,7 @@ export default async function BlogPost({ params }: Props) {
             {blog.author && (
               <div className="flex items-center gap-2">
                 <Image
-                  src="/author.png"
+                  src="/logo3.jpg"
                   alt={blog.author}
                   width={32}
                   height={32}
