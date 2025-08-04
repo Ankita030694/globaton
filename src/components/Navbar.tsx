@@ -2011,7 +2011,7 @@ const Navbar = () => {
             </div>
 
             {/* Additional Links Section */}
-            <div className="mt-6 pt-4 border-t border-gray-200">
+            <div className="mb-20 pt-4 border-t border-gray-200">
               <div className="px-4 space-y-1">
                 <h3 className="px-2 text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Quick Links</h3>
                 <Link 
@@ -2082,7 +2082,7 @@ const Navbar = () => {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent z-10">
+        <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent z-10 mt-10">
           <Link 
             href="/form?service=consult-expert"
             className="block w-full bg-gradient-to-r from-[#C4942D] to-[#d4a03d] text-white text-center px-6 py-4 rounded-xl hover:from-[#b38528] hover:to-[#c4942d] transition-all duration-200 text-lg font-semibold shadow-lg transform hover:scale-105"
