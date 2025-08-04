@@ -275,25 +275,19 @@ const BlogsDashboard = () => {
     if (!blog.id) return;
     
     try {
-      // Fetch FAQs for this blog from subcollection if they exist
-      let faqs = blog.faqs || [];
-      
-      try {
-        const faqsSnapshot = await getDocs(collection(db, 'blogs', blog.id, 'faqs'));
-        if (!faqsSnapshot.empty) {
-          faqs = faqsSnapshot.docs.map(doc => ({
-            question: doc.data().question || '',
-            answer: doc.data().answer || ''
-          }));
-        }
-      } catch (error) {
-        console.error("Error fetching FAQs:", error);
-      }
-      
-      // Set form data with the blog and FAQs
+      // Set form data with the blog content
       setFormData({
-        ...blog,
-        faqs
+        title: blog.title || '',
+        subtitle: blog.subtitle || '',
+        description: blog.description || '',
+        date: blog.date || new Date().toISOString().split('T')[0],
+        image: blog.image || '',
+        created: blog.created || Date.now(),
+        metaTitle: blog.metaTitle || '',
+        metaDescription: blog.metaDescription || '',
+        slug: blog.slug || '',
+        faqs: blog.faqs || [],
+        author: blog.author || 'Ishan Srivastava'
       });
       
       setEditingBlogId(blog.id);
@@ -302,6 +296,7 @@ const BlogsDashboard = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error("Error setting up edit:", error);
+      setSubmitStatus({ type: 'error', message: 'Failed to load blog for editing.' });
     }
   };
 

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
@@ -16,6 +16,8 @@ import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import Subscript from '@tiptap/extension-subscript';
 import Superscript from '@tiptap/extension-superscript';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '@/firebase/firebase';
 
 interface TiptapEditorProps {
   content: string;
@@ -28,6 +30,38 @@ const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) {
     return null;
   }
+
+  const handleImageUpload = async (file: File) => {
+    try {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        alert('Please select an image file');
+        return null;
+      }
+
+      // Validate file size (5MB limit)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5MB');
+        return null;
+      }
+
+      // Create a unique filename
+      const timestamp = Date.now();
+      const fileName = `blog-content-images/${timestamp}-${file.name}`;
+      const storageRef = ref(storage, fileName);
+
+      // Upload file
+      const snapshot = await uploadBytes(storageRef, file);
+      
+      // Get download URL
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      return downloadURL;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Failed to upload image. Please try again.');
+      return null;
+    }
+  };
 
   const colors = [
     { name: 'Black', value: '#000000' },
@@ -226,10 +260,22 @@ const MenuBar = ({ editor }: { editor: any }) => {
         <button
           type="button"
           onClick={() => {
-            const url = window.prompt('Enter the image URL');
-            if (url) {
-              editor.chain().focus().setImage({ src: url, alt: 'Image' }).run();
-            }
+            // Create a file input element
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = async (e) => {
+              const file = (e.target as HTMLInputElement).files?.[0];
+              if (file) {
+                const imageUrl = await handleImageUpload(file);
+                if (imageUrl) {
+                  editor.chain().focus().setImage({ src: imageUrl, alt: 'Image' }).run();
+                }
+              }
+            };
+            
+            input.click();
           }}
           className="p-1 px-2 rounded hover:bg-gray-200"
           title="Image"
@@ -304,7 +350,14 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, onChange, classNam
         class: 'prose max-w-none p-4 min-h-[300px] focus:outline-none',
       },
     },
-  });
+  }, []);  // Remove the dependency array to prevent recreation
+
+  // Update content when it changes externally
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content || '<p>Start writing your blog...</p>');
+    }
+  }, [content, editor]);
 
   // Return the editor content with the MenuBar
   return (
