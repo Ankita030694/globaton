@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { db } from '@/firebase/firebase';
 import { collection, getDocs, orderBy, query, limit } from 'firebase/firestore';
 import Blog from './Blog';
@@ -39,9 +42,31 @@ async function getLatestBlogPosts(): Promise<BlogPost[]> {
   });
 }
 
-const BlogWrapper = async () => {
-  const blogPosts = await getLatestBlogPosts();
-  
+const BlogWrapper = () => {
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const posts = await getLatestBlogPosts();
+        setBlogPosts(posts);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogPosts();
+  }, []);
+
+  if (loading) {
+    return <div className="flex justify-center items-center min-h-[200px]">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#165D3F]"></div>
+    </div>;
+  }
+
   return <Blog blogPosts={blogPosts} />;
 };
 

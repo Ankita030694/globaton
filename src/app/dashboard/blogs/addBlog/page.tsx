@@ -48,7 +48,7 @@ const BlogsDashboard = () => {
     metaDescription: '',
     slug: '',
     faqs: [],
-    author: 'Anuj Anand Malik'
+    author: 'Ishan Srivastava'
   });
   const [showPublishedModal, setShowPublishedModal] = useState(false);
   const { user, loading: authLoading } = useAuth();
@@ -440,16 +440,13 @@ const BlogsDashboard = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Author</label>
-                  <select
+                  <input
                     name="author"
                     value={formData.author}
                     onChange={handleChange}
                     className="w-full p-2 border border-gray-300 rounded-lg focus:ring-[#EABE4C] focus:border-[#EABE4C] text-black"
                     required
-                  >
-                    <option value="Author 1">Author 1</option>
-                    <option value="Author 2">Author 2</option>
-                  </select>
+                  />
                 </div>
               </div>
               
