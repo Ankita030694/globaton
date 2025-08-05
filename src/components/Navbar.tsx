@@ -195,7 +195,7 @@ const Navbar = () => {
             <img 
               src="/logogb.svg" 
               alt="Globaton Logo" 
-              className="w-[180px] h-[90px] object-contain mt-3 logo-optimized" 
+              className="w-[180px] h-[90px] object-cover mt-3 logo-optimized" 
               style={{
                 imageRendering: '-webkit-optimize-contrast',
                 transform: 'translateZ(0)',
@@ -1045,7 +1045,7 @@ const Navbar = () => {
                 <img 
                   src="/logogb.svg" 
                   alt="Globaton Logo" 
-                  className="w-[120px] h-[60px] object-contain logo-optimized" 
+                  className="w-[120px] h-[60px] object-cover logo-optimized" 
                   style={{
                     imageRendering: '-webkit-optimize-contrast',
                     transform: 'translateZ(0)',
@@ -1058,7 +1058,7 @@ const Navbar = () => {
                   alt="Globaton Logo" 
                   width={120} 
                   height={60} 
-                  className="w-[120px] h-[60px] object-contain logo-optimized" 
+                  className="w-[120px] h-[60px] object-cover logo-optimized" 
                   priority 
                   sizes="120px"
                   style={{
