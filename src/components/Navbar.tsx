@@ -13,7 +13,15 @@ const Navbar = () => {
   const [isBurgerOpen, setBurgerOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openMobileDropdowns, setOpenMobileDropdowns] = useState<{ [key: string]: boolean }>({})
+  const [isIOS, setIsIOS] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Detect iOS device
+  useEffect(() => {
+    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    setIsIOS(isIOSDevice)
+  }, [])
 
   // Function to handle opening dropdown
   const handleDropdownAreaEnter = (dropdown: string) => {
@@ -183,14 +191,33 @@ const Navbar = () => {
       {/* Left Container - Logo */}
       <div className="flex items-center flex-shrink-0">
         <Link href="/">
-          <Image 
-            src="/logogb.svg" 
-            alt="Globaton Logo" 
-            width={500} 
-            height={500} 
-            className="w-[180px] h-[90px] object-cover mt-3" 
-            priority 
-          />
+          {isIOS ? (
+            <img 
+              src="/logogb.svg" 
+              alt="Globaton Logo" 
+              className="w-[180px] h-[90px] object-contain mt-3 logo-optimized" 
+              style={{
+                imageRendering: '-webkit-optimize-contrast',
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
+            />
+          ) : (
+            <Image 
+              src="/logogb.svg" 
+              alt="Globaton Logo" 
+              width={1000} 
+              height={1000} 
+              className="w-[180px] h-[90px] object-cover mt-3 logo-optimized" 
+              priority 
+              sizes="180px"
+              style={{
+                imageRendering: '-webkit-optimize-contrast',
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
+            />
+          )}
         </Link>
       </div>
 
@@ -1014,14 +1041,33 @@ const Navbar = () => {
         <div className="p-6 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Image 
-                src="/globatonlogo.png" 
-                alt="Globaton Logo" 
-                width={120} 
-                height={60} 
-                className="w-[120px] h-[60px] object-cover" 
-                priority 
-              />
+              {isIOS ? (
+                <img 
+                  src="/logogb.svg" 
+                  alt="Globaton Logo" 
+                  className="w-[120px] h-[60px] object-contain logo-optimized" 
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden'
+                  }}
+                />
+              ) : (
+                <Image 
+                  src="/logogb.svg" 
+                  alt="Globaton Logo" 
+                  width={120} 
+                  height={60} 
+                  className="w-[120px] h-[60px] object-contain logo-optimized" 
+                  priority 
+                  sizes="120px"
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden'
+                  }}
+                />
+              )}
             </div>
             <button 
               onClick={toggleMobileMenu}

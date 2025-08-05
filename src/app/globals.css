@@ -24,3 +24,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* iOS SVG rendering optimizations */
+@supports (-webkit-touch-callout: none) {
+  img[src*=".svg"] {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* General SVG optimization for all devices */
+img[src*=".svg"] {
+  image-rendering: optimizeQuality;
+  shape-rendering: geometricPrecision;
+}
+
+/* Logo-specific optimizations */
+.logo-optimized {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
