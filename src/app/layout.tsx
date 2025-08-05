@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Globaton",
+  title: "Globaton | Management Advisors",
   description: "Globaton",
 };
 

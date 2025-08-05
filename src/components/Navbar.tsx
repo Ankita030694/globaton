@@ -184,7 +184,7 @@ const Navbar = () => {
       <div className="flex items-center flex-shrink-0">
         <Link href="/">
           <Image 
-            src="/globatonlogo.png" 
+            src="/logogb.svg" 
             alt="Globaton Logo" 
             width={500} 
             height={500} 
