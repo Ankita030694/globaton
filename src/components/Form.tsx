@@ -142,7 +142,7 @@ const Form = () => {
             </div>
           </div>
 
-          <div className="flex gap-2 md:gap-4 overflow-x-auto pb-4">
+          <div className="flex gap-2 md:gap-4 pb-4">
             {testimonials.slice(0, 8).map((testimonial, index) => (
               <div 
                 key={index} 
