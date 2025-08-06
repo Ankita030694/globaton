@@ -193,7 +193,7 @@ const Navbar = () => {
         <Link href="/">
           {isIOS ? (
             <img 
-              src="/logogb.svg" 
+              src="/logogb.png" 
               alt="Globaton Logo" 
               className="w-[180px] h-[90px] object-cover mt-3 logo-optimized" 
               style={{
@@ -204,7 +204,7 @@ const Navbar = () => {
             />
           ) : (
             <Image 
-              src="/logogb.svg" 
+              src="/logogb.png" 
               alt="Globaton Logo" 
               width={1000} 
               height={1000} 
@@ -1043,7 +1043,7 @@ const Navbar = () => {
             <div className="flex items-center">
               {isIOS ? (
                 <img 
-                  src="/logogb.svg" 
+                  src="/logogb.png" 
                   alt="Globaton Logo" 
                   className="w-[120px] h-[60px] object-cover logo-optimized" 
                   style={{
@@ -1054,7 +1054,7 @@ const Navbar = () => {
                 />
               ) : (
                 <Image 
-                  src="/logogb.svg" 
+                  src="/logogb.png" 
                   alt="Globaton Logo" 
                   width={120} 
                   height={60} 
