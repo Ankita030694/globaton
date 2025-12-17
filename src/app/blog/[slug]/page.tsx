@@ -149,14 +149,14 @@ export default async function BlogPost({ params }: Props) {
             <div className="p-8 md:p-12">
               {/* Blog Content with Tiptap Editor Styles */}
               <div className="prose prose-lg max-w-none text-gray-800 
-                           prose-headings:text-[#1B6B50] prose-headings:font-bold
+                           prose-headings:font-bold prose-headings:text-inherit
                            prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8
                            prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-7
                            prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6
                            prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
-                           prose-strong:text-[#1B6B50] prose-strong:font-semibold
+                           prose-strong:font-semibold prose-strong:text-inherit
                            prose-em:text-gray-600 prose-em:italic
-                           prose-a:text-[#1B6B50] prose-a:underline prose-a:font-medium
+                           prose-a:underline prose-a:font-medium prose-a:text-inherit
                            prose-a:hover:text-[#165D3F] prose-a:transition-colors
                            prose-blockquote:border-l-4 prose-blockquote:border-[#EABE4C] 
                            prose-blockquote:bg-gray-50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg
@@ -164,7 +164,7 @@ export default async function BlogPost({ params }: Props) {
                            prose-ul:text-gray-700 prose-ol:text-gray-700
                            prose-li:mb-2 prose-li:text-gray-700
                            prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
-                           prose-code:text-[#1B6B50] prose-code:font-mono prose-code:text-sm
+                           prose-code:font-mono prose-code:text-sm prose-code:text-inherit
                            prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg
                            prose-table:border-collapse prose-table:w-full
                            prose-th:bg-[#1B6B50] prose-th:text-white prose-th:p-3 prose-th:font-semibold
