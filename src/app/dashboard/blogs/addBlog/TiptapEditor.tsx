@@ -16,6 +16,10 @@ import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import Subscript from '@tiptap/extension-subscript';
 import Superscript from '@tiptap/extension-superscript';
+import TaskList from '@tiptap/extension-task-list';
+import TaskItem from '@tiptap/extension-task-item';
+import Placeholder from '@tiptap/extension-placeholder';
+import Typography from '@tiptap/extension-typography';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '@/firebase/firebase';
 
@@ -73,7 +77,31 @@ const MenuBar = ({ editor }: { editor: any }) => {
   ];
 
   return (
-    <div className="border-b border-gray-300 p-2 flex flex-wrap gap-1 bg-gray-50">
+    <div className="border-b border-gray-300 p-2 flex flex-wrap gap-1 bg-gray-50 sticky top-0 z-10">
+      {/* History */}
+      <div className="flex gap-1 mr-2">
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().undo().run()}
+          disabled={!editor.can().chain().focus().undo().run()}
+          className="p-1 px-2 rounded hover:bg-gray-200 disabled:opacity-50"
+          title="Undo"
+        >
+          ↩
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().redo().run()}
+          disabled={!editor.can().chain().focus().redo().run()}
+          className="p-1 px-2 rounded hover:bg-gray-200 disabled:opacity-50"
+          title="Redo"
+        >
+          ↪
+        </button>
+      </div>
+
+      <span className="border-r border-gray-300 mx-1"></span>
+
       {/* Text Formatting */}
       <div className="flex gap-1 mr-2">
         <button
@@ -99,6 +127,30 @@ const MenuBar = ({ editor }: { editor: any }) => {
           title="Underline"
         >
           <u>U</u>
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+          className={`p-1 px-2 rounded hover:bg-gray-200 ${editor.isActive('strike') ? 'bg-gray-200' : ''}`}
+          title="Strikethrough"
+        >
+          <s>S</s>
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleCode().run()}
+          className={`p-1 px-2 rounded hover:bg-gray-200 ${editor.isActive('code') ? 'bg-gray-200' : ''}`}
+          title="Inline Code"
+        >
+          {'<>'}
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().unsetAllMarks().run()}
+          className="p-1 px-2 rounded hover:bg-gray-200"
+          title="Clear Formatting"
+        >
+          Tx
         </button>
       </div>
 
@@ -160,6 +212,14 @@ const MenuBar = ({ editor }: { editor: any }) => {
         >
           1. List
         </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleTaskList().run()}
+          className={`p-1 px-2 rounded hover:bg-gray-200 ${editor.isActive('taskList') ? 'bg-gray-200' : ''}`}
+          title="Task List"
+        >
+          ☑ List
+        </button>
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
@@ -190,6 +250,14 @@ const MenuBar = ({ editor }: { editor: any }) => {
         >
           →
         </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+          className={`p-1 px-2 rounded hover:bg-gray-200 ${editor.isActive({ textAlign: 'justify' }) ? 'bg-gray-200' : ''}`}
+          title="Justify"
+        >
+          ≣
+        </button>
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
@@ -206,11 +274,35 @@ const MenuBar = ({ editor }: { editor: any }) => {
         </button>
         <button
           type="button"
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          className={`p-1 px-2 rounded hover:bg-gray-200 ${editor.isActive('codeBlock') ? 'bg-gray-200' : ''}`}
+          title="Code Block"
+        >
+          {'{ }'}
+        </button>
+        <button
+          type="button"
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
           className="p-1 px-2 rounded hover:bg-gray-200"
           title="Horizontal Rule"
         >
           —
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleSubscript().run()}
+          className={`p-1 px-2 rounded hover:bg-gray-200 ${editor.isActive('subscript') ? 'bg-gray-200' : ''}`}
+          title="Subscript"
+        >
+          X₂
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleSuperscript().run()}
+          className={`p-1 px-2 rounded hover:bg-gray-200 ${editor.isActive('superscript') ? 'bg-gray-200' : ''}`}
+          title="Superscript"
+        >
+          X²
         </button>
       </div>
 
@@ -221,6 +313,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
         <select
           className="p-1 rounded border border-gray-300"
           onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
+          value={editor.getAttributes('textStyle').color || ''}
           title="Text Color"
         >
           <option value="">Text Color</option>
@@ -319,7 +412,7 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, onChange, classNam
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-blue-500 underline',
+          // Removed conflicting class to let prose styles take over
         },
       }),
       TextAlign.configure({
@@ -328,7 +421,9 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, onChange, classNam
       }),
       Underline,
       TextStyle,
-      Color,
+      Color.configure({
+        types: ['textStyle'],
+      }),
       Highlight.configure({
         multicolor: true,
       }),
@@ -340,6 +435,14 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, onChange, classNam
       TableRow,
       TableHeader,
       TableCell,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
+      Placeholder.configure({
+        placeholder: 'Write something amazing...',
+      }),
+      Typography,
     ],
     content: content || '<p>Start writing your blog...</p>',
     onUpdate: ({ editor }) => {
@@ -347,7 +450,29 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({ content, onChange, classNam
     },
     editorProps: {
       attributes: {
-        class: 'prose max-w-none p-4 min-h-[300px] focus:outline-none',
+        class: `prose prose-lg max-w-none text-gray-800 
+                prose-headings:font-bold prose-headings:text-inherit
+                prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8
+                prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-7
+                prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6
+                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
+                prose-strong:font-semibold prose-strong:text-inherit
+                prose-em:text-gray-600 prose-em:italic
+                prose-a:underline prose-a:font-medium prose-a:text-inherit
+                prose-a:hover:text-[#165D3F] prose-a:transition-colors
+                prose-blockquote:border-l-4 prose-blockquote:border-[#EABE4C] 
+                prose-blockquote:bg-gray-50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg
+                prose-blockquote:text-gray-700 prose-blockquote:italic
+                prose-ul:text-gray-700 prose-ol:text-gray-700
+                prose-li:mb-2 prose-li:text-gray-700
+                prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
+                prose-code:font-mono prose-code:text-sm prose-code:text-inherit
+                prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg
+                prose-table:border-collapse prose-table:w-full
+                prose-th:bg-[#1B6B50] prose-th:text-white prose-th:p-3 prose-th:font-semibold
+                prose-td:border prose-td:border-gray-200 prose-td:p-3
+                prose-img:rounded-lg prose-img:shadow-md prose-img:my-6
+                p-4 min-h-[300px] focus:outline-none`.replace(/\s+/g, ' ').trim(),
       },
     },
   }, []);  // Remove the dependency array to prevent recreation
