@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
     const staticPages = staticRoutes.map((route) => ({
-        url: `${baseUrl}${route}`,
+        url: `${baseUrl}${route}`.replace(/&/g, '&amp;'),
         lastModified: new Date().toISOString(),
         changeFrequency: 'weekly' as const,
         priority: route === '' ? 1 : 0.8,
@@ -56,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             }
 
             return {
-                url: `${baseUrl}/blog/${blog.slug}`,
+                url: `${baseUrl}/blog/${blog.slug}`.replace(/&/g, '&amp;'),
                 lastModified,
                 changeFrequency: 'weekly' as const,
                 priority: 0.6,
