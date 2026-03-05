@@ -1,7 +1,5 @@
 'use client'
 import React, { useState } from "react";
-import { db } from "@/firebase/firebase";
-import { collection, addDoc } from "firebase/firestore";
 
 interface ConsultationFormProps {
   source: string;
@@ -14,7 +12,7 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
     phone: "",
     address: "",
     services: "",
-    customService: "", // Add custom service field
+    customService: "",
   });
   const [loading, setLoading] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -32,23 +30,24 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
     e.preventDefault();
     setLoading(true);
     setError("");
-    
+
     try {
-      // Use custom service if "others" is selected, otherwise use the selected service
-      const serviceToSubmit = formData.services === "others" ? formData.customService : formData.services;
-      
-      await addDoc(collection(db, "consultations"), {
-        ...formData,
-        services: serviceToSubmit, // Store the final service value
-        source,
-        createdAt: new Date()
+      const res = await fetch("/api/form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, source }),
       });
-      
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Submission failed.");
+      }
+
       setFormData({ name: "", email: "", phone: "", address: "", services: "", customService: "" });
       setFormSubmitted(true);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Error submitting form: ", err);
-      setError("There was an error submitting your information. Please try again.");
+      setError(err instanceof Error ? err.message : "There was an error submitting your information. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -57,11 +56,11 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 text-center">
       <h2 className="text-2xl font-semibold mb-6 text-black">Get Consultation Now</h2>
-      
+
       {formSubmitted ? (
         <div className="bg-green-50 p-4 rounded-lg">
           <p className="text-green-800 font-medium">Thank you for your submission!</p>
-          <p className="text-green-700 mt-2">We'll get back to you shortly.</p>
+          <p className="text-green-700 mt-2">We&apos;ll get back to you shortly.</p>
           <button
             onClick={() => setFormSubmitted(false)}
             className="mt-4 px-4 py-2 bg-[#C4942D] text-white rounded-lg hover:bg-[#b38528] transition-colors"
@@ -125,7 +124,7 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
 
           <div className="text-left">
             <label className="block text-sm font-medium text-gray-700 mb-1">Services needed <span className="text-red-500">*</span></label>
-            <select 
+            <select
               name="services"
               value={formData.services}
               onChange={handleChange}
@@ -134,14 +133,13 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
             >
               <option value="">Choose one</option>
               <option value="business-setup">Business Setup</option>
-              <option value="financial-planning">Financial & Tax Planning</option>
+              <option value="financial-planning">Financial &amp; Tax Planning</option>
               <option value="tax-planning">ITR Filing</option>
               <option value="registration-compliance">Registration and Compliance</option>
               <option value="others">Others</option>
             </select>
           </div>
 
-          {/* Conditional textarea for custom service */}
           {formData.services === "others" && (
             <div className="text-left">
               <label className="block text-sm font-medium text-gray-700 mb-1">Please specify the service you need <span className="text-red-500">*</span></label>
@@ -172,4 +170,4 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
       )}
     </div>
   );
-} 
+}
