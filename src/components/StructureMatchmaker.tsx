@@ -213,12 +213,23 @@ const StructureMatchmaker = () => {
                         </div>
 
                         <div className="space-y-3">
-                            <a
-                                href="#consultation-form"
-                                className="w-full bg-[#165D3F] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl hover:bg-emerald-900 transition-all cursor-pointer"
-                            >
-                                <Calendar size={20} /> Book Free Setup Audit
-                            </a>
+                            {(() => {
+                                const serviceMap: Record<string, string> = {
+                                    "Private Limited Company (Pvt Ltd)": "pvltd-expert",
+                                    "Limited Liability Partnership (LLP)": "llp-expert",
+                                    "One Person Company (OPC)": "opc-expert",
+                                    "Sole Proprietorship": "soleprop-expert"
+                                };
+                                const serviceKey = serviceMap[result.type] || "consult-expert";
+                                return (
+                                    <a
+                                        href={`/form?service=${serviceKey}`}
+                                        className="w-full bg-[#165D3F] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl hover:bg-emerald-900 transition-all cursor-pointer"
+                                    >
+                                        <Calendar size={20} /> Book Free Setup Audit
+                                    </a>
+                                );
+                            })()}
                             <button
                                 onClick={() => {
                                     setStep('intro');

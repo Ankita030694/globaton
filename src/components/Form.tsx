@@ -1,19 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import { app } from '../firebase/firebase';
+import ConsultationForm from './ConsultationForm';
 
 const Form = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    services: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ type: string; message: string } | null>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const testimonials = [
@@ -82,42 +72,6 @@ const Form = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    try {
-      // Initialize Firestore
-      const db = getFirestore(app);
-
-      // Add document to 'consultations' collection
-      await addDoc(collection(db, 'consultations'), {
-        ...formData,
-        createdAt: new Date()
-      });
-
-      // Reset form and show success message
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        services: '',
-      });
-      setSubmitStatus({ type: 'success', message: 'Your consultation request has been submitted!' });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus({ type: 'error', message: 'Failed to submit form. Please try again.' });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className="flex flex-col" id="consultation-form">
@@ -167,88 +121,10 @@ const Form = () => {
           </div>
         </div>
 
-        {/* Right Section - Form */}
-        <div className="md:w-1/2 p-4 md:p-8 mt-8 md:mt-0">
-          <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-8 max-w-md mx-auto">
-            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-black">Get Consultation</h2>
-
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block mb-2 text-black text-sm md:text-base">Name <span className="text-red-500">*</span></label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="e.g. John Carlos"
-                  className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
-                  required
-                />
-              </div>
-
-              <div className="flex flex-col md:flex-row gap-4 mb-4">
-                <div className="flex-1">
-                  <label className="block mb-2 text-black text-sm md:text-base">Email <span className="text-red-500">*</span></label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="e.g. johnxxxxx@xyz.com"
-                    className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
-                    required
-                  />
-                </div>
-                <div className="flex-1">
-                  <label className="block mb-2 text-black text-sm md:text-base">Phone <span className="text-red-500">*</span></label>
-                  <div className="flex">
-                    <select className="p-2 md:p-3 rounded-lg bg-gray-50 text-sm md:text-base">
-                      <option className="text-black">🇮🇳 +91</option>
-                    </select>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <label className="block mb-2 text-black text-sm md:text-base">Services needed <span className="text-red-500">*</span></label>
-                <select
-                  name="services"
-                  value={formData.services}
-                  onChange={handleChange}
-                  className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
-                  required
-                >
-                  <option value="">Choose one</option>
-                  <option value="Business Setup">Business Setup</option>
-                  <option value="Financial Planning">Financial Planning</option>
-                  <option value="Tax Planning">Tax Planning</option>
-                  <option value="Registration and Compliance">Registration and Compliance</option>
-                  <option value="IP & Others">IP & Others</option>
-                </select>
-              </div>
-
-              {submitStatus && (
-                <div className={`mb-4 p-2 md:p-3 rounded text-sm md:text-base ${submitStatus.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                  {submitStatus.message}
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="w-full bg-[#C69749] text-white py-2 md:py-3 rounded-lg hover:bg-[#B58738] flex justify-center text-sm md:text-base"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
-            </form>
+        {/* Right Section - Form Wrapper */}
+        <div className="md:w-1/2 p-4 md:p-8 mt-8 md:mt-0" id="consultation-form">
+          <div className="max-w-md mx-auto">
+            <ConsultationForm source="Homepage Footer Section" />
           </div>
         </div>
       </div>
