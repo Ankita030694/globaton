@@ -8,10 +8,7 @@ const NameCheckerCard = () => {
         <div className="w-full max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-emerald-50 flex flex-col">
             {/* Header */}
             <div className="p-8 pb-4 flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-[#165D3F] rounded flex items-center justify-center text-white font-bold text-sm">G</div>
-                    <span className="font-bold text-[#165D3F] tracking-tight text-sm">GLOBATON</span>
-                </div>
+                <div></div>
             </div>
 
             <div className="p-8 pt-0 flex-grow flex flex-col items-center text-center justify-center">
