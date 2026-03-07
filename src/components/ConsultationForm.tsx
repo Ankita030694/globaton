@@ -3,15 +3,18 @@ import React, { useState } from "react";
 
 interface ConsultationFormProps {
   source: string;
+  onSuccess?: () => void;
+  isNameChecker?: boolean;
+  prefilledService?: string;
 }
 
-export default function ConsultationForm({ source }: ConsultationFormProps) {
+export default function ConsultationForm({ source, onSuccess, isNameChecker, prefilledService }: ConsultationFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     address: "",
-    services: "",
+    services: prefilledService || (isNameChecker ? "others" : ""),
     customService: "",
   });
   const [loading, setLoading] = useState(false);
@@ -31,24 +34,37 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
     setLoading(true);
     setError("");
 
+    // Set storage and trigger callback immediately for "instant" feel
+    localStorage.setItem('isfilled', 'true');
+    const quizData = localStorage.getItem('matchmaker_qa');
+    const parsedQuizData = quizData ? JSON.parse(quizData) : null;
+
+    if (onSuccess) {
+      onSuccess();
+    }
+
     try {
-      const res = await fetch("/api/form", {
+      // Fire and forget (let it run in background)
+      fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, source }),
+        body: JSON.stringify({ ...formData, source, quizData: parsedQuizData }),
+      }).then(res => {
+        if (!res.ok) {
+          console.error("Background submission failed");
+        } else {
+          localStorage.removeItem('matchmaker_qa'); // Clear after successful submission
+        }
+      }).catch(err => {
+        console.error("Background error: ", err);
       });
 
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Submission failed.");
-      }
-
+      // Clear form and show local success if not closed
       setFormData({ name: "", email: "", phone: "", address: "", services: "", customService: "" });
-      localStorage.setItem('isfilled', 'true');
       setFormSubmitted(true);
     } catch (err: unknown) {
-      console.error("Error submitting form: ", err);
-      setError(err instanceof Error ? err.message : "There was an error submitting your information. Please try again.");
+      console.error("Error initiating submission: ", err);
+      // We don't block here anymore since we already triggered Success
     } finally {
       setLoading(false);
     }
@@ -124,24 +140,51 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
           </div>
 
           <div className="text-left">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Services needed <span className="text-red-500">*</span></label>
-            <select
-              name="services"
-              value={formData.services}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
-            >
-              <option value="">Choose one</option>
-              <option value="business-setup">Business Setup</option>
-              <option value="financial-planning">Financial &amp; Tax Planning</option>
-              <option value="tax-planning">ITR Filing</option>
-              <option value="registration-compliance">Registration and Compliance</option>
-              <option value="others">Others</option>
-            </select>
+            {isNameChecker ? (
+              <>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Name you are searching for <span className="text-red-500">*</span></label>
+                <input
+                  type="text"
+                  name="customService"
+                  value={formData.customService}
+                  onChange={handleChange}
+                  placeholder="e.g. Globaton Tech Pvt Ltd"
+                  required
+                  className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
+                />
+              </>
+            ) : prefilledService ? (
+              <>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Service requested (Based on Quiz) <span className="text-red-500">*</span></label>
+                <div className="w-full px-5 py-3 rounded-2xl bg-emerald-50 border-2 border-[#165D3F]/20 flex items-center justify-between group">
+                  <span className="text-[#165D3F] font-bold">{prefilledService}</span>
+                  <div className="bg-[#165D3F] text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md">
+                    Recommended
+                  </div>
+                </div>
+                <input type="hidden" name="services" value={formData.services} />
+              </>
+            ) : (
+              <>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Services needed <span className="text-red-500">*</span></label>
+                <select
+                  name="services"
+                  value={formData.services}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
+                >
+                  <option value="">Choose one</option>
+                  <option value="business-setup">Business setup</option>
+                  <option value="tax-compliance">Tax & Compliance</option>
+                  <option value="ip-trademark">IP & Trademark Registration</option>
+                  <option value="others">Others</option>
+                </select>
+              </>
+            )}
           </div>
 
-          {formData.services === "others" && (
+          {!isNameChecker && formData.services === "others" && (
             <div className="text-left">
               <label className="block text-sm font-medium text-gray-700 mb-1">Please specify the service you need <span className="text-red-500">*</span></label>
               <textarea

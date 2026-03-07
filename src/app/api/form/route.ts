@@ -6,7 +6,7 @@ import { sendConsultationEmail } from "@/lib/sendEmail";
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { name, email, phone, address, services, customService, source } = body;
+        const { name, email, phone, address, services, customService, source, quizData } = body;
 
         // Basic validation
         if (!name || !email || !phone || !services) {
@@ -26,8 +26,11 @@ export async function POST(req: NextRequest) {
             address: address || "",
             services: serviceToSubmit,
             source: source || "unknown",
+            quizData: quizData || [], // Include quiz results if available
             createdAt: new Date(),
         });
+
+        console.log("Quiz Data:", quizData);
 
         // 2. Send email to the user
         await sendConsultationEmail(name, email);

@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React, { useState } from 'react';
 import {
@@ -14,6 +14,8 @@ import {
     Zap,
     X
 } from 'lucide-react';
+import ConsultationForm from './ConsultationForm';
+import Portal from './Portal';
 
 /**
  * StructureMatchmaker.jsx
@@ -22,6 +24,7 @@ import {
  */
 const StructureMatchmaker = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
     const [step, setStep] = useState('quiz'); // quiz, result
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -67,9 +70,15 @@ const StructureMatchmaker = () => {
         }
     ];
 
-    const handleAnswer = (value: string) => {
-        const newAnswers = { ...answers, [questions[currentQuestion].id]: value };
+    const handleAnswer = (value: string, label: string) => {
+        const currentQ = questions[currentQuestion];
+        const newAnswers = { ...answers, [currentQ.id]: value };
         setAnswers(newAnswers);
+
+        // Track Q&A for database submission
+        const existingQA = JSON.parse(localStorage.getItem('matchmaker_qa') || '[]');
+        const updatedQA = [...existingQA, { question: currentQ.text, answer: label }];
+        localStorage.setItem('matchmaker_qa', JSON.stringify(updatedQA));
 
         if (currentQuestion < questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
@@ -119,6 +128,7 @@ const StructureMatchmaker = () => {
         setStep('quiz');
         setCurrentQuestion(0);
         setAnswers({});
+        localStorage.removeItem('matchmaker_qa');
     };
 
     return (
@@ -160,114 +170,151 @@ const StructureMatchmaker = () => {
 
             {/* Modal Popup */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                    <div className="relative w-full max-w-lg bg-white rounded-[2rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-                        {/* Close Button */}
-                        <button
-                            onClick={() => setIsModalOpen(false)}
-                            className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-all z-10"
-                        >
-                            <X size={20} />
-                        </button>
+                <Portal>
+                    <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                        <div className="relative w-full max-w-lg bg-white rounded-[2rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+                            {/* Close Button */}
+                            <button
+                                onClick={() => {
+                                    resetQuiz();
+                                    setIsModalOpen(false);
+                                }}
+                                className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-all z-10"
+                            >
+                                <X size={20} />
+                            </button>
 
-                        <div className="p-8 md:p-10">
-                            {step === 'quiz' && (
-                                <div className="py-2">
-                                    <div className="flex justify-between items-center mb-8">
-                                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                            Question {currentQuestion + 1} / {questions.length}
-                                        </span>
-                                    </div>
-                                    <h2 className="text-2xl font-bold text-[#165D3F] mb-8 leading-snug">
-                                        {questions[currentQuestion].text}
-                                    </h2>
-                                    <div className="space-y-4">
-                                        {questions[currentQuestion].options.map((opt, idx) => {
-                                            const IconComponent = opt.icon;
-                                            return (
-                                                <button
-                                                    key={idx}
-                                                    onClick={() => handleAnswer(opt.value)}
-                                                    className="w-full p-5 rounded-2xl border-2 border-slate-100 hover:border-[#CBA135] hover:bg-amber-50/30 text-left transition-all flex items-center justify-between group"
-                                                >
-                                                    <div className="flex items-center gap-4">
-                                                        <div className="p-2 bg-slate-50 rounded-lg text-slate-400 group-hover:text-[#CBA135] transition-colors">
-                                                            <IconComponent size={20} />
+                            <div className="p-8 md:p-10">
+                                {step === 'quiz' && (
+                                    <div className="py-2">
+                                        <div className="flex justify-between items-center mb-8">
+                                            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                                Question {currentQuestion + 1} / {questions.length}
+                                            </span>
+                                        </div>
+                                        <h2 className="text-2xl font-bold text-[#165D3F] mb-8 leading-snug">
+                                            {questions[currentQuestion].text}
+                                        </h2>
+                                        <div className="space-y-4">
+                                            {questions[currentQuestion].options.map((opt, idx) => {
+                                                const IconComponent = opt.icon;
+                                                return (
+                                                    <button
+                                                        key={idx}
+                                                        onClick={() => handleAnswer(opt.value, opt.label)}
+                                                        className="w-full p-5 rounded-2xl border-2 border-slate-100 hover:border-[#CBA135] hover:bg-amber-50/30 text-left transition-all flex items-center justify-between group"
+                                                    >
+                                                        <div className="flex items-center gap-4">
+                                                            <div className="p-2 bg-slate-50 rounded-lg text-slate-400 group-hover:text-[#CBA135] transition-colors">
+                                                                <IconComponent size={20} />
+                                                            </div>
+                                                            <span className="font-bold text-slate-700">{opt.label}</span>
                                                         </div>
-                                                        <span className="font-bold text-slate-700">{opt.label}</span>
-                                                    </div>
-                                                    <div className="w-6 h-6 rounded-full border-2 border-slate-200 group-hover:border-[#CBA135] flex items-center justify-center">
-                                                        <div className="w-3 h-3 bg-[#CBA135] rounded-full scale-0 group-hover:scale-100 transition-transform"></div>
-                                                    </div>
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
+                                                        <div className="w-6 h-6 rounded-full border-2 border-slate-200 group-hover:border-[#CBA135] flex items-center justify-center">
+                                                            <div className="w-3 h-3 bg-[#CBA135] rounded-full scale-0 group-hover:scale-100 transition-transform"></div>
+                                                        </div>
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
 
-                                    <div className="mt-12 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                                        <div
-                                            className="h-full bg-[#CBA135] transition-all duration-500"
-                                            style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-                                        ></div>
-                                    </div>
-                                </div>
-                            )}
-
-                            {step === 'result' && result && (
-                                <div className="py-2 text-center">
-                                    <div className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-[#165D3F] text-xs font-bold uppercase tracking-widest mb-4">
-                                        Recommended Structure
-                                    </div>
-                                    <h2 className="text-3xl font-black mb-4" style={{ color: result.color }}>
-                                        {result.type}
-                                    </h2>
-                                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 mb-8 text-center">
-                                        <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                                            {result.reason}
-                                        </p>
-                                        <div className="flex items-start gap-3 text-left p-3 bg-white rounded-xl border border-emerald-50">
-                                            <AlertTriangle size={18} className="text-[#CBA135] flex-shrink-0 mt-0.5" />
-                                            <p className="text-[11px] font-bold text-slate-500 italic uppercase tracking-tighter">
-                                                {result.riskNote}
-                                            </p>
+                                        <div className="mt-12 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full bg-[#CBA135] transition-all duration-500"
+                                                style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                                            ></div>
                                         </div>
                                     </div>
+                                )}
 
-                                    <div className="space-y-3">
-                                        {(() => {
-                                            const serviceMap: Record<string, string> = {
-                                                "Private Limited Company (Pvt Ltd)": "pvltd-expert",
-                                                "Limited Liability Partnership (LLP)": "llp-expert",
-                                                "One Person Company (OPC)": "opc-expert",
-                                                "Sole Proprietorship": "soleprop-expert"
-                                            };
-                                            const serviceKey = serviceMap[result.type] || "consult-expert";
-                                            return (
-                                                <a
-                                                    href={`/form?service=${serviceKey}`}
-                                                    className="w-full bg-[#165D3F] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl hover:bg-emerald-900 transition-all cursor-pointer"
-                                                >
-                                                    <Calendar size={20} /> Book Free Setup Audit
-                                                </a>
-                                            );
-                                        })()}
-                                        <button
-                                            onClick={resetQuiz}
-                                            className="w-full py-4 text-slate-400 font-bold text-sm flex items-center justify-center gap-2 hover:text-slate-600 transition-colors"
-                                        >
-                                            <RefreshCcw size={16} /> Retake Quiz
-                                        </button>
-                                    </div>
+                                {step === 'result' && result && (
+                                    <div className="py-2 text-center">
+                                        <div className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-[#165D3F] text-xs font-bold uppercase tracking-widest mb-4">
+                                            Recommended Structure
+                                        </div>
+                                        <h2 className="text-3xl font-black mb-4" style={{ color: result.color }}>
+                                            {result.type}
+                                        </h2>
+                                        <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 mb-8 text-center">
+                                            <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                                                {result.reason}
+                                            </p>
+                                            <div className="flex items-start gap-3 text-left p-3 bg-white rounded-xl border border-emerald-50">
+                                                <AlertTriangle size={18} className="text-[#CBA135] flex-shrink-0 mt-0.5" />
+                                                <p className="text-[11px] font-bold text-slate-500 italic uppercase tracking-tighter">
+                                                    {result.riskNote}
+                                                </p>
+                                            </div>
+                                        </div>
 
-                                    <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-400 font-medium">
-                                        <CheckCircle2 size={14} className="text-[#CBA135]" />
-                                        Certified Expert Guidance by Globaton
+                                        <div className="space-y-3">
+                                            <button
+                                                onClick={() => setIsConsultModalOpen(true)}
+                                                className="w-full bg-[#165D3F] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl hover:bg-emerald-900 transition-all cursor-pointer"
+                                            >
+                                                <Calendar size={20} /> Book Free Setup Audit
+                                            </button>
+                                            <button
+                                                onClick={resetQuiz}
+                                                className="w-full py-4 text-slate-400 font-bold text-sm flex items-center justify-center gap-2 hover:text-slate-600 transition-colors"
+                                            >
+                                                <RefreshCcw size={16} /> Retake Quiz
+                                            </button>
+                                        </div>
+
+                                        <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-400 font-medium">
+                                            <CheckCircle2 size={14} className="text-[#CBA135]" />
+                                            Certified Expert Guidance by Globaton
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Portal>
+            )}
+
+            {/* Consultation Form Modal */}
+            {isConsultModalOpen && result && (
+                <Portal>
+                    <div
+                        className="fixed inset-0 z-[10001] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                        onClick={(e) => {
+                            if (e.target === e.currentTarget) setIsConsultModalOpen(false);
+                        }}
+                    >
+                        <div className="relative w-full max-w-lg bg-white rounded-[2rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+                            {/* Close button */}
+                            <button
+                                onClick={() => setIsConsultModalOpen(false)}
+                                className="absolute top-6 right-6 z-10 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-all"
+                                aria-label="Close"
+                            >
+                                <X size={20} />
+                            </button>
+
+                            <div className="p-8 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
+                                <div className="mb-6 text-center">
+                                    <h1 className="text-2xl font-black text-[#165D3F] mb-2 uppercase tracking-tight">
+                                        Book Your Audit
+                                    </h1>
+                                    <p className="text-slate-500 text-sm">
+                                        Ready to set up your <span className="text-[#165D3F] font-bold">{result.type}</span>? Fill the form below.
+                                    </p>
+                                </div>
+                                <ConsultationForm
+                                    source="Structure Matchmaker Result Popup"
+                                    prefilledService={result.type}
+                                    onSuccess={() => {
+                                        setIsConsultModalOpen(false);
+                                        setIsModalOpen(false);
+                                        resetQuiz();
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </Portal>
             )}
         </>
     );

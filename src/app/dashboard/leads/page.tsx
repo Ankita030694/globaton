@@ -14,6 +14,7 @@ interface Consultation {
   address: string;
   services: string;
   source: string;
+  quizData?: Array<{ question: string; answer: string }>;
   createdAt: Date;
 }
 
@@ -23,23 +24,26 @@ export default function LeadsPage() {
   const [loading, setLoading] = useState(true);
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
-  
+
   // Filters
   const [searchTerm, setSearchTerm] = useState('');
   const [serviceFilter, setServiceFilter] = useState('');
   const [sourceFilter, setSourceFilter] = useState('');
   const [dateFilter, setDateFilter] = useState('');
-  
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  
+
   // Delete confirmation
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // Mobile filters toggle
   const [showFilters, setShowFilters] = useState(false);
+
+  // Lead Details Modal
+  const [selectedLead, setSelectedLead] = useState<Consultation | null>(null);
 
   // Authentication effect
   useEffect(() => {
@@ -56,34 +60,34 @@ export default function LeadsPage() {
   // Apply filters effect
   useEffect(() => {
     let result = [...consultations];
-    
+
     // Apply search filter to name and email
     if (searchTerm) {
       const lowerSearchTerm = searchTerm.toLowerCase();
       result = result.filter(
-        item => item.name.toLowerCase().includes(lowerSearchTerm) || 
-               item.email.toLowerCase().includes(lowerSearchTerm)
+        item => item.name.toLowerCase().includes(lowerSearchTerm) ||
+          item.email.toLowerCase().includes(lowerSearchTerm)
       );
     }
-    
+
     // Apply service filter
     if (serviceFilter) {
       result = result.filter(item => item.services === serviceFilter);
     }
-    
+
     // Apply source filter
     if (sourceFilter) {
       result = result.filter(item => item.source === sourceFilter);
     }
-    
+
     // Apply date filter
     if (dateFilter) {
       const today = new Date();
       const filterDate = new Date();
-      
+
       switch (dateFilter) {
         case 'today':
-          result = result.filter(item => 
+          result = result.filter(item =>
             item.createdAt.getDate() === today.getDate() &&
             item.createdAt.getMonth() === today.getMonth() &&
             item.createdAt.getFullYear() === today.getFullYear()
@@ -99,7 +103,7 @@ export default function LeadsPage() {
           break;
       }
     }
-    
+
     setFilteredConsultations(result);
     setCurrentPage(1); // Reset to first page on filter change
   }, [searchTerm, serviceFilter, sourceFilter, dateFilter, consultations]);
@@ -108,7 +112,7 @@ export default function LeadsPage() {
     try {
       const consultationsCollection = collection(db, 'consultations');
       const consultationsSnapshot = await getDocs(consultationsCollection);
-      
+
       const consultationsData = consultationsSnapshot.docs.map(doc => {
         const data = doc.data();
         return {
@@ -119,15 +123,16 @@ export default function LeadsPage() {
           address: data.address || '',
           services: data.services || '',
           source: data.source || '',
+          quizData: data.quizData || [],
           createdAt: data.createdAt?.toDate() || new Date(),
         } as Consultation;
       });
-      
+
       // Sort by createdAt in descending order (latest first)
-      const sortedConsultations = consultationsData.sort((a, b) => 
+      const sortedConsultations = consultationsData.sort((a, b) =>
         b.createdAt.getTime() - a.createdAt.getTime()
       );
-      
+
       setConsultations(sortedConsultations);
       setFilteredConsultations(sortedConsultations);
     } catch (error) {
@@ -150,7 +155,7 @@ export default function LeadsPage() {
   if (!user) {
     return null;
   }
-  
+
   // Get unique service and source options for filters
   const serviceOptions = [...new Set(consultations.map(item => item.services))].filter(Boolean).sort();
   const sourceOptions = [...new Set(consultations.map(item => item.source))].filter(Boolean).sort();
@@ -169,30 +174,29 @@ export default function LeadsPage() {
   const formatService = (service: string) => {
     // Handle predefined services with better formatting
     const serviceMap: { [key: string]: string } = {
-      'business-setup': 'Business Setup',
-      'financial-planning': 'Financial & Tax Planning',
-      'tax-planning': 'ITR Filing',
-      'registration-compliance': 'Registration and Compliance',
-      'ip-others': 'IP & Others'
+      'business-setup': 'Business setup',
+      'tax-compliance': 'Tax & Compliance',
+      'ip-trademark': 'IP & Trademark Registration',
+      'others': 'Others'
     };
-    
+
     // Return mapped service name or the original service (for custom entries)
     return serviceMap[service] || service;
   };
-  
+
   const confirmDelete = (id: string) => {
     setDeleteId(id);
     setShowDeleteModal(true);
   };
-  
+
   const cancelDelete = () => {
     setDeleteId(null);
     setShowDeleteModal(false);
   };
-  
+
   const handleDelete = async () => {
     if (!deleteId) return;
-    
+
     try {
       await deleteDoc(doc(db, 'consultations', deleteId));
       setConsultations(prev => prev.filter(item => item.id !== deleteId));
@@ -210,12 +214,15 @@ export default function LeadsPage() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredConsultations.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredConsultations.length / itemsPerPage);
-  
+
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   // Mobile card component
   const LeadCard = ({ consultation }: { consultation: Consultation }) => (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm">
+    <div
+      className="bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm active:bg-gray-50 cursor-pointer"
+      onClick={() => setSelectedLead(consultation)}
+    >
       <div className="flex justify-between items-start mb-3">
         <div className="flex-1">
           <h3 className="font-semibold text-gray-900 text-lg">{consultation.name}</h3>
@@ -228,7 +235,7 @@ export default function LeadsPage() {
           Delete
         </button>
       </div>
-      
+
       <div className="space-y-2 text-sm">
         <div className="flex items-center">
           <span className="text-gray-500 w-16">Email:</span>
@@ -258,7 +265,7 @@ export default function LeadsPage() {
     <div className="p-4 sm:p-8 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-900">Lead Management</h1>
-        
+
         {loading ? (
           <div className="flex justify-center">
             <div className="animate-pulse flex space-x-4">
@@ -306,7 +313,7 @@ export default function LeadsPage() {
                     className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">Service</label>
                   <select
@@ -321,7 +328,7 @@ export default function LeadsPage() {
                     ))}
                   </select>
                 </div>
-                
+
                 <div>
                   <label htmlFor="source" className="block text-sm font-medium text-gray-700 mb-1">Source</label>
                   <select
@@ -336,7 +343,7 @@ export default function LeadsPage() {
                     ))}
                   </select>
                 </div>
-                
+
                 <div>
                   <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
                   <select
@@ -353,12 +360,12 @@ export default function LeadsPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Results Summary */}
             <div className="mb-4 text-sm text-gray-600">
               {filteredConsultations.length} lead{filteredConsultations.length !== 1 ? 's' : ''} found
             </div>
-            
+
             {/* Mobile Cards View */}
             <div className="sm:hidden">
               {currentItems.length === 0 ? (
@@ -373,7 +380,7 @@ export default function LeadsPage() {
                 </div>
               )}
             </div>
-            
+
             {/* Desktop Table View */}
             <div className="hidden sm:block bg-white shadow-md rounded-lg overflow-hidden">
               <div className="overflow-x-auto max-w-full">
@@ -399,7 +406,7 @@ export default function LeadsPage() {
                         Services
                       </th>
                       <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Source
+                        Matchmaker
                       </th>
                       <th scope="col" className="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Actions
@@ -416,26 +423,57 @@ export default function LeadsPage() {
                     ) : (
                       currentItems.map((consultation) => (
                         <tr key={consultation.id} className="hover:bg-gray-50">
-                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm text-gray-400 cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
                             {formatDate(consultation.createdAt)}
                           </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm font-bold text-[#165D3F] cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
                             {consultation.name}
                           </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
                             {consultation.email}
                           </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
                             {consultation.phone}
                           </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
                             {consultation.address}
                           </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {consultation.services}
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
+                            {formatService(consultation.services)}
                           </td>
-                          <td className="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
                             {consultation.source}
+                          </td>
+                          <td
+                            className="px-3 py-4 whitespace-nowrap text-sm cursor-pointer"
+                            onClick={() => setSelectedLead(consultation)}
+                          >
+                            {consultation.quizData && consultation.quizData.length > 0 ? (
+                              <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">Filled</span>
+                            ) : (
+                              <span className="px-2 py-1 bg-gray-100 text-gray-400 rounded-full text-xs">Not Filled</span>
+                            )}
                           </td>
                           <td className="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <button
@@ -452,7 +490,7 @@ export default function LeadsPage() {
                 </table>
               </div>
             </div>
-            
+
             {/* Pagination */}
             {filteredConsultations.length > 0 && (
               <div className="bg-white px-4 py-3 border-t border-gray-200 sm:px-6 flex items-center justify-between mt-4">
@@ -460,9 +498,8 @@ export default function LeadsPage() {
                   <button
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-                      currentPage === 1 ? 'bg-gray-100 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-50'
-                    }`}
+                    className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${currentPage === 1 ? 'bg-gray-100 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-50'
+                      }`}
                   >
                     Previous
                   </button>
@@ -472,9 +509,8 @@ export default function LeadsPage() {
                   <button
                     onClick={() => paginate(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${
-                      currentPage === totalPages ? 'bg-gray-100 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-50'
-                    }`}
+                    className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${currentPage === totalPages ? 'bg-gray-100 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-50'
+                      }`}
                   >
                     Next
                   </button>
@@ -494,36 +530,33 @@ export default function LeadsPage() {
                       <button
                         onClick={() => paginate(currentPage - 1)}
                         disabled={currentPage === 1}
-                        className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${
-                          currentPage === 1 ? 'text-gray-300' : 'text-gray-500 hover:bg-gray-50'
-                        }`}
+                        className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium ${currentPage === 1 ? 'text-gray-300' : 'text-gray-500 hover:bg-gray-50'
+                          }`}
                       >
                         <span className="sr-only">Previous</span>
                         <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                           <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </button>
-                      
+
                       {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
                         <button
                           key={number}
                           onClick={() => paginate(number)}
-                          className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium ${
-                            currentPage === number
-                              ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
-                              : 'bg-white text-gray-500 hover:bg-gray-50'
-                          }`}
+                          className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium ${currentPage === number
+                            ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
+                            : 'bg-white text-gray-500 hover:bg-gray-50'
+                            }`}
                         >
                           {number}
                         </button>
                       ))}
-                      
+
                       <button
                         onClick={() => paginate(currentPage + 1)}
                         disabled={currentPage === totalPages}
-                        className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${
-                          currentPage === totalPages ? 'text-gray-300' : 'text-gray-500 hover:bg-gray-50'
-                        }`}
+                        className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium ${currentPage === totalPages ? 'text-gray-300' : 'text-gray-500 hover:bg-gray-50'
+                          }`}
                       >
                         <span className="sr-only">Next</span>
                         <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -535,7 +568,7 @@ export default function LeadsPage() {
                 </div>
               </div>
             )}
-            
+
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
               <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center z-50 p-4">
@@ -556,6 +589,107 @@ export default function LeadsPage() {
                       className="px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium hover:bg-red-700"
                     >
                       Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Lead Details Modal */}
+            {selectedLead && (
+              <div
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[60] p-4"
+                onClick={(e) => { if (e.target === e.currentTarget) setSelectedLead(null); }}
+              >
+                <div className="bg-white rounded-[2rem] shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col animate-in fade-in zoom-in duration-200">
+                  <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                    <div>
+                      <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Lead Details</h2>
+                      <p className="text-xs text-gray-500 mt-1">{formatDate(selectedLead.createdAt)}</p>
+                    </div>
+                    <button
+                      onClick={() => setSelectedLead(null)}
+                      className="p-2 hover:bg-gray-200 rounded-full transition-colors text-gray-400"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div className="p-8 overflow-y-auto custom-scrollbar">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                      <div className="space-y-4">
+                        <div className="group">
+                          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Full Name</label>
+                          <p className="text-gray-900 font-bold text-lg">{selectedLead.name}</p>
+                        </div>
+                        <div className="group">
+                          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Email Address</label>
+                          <p className="text-gray-900 font-medium break-all">{selectedLead.email}</p>
+                        </div>
+                        <div className="group">
+                          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Phone Number</label>
+                          <p className="text-gray-900 font-medium">{selectedLead.phone}</p>
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="group">
+                          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Service Requested</label>
+                          <p className="inline-block px-3 py-1 bg-emerald-50 text-[#165D3F] rounded-lg font-bold text-sm">
+                            {formatService(selectedLead.services)}
+                          </p>
+                        </div>
+                        <div className="group">
+                          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Lead Source</label>
+                          <p className="text-gray-600 text-sm font-medium">{selectedLead.source}</p>
+                        </div>
+                        <div className="group">
+                          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">Address</label>
+                          <p className="text-gray-600 text-sm italic">{selectedLead.address || 'Not provided'}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Quiz Section */}
+                    <div className="pt-8 border-t border-gray-100">
+                      <div className="flex items-center gap-2 mb-6">
+                        <div className="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center text-[#CBA135]">
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                            <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-black text-gray-900 uppercase tracking-tight">Structure Matchmaker Results</h3>
+                      </div>
+
+                      {selectedLead.quizData && selectedLead.quizData.length > 0 ? (
+                        <div className="grid grid-cols-1 gap-4">
+                          {selectedLead.quizData.map((item, idx) => (
+                            <div key={idx} className="bg-gray-50 p-4 rounded-2xl border border-gray-100 group hover:border-[#CBA135] transition-colors">
+                              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Question {idx + 1}</p>
+                              <p className="text-gray-700 font-bold mb-2 text-sm">{item.question}</p>
+                              <div className="flex justify-between items-center">
+                                <span className="text-[11px] font-black text-[#165D3F] uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded-md">Answer:</span>
+                                <span className="text-[#CBA135] font-black text-sm">{item.answer}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="bg-gray-50 border border-dashed border-gray-200 rounded-2xl p-8 text-center">
+                          <p className="text-gray-400 text-sm font-medium">This user did not complete the Structure Matchmaker quiz.</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-gray-50 text-right">
+                    <button
+                      onClick={() => setSelectedLead(null)}
+                      className="px-8 py-3 bg-[#165D3F] text-white rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-emerald-900 transition-all shadow-lg"
+                    >
+                      Close Details
                     </button>
                   </div>
                 </div>

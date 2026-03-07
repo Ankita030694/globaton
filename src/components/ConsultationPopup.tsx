@@ -32,7 +32,7 @@ export default function ConsultationPopup() {
                 >
                     &times;
                 </button>
-                <ConsultationForm source="home-popup" />
+                <ConsultationForm source="home-popup" onSuccess={() => setIsOpen(false)} />
             </div>
         </div>
     );
