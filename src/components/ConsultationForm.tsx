@@ -44,6 +44,7 @@ export default function ConsultationForm({ source }: ConsultationFormProps) {
       }
 
       setFormData({ name: "", email: "", phone: "", address: "", services: "", customService: "" });
+      localStorage.setItem('isfilled', 'true');
       setFormSubmitted(true);
     } catch (err: unknown) {
       console.error("Error submitting form: ", err);

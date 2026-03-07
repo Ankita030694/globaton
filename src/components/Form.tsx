@@ -13,7 +13,7 @@ const Form = () => {
     services: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{type: string; message: string} | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<{ type: string; message: string } | null>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const testimonials = [
@@ -91,17 +91,17 @@ const Form = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
-    
+
     try {
       // Initialize Firestore
       const db = getFirestore(app);
-      
+
       // Add document to 'consultations' collection
       await addDoc(collection(db, 'consultations'), {
         ...formData,
         createdAt: new Date()
       });
-      
+
       // Reset form and show success message
       setFormData({
         name: '',
@@ -120,7 +120,7 @@ const Form = () => {
   };
 
   return (
-    <div className="flex flex-col" id="testimonials">
+    <div className="flex flex-col" id="consultation-form">
       <div className="flex flex-col md:flex-row bg-[#1B5E41] p-4 md:p-8">
         {/* Left Section */}
         <div className="md:w-1/2 text-white p-4 md:p-8">
@@ -128,7 +128,7 @@ const Form = () => {
             People are Saying<br />
             About Globaton
           </h1>
-          
+
 
 
           <div className="mb-8 md:mb-12">
@@ -144,8 +144,8 @@ const Form = () => {
 
           <div className="flex gap-2 md:gap-4 pb-4">
             {testimonials.slice(0, 8).map((testimonial, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0"
                 onClick={() => setCurrentTestimonial(index)}
               >
@@ -158,7 +158,7 @@ const Form = () => {
                 />
               </div>
             ))}
-            <div 
+            <div
               className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer flex-shrink-0"
               onClick={() => setCurrentTestimonial((currentTestimonial + 1) % testimonials.length)}
             >
@@ -171,7 +171,7 @@ const Form = () => {
         <div className="md:w-1/2 p-4 md:p-8 mt-8 md:mt-0">
           <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-8 max-w-md mx-auto">
             <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-black">Get Consultation</h2>
-            
+
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block mb-2 text-black text-sm md:text-base">Name <span className="text-red-500">*</span></label>
@@ -219,11 +219,11 @@ const Form = () => {
 
               <div className="mb-6">
                 <label className="block mb-2 text-black text-sm md:text-base">Services needed <span className="text-red-500">*</span></label>
-                <select 
+                <select
                   name="services"
                   value={formData.services}
                   onChange={handleChange}
-                  className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base" 
+                  className="w-full p-2 md:p-3 rounded-lg bg-gray-50 text-black text-sm md:text-base"
                   required
                 >
                   <option value="">Choose one</option>
