@@ -174,7 +174,7 @@ export default function TrademarkRegistrationPage() {
                     </li>
                   </ul>
                 </div>
-                
+
                 <div className="border-b pb-4">
                   <h3 className="text-lg font-semibold mb-3 text-[#1B6B50]">Professional Fees</h3>
                   <ul className="space-y-3">
@@ -244,7 +244,7 @@ export default function TrademarkRegistrationPage() {
                   { step: 'Registration Certificate', desc: 'If no opposition, trademark is registered with ® symbol' },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 md:gap-4 bg-white p-4 md:p-6 rounded-xl border border-gray-200">
-                    <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 bg-[#1B6B50] rounded-full flex items-center justify-center text-white text-sm md:text-base font-bold">{idx+1}</div>
+                    <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 bg-[#1B6B50] rounded-full flex items-center justify-center text-white text-sm md:text-base font-bold">{idx + 1}</div>
                     <div>
                       <h3 className="text-sm md:text-base font-medium text-gray-900">{item.step}</h3>
                       <p className="text-xs md:text-sm text-gray-600">{item.desc}</p>
@@ -309,9 +309,9 @@ export default function TrademarkRegistrationPage() {
                       className="w-full text-left font-medium text-sm md:text-base text-gray-900 p-4 md:p-6 flex justify-between items-center hover:bg-gray-50"
                     >
                       <span>{faq.q}</span>
-                      <span className="text-[#1B6B50]">{openFAQ===idx?'-':'+'}</span>
+                      <span className="text-[#1B6B50]">{openFAQ === idx ? '-' : '+'}</span>
                     </button>
-                    {openFAQ===idx&&(
+                    {openFAQ === idx && (
                       <div className="p-4 md:p-6 bg-gray-50 border-t border-gray-200">
                         <p className="text-xs md:text-sm text-gray-600">{faq.a}</p>
                       </div>

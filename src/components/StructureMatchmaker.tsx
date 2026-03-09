@@ -22,12 +22,13 @@ import Portal from './Portal';
  * - Refactored icons to store Components instead of Elements to avoid "Object as Child" errors.
  * - Optimized result logic for better stability.
  */
-const StructureMatchmaker = () => {
+const StructureMatchmaker = ({ isSelected, onClick }: { isSelected?: boolean; onClick?: () => void }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
     const [step, setStep] = useState('quiz'); // quiz, result
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Record<string, string>>({});
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
     const brand = {
         green: '#165D3F',
@@ -71,20 +72,28 @@ const StructureMatchmaker = () => {
     ];
 
     const handleAnswer = (value: string, label: string) => {
+        if (selectedOption) return; // Prevent double clicks during transition
+
+        setSelectedOption(value);
         const currentQ = questions[currentQuestion];
-        const newAnswers = { ...answers, [currentQ.id]: value };
-        setAnswers(newAnswers);
 
         // Track Q&A for database submission
         const existingQA = JSON.parse(localStorage.getItem('matchmaker_qa') || '[]');
         const updatedQA = [...existingQA, { question: currentQ.text, answer: label }];
         localStorage.setItem('matchmaker_qa', JSON.stringify(updatedQA));
 
-        if (currentQuestion < questions.length - 1) {
-            setCurrentQuestion(currentQuestion + 1);
-        } else {
-            setStep('result');
-        }
+        // Wait for 400ms to show the selection highlight before moving to next question
+        setTimeout(() => {
+            const newAnswers = { ...answers, [currentQ.id]: value };
+            setAnswers(newAnswers);
+
+            if (currentQuestion < questions.length - 1) {
+                setCurrentQuestion(currentQuestion + 1);
+            } else {
+                setStep('result');
+            }
+            setSelectedOption(null);
+        }, 400);
     };
 
     const getRecommendation = () => {
@@ -133,25 +142,42 @@ const StructureMatchmaker = () => {
 
     return (
         <>
-            <div className="w-full max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-emerald-50 flex flex-col">
+            <div
+                onClick={onClick}
+                className={`w-full max-w-xl mx-auto rounded-[2.5rem] shadow-2xl overflow-hidden border transition-all duration-500 ease-in-out cursor-pointer flex flex-col h-full relative group
+                    ${isSelected ? 'transform scale-105 z-10 bg-[#EABE4C] border-[#D4AB3A]' : 'bg-white border-emerald-50 hover:border-[#CBA135]'}`}
+            >
+                {/* Curved gradient hover/selected effect */}
+                <div className={`absolute inset-0 transition-opacity duration-300 ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+                    <div className={`absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t rounded-b-3xl ${isSelected ? 'from-[#CBA135]/50' : 'from-[#D4AB3A]/30'} to-transparent`} />
+                </div>
+
+                {/* Selected card background shape */}
+                {isSelected && (
+                    <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden pointer-events-none">
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] bg-[#CBA135] rounded-[100%] translate-y-[75%]" />
+                    </div>
+                )}
+
                 {/* Header */}
-                <div className="p-8 pb-4 flex justify-between items-center">
+                <div className="p-8 pb-4 flex justify-between items-center relative z-20">
                     <div></div>
                 </div>
 
-                <div className="p-8 pt-0 flex-grow flex flex-col">
+                <div className="p-8 pt-0 flex-grow flex flex-col relative z-20">
                     <div className="text-center flex-grow flex flex-col items-center">
-                        <div className="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                            <ShieldCheck size={40} className="text-[#165D3F]" />
+                        <div className={`w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 transition-colors ${isSelected ? 'bg-white/20' : 'bg-emerald-50'}`}>
+                            <ShieldCheck size={40} className={isSelected ? 'text-white' : 'text-[#165D3F]'} />
                         </div>
-                        <h2 className="text-3xl font-black text-[#165D3F] leading-tight mb-10">
-                            Structure <span className="text-[#CBA135]">Matchmaker</span>
+                        <h2 className={`text-3xl font-black leading-tight mb-10 transition-colors ${isSelected ? 'text-white' : 'text-[#165D3F]'}`}>
+                            Structure <span className={isSelected ? 'text-black' : 'text-[#CBA135]'}>Matchmaker</span>
                         </h2>
-                        <p className="text-slate-500 mb-12 leading-relaxed flex items-center justify-center">
+                        <p className={`mb-12 leading-relaxed flex items-center justify-center transition-colors ${isSelected ? 'text-white/90' : 'text-slate-500'}`}>
                             Choosing the wrong business structure can cost you lakhs in taxes or missed funding. Find your perfect fit in 60 seconds.
                         </p>
                         <button
-                            onClick={() => {
+                            onClick={(e) => {
+                                e.stopPropagation();
                                 resetQuiz();
                                 setIsModalOpen(true);
                             }}
@@ -160,8 +186,8 @@ const StructureMatchmaker = () => {
                             Start Matchmaker <ArrowRight size={20} />
                         </button>
 
-                        <div className="mt-8 pt-6 border-t border-slate-100 w-full flex items-center justify-center gap-2 text-xs text-slate-400 font-medium">
-                            <CheckCircle2 size={14} className="text-[#CBA135]" />
+                        <div className={`mt-8 pt-6 border-t w-full flex items-center justify-center gap-2 text-xs font-medium transition-colors ${isSelected ? 'border-white/20 text-white/70' : 'border-slate-100 text-slate-400'}`}>
+                            <CheckCircle2 size={14} className={isSelected ? 'text-white' : 'text-[#CBA135]'} />
                             Perfect Structure for Higher Growth
                         </div>
                     </div>
@@ -198,20 +224,29 @@ const StructureMatchmaker = () => {
                                         <div className="space-y-4">
                                             {questions[currentQuestion].options.map((opt, idx) => {
                                                 const IconComponent = opt.icon;
+                                                const isSelected = selectedOption === opt.value;
+
                                                 return (
                                                     <button
                                                         key={idx}
                                                         onClick={() => handleAnswer(opt.value, opt.label)}
-                                                        className="w-full p-5 rounded-2xl border-2 border-slate-100 hover:border-[#CBA135] hover:bg-amber-50/30 text-left transition-all flex items-center justify-between group"
+                                                        className={`w-full p-5 rounded-2xl border-2 transition-all flex items-center justify-between group ${isSelected
+                                                            ? 'border-[#CBA135] bg-amber-50/50'
+                                                            : 'border-slate-100 hover:border-[#CBA135] hover:bg-amber-50/30'
+                                                            }`}
                                                     >
                                                         <div className="flex items-center gap-4">
-                                                            <div className="p-2 bg-slate-50 rounded-lg text-slate-400 group-hover:text-[#CBA135] transition-colors">
+                                                            <div className={`p-2 rounded-lg transition-colors ${isSelected ? 'bg-amber-100 text-[#CBA135]' : 'bg-slate-50 text-slate-400 group-hover:text-[#CBA135]'
+                                                                }`}>
                                                                 <IconComponent size={20} />
                                                             </div>
-                                                            <span className="font-bold text-slate-700">{opt.label}</span>
+                                                            <span className={`font-bold transition-colors ${isSelected ? 'text-[#CBA135]' : 'text-slate-700'
+                                                                }`}>{opt.label}</span>
                                                         </div>
-                                                        <div className="w-6 h-6 rounded-full border-2 border-slate-200 group-hover:border-[#CBA135] flex items-center justify-center">
-                                                            <div className="w-3 h-3 bg-[#CBA135] rounded-full scale-0 group-hover:scale-100 transition-transform"></div>
+                                                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${isSelected ? 'border-[#CBA135]' : 'border-slate-200 group-hover:border-[#CBA135]'
+                                                            }`}>
+                                                            <div className={`w-3 h-3 bg-[#CBA135] rounded-full transition-transform ${isSelected ? 'scale-100' : 'scale-0 group-hover:scale-100'
+                                                                }`}></div>
                                                         </div>
                                                     </button>
                                                 );
@@ -305,6 +340,7 @@ const StructureMatchmaker = () => {
                                 <ConsultationForm
                                     source="Structure Matchmaker Result Popup"
                                     prefilledService={result.type}
+                                    hideTitle={true}
                                     onSuccess={() => {
                                         setIsConsultModalOpen(false);
                                         setIsModalOpen(false);

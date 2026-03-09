@@ -18,7 +18,7 @@ export default function SoleProprietorshipPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center flex-wrap">
@@ -36,11 +36,11 @@ export default function SoleProprietorshipPage() {
 
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Expert Support</h3>
                   <p className="text-gray-600">Sole proprietorship registration made simple with expert support</p>
@@ -48,11 +48,11 @@ export default function SoleProprietorshipPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">All-Inclusive Package</h3>
                   <p className="text-gray-600">Complete documentation and filing support done in one go</p>
@@ -60,11 +60,11 @@ export default function SoleProprietorshipPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">End-to-end Support</h3>
                   <p className="text-gray-600">End-to-end support for proprietorship registration and compliance</p>
@@ -83,14 +83,14 @@ export default function SoleProprietorshipPage() {
         <div className="w-full mx-auto px-4 md:px-20 py-8 md:py-16 bg-white">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-[#C4942D]">Choose Your </span> <span className="text-black">Package</span> 
+              <span className="text-[#C4942D]">Choose Your </span> <span className="text-black">Package</span>
             </h2>
             <p className="text-gray-600">Select the perfect plan for your company registration needs</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-[100%] mx-auto scale-100 transform-origin-center">
             {/* Basic Plan */}
-            <div 
+            <div
               className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
                 ${selectedPlan === 'basic' ? 'transform scale-105 z-10 bg-[#EABE4C]' : 'bg-gray-50 z-0'}`}
               onClick={() => setSelectedPlan('basic')}
@@ -104,7 +104,7 @@ export default function SoleProprietorshipPage() {
               {selectedPlan === 'basic' && (
                 <>
                   <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                    <div 
+                    <div
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                         bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                     />
@@ -116,7 +116,7 @@ export default function SoleProprietorshipPage() {
               <div className="relative px-6 pt-6 pb-5 text-center">
                 <h3 className={`text-2xl font-extrabold mb-1 
                   ${selectedPlan === 'basic' ? 'text-[#000000]' : 'text-gray-800'}`}>BASIC</h3>
-                
+
                 <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                   <div className="flex justify-center items-start">
                     <span className={`text-lg mt-1 font-medium 
@@ -132,7 +132,7 @@ export default function SoleProprietorshipPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={`rounded-2xl p-4 backdrop-blur-md shadow-lg
                   ${selectedPlan === 'basic' ? 'bg-white/90' : 'bg-white'}`}>
                   <ul className="space-y-2">
@@ -141,7 +141,7 @@ export default function SoleProprietorshipPage() {
                         <div className={`w-5 h-5 rounded-full flex items-center justify-center
                           ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                           </svg>
                         </div>
                         <span className={`ml-2 text-xs font-medium
@@ -154,8 +154,8 @@ export default function SoleProprietorshipPage() {
 
                   <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                     transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                    ${selectedPlan === 'basic' ? 
-                      'bg-[#165D3F]' : 
+                    ${selectedPlan === 'basic' ?
+                      'bg-[#165D3F]' :
                       'hidden'}`}>
                     Get Started
                   </button>
@@ -169,7 +169,7 @@ export default function SoleProprietorshipPage() {
             </div>
 
             {/* Standard Plan */}
-            <div 
+            <div
               className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
                 ${selectedPlan === 'standard' ? 'transform scale-105 z-10 bg-[#EABE4C]' : 'bg-gray-50 z-0'}`}
               onClick={() => setSelectedPlan('standard')}
@@ -183,7 +183,7 @@ export default function SoleProprietorshipPage() {
               {selectedPlan === 'standard' && (
                 <>
                   <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                    <div 
+                    <div
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                         bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                     />
@@ -199,7 +199,7 @@ export default function SoleProprietorshipPage() {
                 </span>
                 <h3 className={`text-2xl font-extrabold mb-1 
                   ${selectedPlan === 'standard' ? 'text-[#000000]' : 'text-gray-800'}`}>STANDARD</h3>
-                
+
                 <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                   <div className="flex justify-center items-start">
                     <span className={`text-lg mt-1 font-medium 
@@ -215,7 +215,7 @@ export default function SoleProprietorshipPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={`rounded-2xl p-4 backdrop-blur-md shadow-lg
                   ${selectedPlan === 'standard' ? 'bg-white/90' : 'bg-white'}`}>
                   <ul className="space-y-2">
@@ -229,7 +229,7 @@ export default function SoleProprietorshipPage() {
                         <div className={`w-5 h-5 rounded-full flex items-center justify-center
                           ${selectedPlan === 'standard' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                           </svg>
                         </div>
                         <span className={`ml-2 text-xs font-medium
@@ -242,8 +242,8 @@ export default function SoleProprietorshipPage() {
 
                   <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                     transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                    ${selectedPlan === 'standard' ? 
-                      'bg-[#165D3F]' : 
+                    ${selectedPlan === 'standard' ?
+                      'bg-[#165D3F]' :
                       'hidden'}`}>
                     Most Popular
                   </button>
@@ -257,7 +257,7 @@ export default function SoleProprietorshipPage() {
             </div>
 
             {/* Premium Plan */}
-            <div 
+            <div
               className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
                 ${selectedPlan === 'premium' ? 'transform scale-105 z-10 bg-[#EABE4C]' : 'bg-gray-50 z-0'}`}
               onClick={() => setSelectedPlan('premium')}
@@ -271,7 +271,7 @@ export default function SoleProprietorshipPage() {
               {selectedPlan === 'premium' && (
                 <>
                   <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                    <div 
+                    <div
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                         bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                     />
@@ -283,7 +283,7 @@ export default function SoleProprietorshipPage() {
               <div className="relative px-6 pt-6 pb-5 text-center">
                 <h3 className={`text-2xl font-extrabold mb-1 
                   ${selectedPlan === 'premium' ? 'text-[#000000]' : 'text-gray-800'}`}>PREMIUM</h3>
-                
+
                 <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                   <div className="flex justify-center items-start">
                     <span className={`text-lg mt-1 font-medium 
@@ -299,7 +299,7 @@ export default function SoleProprietorshipPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className={`rounded-2xl p-4 backdrop-blur-md shadow-lg
                   ${selectedPlan === 'premium' ? 'bg-white/90' : 'bg-white'}`}>
                   <ul className="space-y-2">
@@ -314,7 +314,7 @@ export default function SoleProprietorshipPage() {
                         <div className={`w-5 h-5 rounded-full flex items-center justify-center
                           ${selectedPlan === 'premium' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                           </svg>
                         </div>
                         <span className={`ml-2 text-xs font-medium
@@ -327,8 +327,8 @@ export default function SoleProprietorshipPage() {
 
                   <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                     transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                    ${selectedPlan === 'premium' ? 
-                      'bg-[#165D3F]' : 
+                    ${selectedPlan === 'premium' ?
+                      'bg-[#165D3F]' :
                       'hidden'}`}>
                     Go Premium
                   </button>
@@ -342,11 +342,11 @@ export default function SoleProprietorshipPage() {
             </div>
           </div>
         </div>
- {/* Not sure about packages banner */}
- <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">
+        {/* Not sure about packages banner */}
+        <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">
           <h2 className="text-2xl font-bold text-[#1B6B50] mb-4 md:mb-0">Not sure about packages?</h2>
-          <Link 
-            href="/form?service=soleprop-expert" 
+          <Link
+            href="/form?service=soleprop-expert"
             className="bg-[#1B6B50] text-white px-6 py-3 rounded-xl hover:bg-[#165D3F] transition-colors duration-300 font-medium w-full md:w-auto text-center"
           >
             Talk to registration expert
@@ -354,7 +354,7 @@ export default function SoleProprietorshipPage() {
         </div>
         {/* Features Section */}
         <div className="mb-12">
-        <div className="lg:col-span-2">
+          <div className="lg:col-span-2">
             <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-[#1B6B50]">What is a Sole Proprietorship?</h1>
             <div className="mb-8">
               <p className="text-gray-600 leading-relaxed">

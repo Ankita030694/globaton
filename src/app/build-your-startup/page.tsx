@@ -1,15 +1,19 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import NameCheckerCard from '@/components/NameCheckerCard';
 import StructureMatchmaker from '@/components/StructureMatchmaker';
 import FoundersPackCard from '@/components/FoundersPackCard';
 import ClientPageWrapper from '@/components/ClientPageWrapper';
 import Navbar from '@/components/Navbar';
+import ExpertCTA from '@/components/ExpertCTA';
+import Form from '@/components/Form';
 import Footer from '@/components/Footer';
 
 export default function BuildYourStartup() {
+    const [selectedCard, setSelectedCard] = useState<'name' | 'structure' | 'founders' | null>(null);
+
     return (
         <ClientPageWrapper>
             <div className="bg-slate-50 font-sans text-slate-900 min-h-screen selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden">
@@ -30,16 +34,35 @@ export default function BuildYourStartup() {
                 </header>
 
                 {/* The "Ideation Stage" Toolset */}
-                <section id="tool" className="pt-4 pb-10 px-4 sm:px-10 md:px-16 bg-white/50 backdrop-blur-sm">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-                            <NameCheckerCard />
-                            <StructureMatchmaker />
-                            <FoundersPackCard />
+                <section
+                    id="tool"
+                    className="pt-4 pb-10 px-4 sm:px-10 md:px-16 bg-white/50 backdrop-blur-sm cursor-default"
+                    onClick={() => setSelectedCard(null)}
+                >
+                    <div className="max-w-7xl mx-auto" onClick={(e) => e.stopPropagation()}>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                            <NameCheckerCard
+                                isSelected={selectedCard === 'name'}
+                                onClick={() => setSelectedCard('name')}
+                            />
+                            <StructureMatchmaker
+                                isSelected={selectedCard === 'structure'}
+                                onClick={() => setSelectedCard('structure')}
+                            />
+                            <FoundersPackCard
+                                isSelected={selectedCard === 'founders'}
+                                onClick={() => setSelectedCard('founders')}
+                            />
                         </div>
                     </div>
                 </section>
                 {/* Global Footer */}
+                {/* Expert Consultation Section */}
+                <ExpertCTA />
+
+                {/* Reviews and Consultation Section */}
+                <Form />
+
                 <Footer />
             </div>
         </ClientPageWrapper>

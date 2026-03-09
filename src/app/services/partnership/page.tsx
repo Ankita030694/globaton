@@ -78,7 +78,7 @@ export default function PartnershipPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center flex-wrap">
@@ -91,47 +91,47 @@ export default function PartnershipPage() {
 
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            <div className="lg:col-span-2">
-                <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-[#1B6B50]">Partnership Firm Services in India</h1>
+          <div className="lg:col-span-2">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-[#1B6B50]">Partnership Firm Services in India</h1>
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-3">
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
                 <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800">Convinient</h3>
-                    <p className="text-gray-600">Hassle free partnership firm registration with expert support</p>
-                  </div>
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
                 </div>
-
-                <div className="flex items-center gap-3">
-                <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800">Experienced Experts</h3>
-                    <p className="text-gray-600">Partnership deed drafting done by senior experts</p>
-                  </div>
+                <div>
+                  <h3 className="font-medium text-gray-800">Convinient</h3>
+                  <p className="text-gray-600">Hassle free partnership firm registration with expert support</p>
                 </div>
-
-                <div className="flex items-center gap-3">
-                <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
               </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800">Complete Guidance</h3>
-                    <p className="text-gray-600">Complete guidance and filing support for partnership deed registration</p>
-                  </div>
+
+              <div className="flex items-center gap-3">
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-800">Experienced Experts</h3>
+                  <p className="text-gray-600">Partnership deed drafting done by senior experts</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-800">Complete Guidance</h3>
+                  <p className="text-gray-600">Complete guidance and filing support for partnership deed registration</p>
                 </div>
               </div>
             </div>
+          </div>
 
           {/* Form Section */}
           <div className="lg:col-span-1">
@@ -143,20 +143,20 @@ export default function PartnershipPage() {
         <div className="w-full mx-auto px-4 md:px-20 py-8 md:py-16 bg-white">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span> 
+              <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span>
             </h2>
             <p className="text-gray-600">Select the perfect plan for your partnership registration needs</p>
-            
+
             {/* State Selection */}
-            
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-[100%] mx-auto scale-100 transform-origin-center">
             {plans.map(plan => {
               const isSelected = selectedPlan === plan.id;
-              
+
               return (
-                <div 
+                <div
                   key={plan.id}
                   className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
                     ${isSelected ? 'transform scale-105 z-10' : 'z-0'} 
@@ -172,7 +172,7 @@ export default function PartnershipPage() {
                   {isSelected && (
                     <>
                       <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                        <div 
+                        <div
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                             bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                         />
@@ -180,7 +180,7 @@ export default function PartnershipPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#CBA135]/50 to-transparent" />
                     </>
                   )}
-                  
+
                   <div className="relative px-6 pt-6 pb-5 text-center">
                     {plan.id === 'standard' && (
                       <span className={`absolute top-4 right-4 text-xs font-medium py-1 px-2 rounded-full
@@ -188,12 +188,12 @@ export default function PartnershipPage() {
                         Most Popular
                       </span>
                     )}
-                    
+
                     <h3 className={`text-2xl font-extrabold mb-1 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-800'}`}>{plan.title}</h3>
                     <p className={`text-xs mb-4 max-w-[85%] mx-auto italic 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-600'}`}>{plan.description}</p>
-                    
+
                     <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                       <div className="flex justify-center items-start">
                         <span className={`text-lg mt-1 font-medium 
@@ -216,7 +216,7 @@ export default function PartnershipPage() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className={`rounded-2xl p-4 backdrop-blur-md shadow-lg
                       ${isSelected ? 'bg-white/90' : 'bg-white'}`}>
                       <ul className="space-y-2">
@@ -225,7 +225,7 @@ export default function PartnershipPage() {
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center
                               ${isSelected ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                               </svg>
                             </div>
                             <span className={`ml-2 text-xs font-medium
@@ -235,17 +235,17 @@ export default function PartnershipPage() {
                           </li>
                         ))}
                       </ul>
-                      
+
                       <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                         transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                        ${isSelected ? 
-                          'bg-[#165D3F]' : 
+                        ${isSelected ?
+                          'bg-[#165D3F]' :
                           'hidden'}`}>
                         {plan.buttonText}
                       </button>
                     </div>
                   </div>
-                  
+
                   {/* Border glow effect for selected plan */}
                   {isSelected && (
                     <div className="absolute inset-0 rounded-3xl border-2 border-[#D4AB3A] z-[-1]"></div>
@@ -254,12 +254,12 @@ export default function PartnershipPage() {
               );
             })}
           </div>
-        </div>  
- {/* Not sure about packages banner */}
+        </div>
+        {/* Not sure about packages banner */}
         <div className="w-full bg-[#1B6B50]/5 py-6 md:py-8 px-4 md:px-6 rounded-xl mb-8 md:mb-12 flex flex-col md:flex-row items-center justify-between">
           <h2 className="text-xl md:text-2xl font-bold text-[#1B6B50] mb-4 md:mb-0 text-center md:text-left">Not sure about packages?</h2>
-          <Link 
-            href="/form?service=partnership-expert" 
+          <Link
+            href="/form?service=partnership-expert"
             className="bg-[#1B6B50] text-white px-6 py-3 rounded-xl hover:bg-[#165D3F] transition-colors duration-300 font-medium w-full md:w-auto text-center"
           >
             Talk to registration expert
@@ -267,49 +267,49 @@ export default function PartnershipPage() {
         </div>
         {/* Features of Partnership Firm */}
         <div className="mb-8 md:mb-12">
-        <div className="lg:col-span-2">
-              <h1 className="text-3xl md:text-4xl font-bold mb-3 text-[#1B6B50]">What is a Partnership Firm?</h1>
-              <div className="mb-8">
-                <p className="text-gray-600 leading-relaxed">
-                  A Partnership Firm is a type of business organization where two or more individuals join hands to run a business and share its profits and losses. It is governed by the Indian Partnership Act, 1932. Although registration is not mandatory, it is highly recommended due to the legal benefits associated with a registered firm.
-                </p>
-                <p className="text-gray-600 leading-relaxed mt-3">
-                  A Partnership Firm is a simple and cost-effective form of business organization, ideal for small and medium-sized businesses where mutual trust, shared responsibility, and ease of management are valued. While registration is optional, it is highly recommended for legal protection, enforceability, and credibility.
-                </p>
+          <div className="lg:col-span-2">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-[#1B6B50]">What is a Partnership Firm?</h1>
+            <div className="mb-8">
+              <p className="text-gray-600 leading-relaxed">
+                A Partnership Firm is a type of business organization where two or more individuals join hands to run a business and share its profits and losses. It is governed by the Indian Partnership Act, 1932. Although registration is not mandatory, it is highly recommended due to the legal benefits associated with a registered firm.
+              </p>
+              <p className="text-gray-600 leading-relaxed mt-3">
+                A Partnership Firm is a simple and cost-effective form of business organization, ideal for small and medium-sized businesses where mutual trust, shared responsibility, and ease of management are valued. While registration is optional, it is highly recommended for legal protection, enforceability, and credibility.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
+                  <FaCheck size={16} />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-800">Contractual Relationship</h3>
+                  <p className="text-gray-600">Formed by an agreement (oral or written) between two or more persons</p>
+                </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
-                    <FaCheck size={16} />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800">Contractual Relationship</h3>
-                    <p className="text-gray-600">Formed by an agreement (oral or written) between two or more persons</p>
-                  </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
+                  <FaCheck size={16} />
                 </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
-                    <FaCheck size={16} />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800">Profit and Loss Sharing</h3>
-                    <p className="text-gray-600">Partners share profits and losses in a mutually agreed ratio</p>
-                  </div>
+                <div>
+                  <h3 className="font-medium text-gray-800">Profit and Loss Sharing</h3>
+                  <p className="text-gray-600">Partners share profits and losses in a mutually agreed ratio</p>
                 </div>
+              </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
-                    <FaCheck size={16} />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800">Unlimited Liability</h3>
-                    <p className="text-gray-600">Partners are personally liable for the debts of the firm</p>
-                  </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
+                  <FaCheck size={16} />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-800">Unlimited Liability</h3>
+                  <p className="text-gray-600">Partners are personally liable for the debts of the firm</p>
                 </div>
               </div>
             </div>
+          </div>
           <h2 className="text-2xl font-bold mb-6 text-[#1B6B50] mt-10">Features of Partnership Firm</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -329,42 +329,42 @@ export default function PartnershipPage() {
             ))}
           </div>
         </div>
-          {/* Privileges of Partnership Firm */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Privileges of Partnership Firm</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { title: 'Simple Formation & Dissolution', desc: 'Easy to form and dissolve with minimal legal formalities' },
-                { title: 'Lower Compliance Costs', desc: 'Fewer compliance requirements compared to companies or LLPs' },
-                { title: 'Direct Control', desc: 'Partners have direct control without complex governance structures' },
-                { title: 'Shared Financial Burden', desc: 'Financial responsibilities and expertise are shared among partners' }
-              ].map((privilege, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#1B6B50] transition-colors">
-                  <h3 className="font-medium text-gray-900 mb-2">{privilege.title}</h3>
-                  <p className="text-gray-600">{privilege.desc}</p>
-                </div>
-              ))}
-            </div>
+        {/* Privileges of Partnership Firm */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Privileges of Partnership Firm</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { title: 'Simple Formation & Dissolution', desc: 'Easy to form and dissolve with minimal legal formalities' },
+              { title: 'Lower Compliance Costs', desc: 'Fewer compliance requirements compared to companies or LLPs' },
+              { title: 'Direct Control', desc: 'Partners have direct control without complex governance structures' },
+              { title: 'Shared Financial Burden', desc: 'Financial responsibilities and expertise are shared among partners' }
+            ].map((privilege, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#1B6B50] transition-colors">
+                <h3 className="font-medium text-gray-900 mb-2">{privilege.title}</h3>
+                <p className="text-gray-600">{privilege.desc}</p>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* Importance of Partnership Firm */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Importance of Partnership Firm</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { title: 'Ideal Business Size', desc: 'Perfect structure for small and medium-sized businesses' },
-                { title: 'Collaborative Operations', desc: 'Enables shared responsibilities and collaborative business operations' },
-                { title: 'Resource Pooling', desc: 'Facilitates pooling of resources, capital, and diverse skills' },
-                { title: 'Simple Tax Structure', desc: 'Straightforward tax structure and accounting methods' },
-                { title: 'Quick Decision Making', desc: 'Faster decision-making process due to fewer formalities' }
-              ].map((importance, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#1B6B50] transition-colors">
-                  <h3 className="font-medium text-gray-900 mb-2">{importance.title}</h3>
-                  <p className="text-gray-600">{importance.desc}</p>
-                </div>
-              ))}
-            </div>
+        {/* Importance of Partnership Firm */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Importance of Partnership Firm</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: 'Ideal Business Size', desc: 'Perfect structure for small and medium-sized businesses' },
+              { title: 'Collaborative Operations', desc: 'Enables shared responsibilities and collaborative business operations' },
+              { title: 'Resource Pooling', desc: 'Facilitates pooling of resources, capital, and diverse skills' },
+              { title: 'Simple Tax Structure', desc: 'Straightforward tax structure and accounting methods' },
+              { title: 'Quick Decision Making', desc: 'Faster decision-making process due to fewer formalities' }
+            ].map((importance, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#1B6B50] transition-colors">
+                <h3 className="font-medium text-gray-900 mb-2">{importance.title}</h3>
+                <p className="text-gray-600">{importance.desc}</p>
+              </div>
+            ))}
           </div>
+        </div>
 
         {/* Types of Partnership Firms */}
         <div className="mb-8 md:mb-12 mt-8 md:mt-12">
@@ -384,7 +384,7 @@ export default function PartnershipPage() {
             ))}
           </div>
 
-        
+
         </div>
 
         {/* Eligibility Criteria */}

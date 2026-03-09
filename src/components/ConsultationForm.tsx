@@ -6,9 +6,10 @@ interface ConsultationFormProps {
   onSuccess?: () => void;
   isNameChecker?: boolean;
   prefilledService?: string;
+  hideTitle?: boolean;
 }
 
-export default function ConsultationForm({ source, onSuccess, isNameChecker, prefilledService }: ConsultationFormProps) {
+export default function ConsultationForm({ source, onSuccess, isNameChecker, prefilledService, hideTitle }: ConsultationFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -72,7 +73,7 @@ export default function ConsultationForm({ source, onSuccess, isNameChecker, pre
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 text-center">
-      <h2 className="text-2xl font-semibold mb-6 text-black">Get Consultation Now</h2>
+      {!hideTitle && <h2 className="text-2xl font-semibold mb-6 text-black">Get Consultation Now</h2>}
 
       {formSubmitted ? (
         <div className="bg-green-50 p-4 rounded-lg">
@@ -87,6 +88,21 @@ export default function ConsultationForm({ source, onSuccess, isNameChecker, pre
         </div>
       ) : (
         <form className="space-y-4" onSubmit={handleSubmit}>
+          {isNameChecker && (
+            <div className="text-left">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Name you are searching for <span className="text-red-500">*</span></label>
+              <input
+                type="text"
+                name="customService"
+                value={formData.customService}
+                onChange={handleChange}
+                placeholder="e.g. Globaton Tech Pvt Ltd"
+                required
+                className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
+              />
+            </div>
+          )}
+
           <div className="text-left">
             <label className="block text-sm font-medium text-gray-700 mb-1">Name <span className="text-red-500">*</span></label>
             <input
@@ -140,47 +156,36 @@ export default function ConsultationForm({ source, onSuccess, isNameChecker, pre
           </div>
 
           <div className="text-left">
-            {isNameChecker ? (
-              <>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Name you are searching for <span className="text-red-500">*</span></label>
-                <input
-                  type="text"
-                  name="customService"
-                  value={formData.customService}
-                  onChange={handleChange}
-                  placeholder="e.g. Globaton Tech Pvt Ltd"
-                  required
-                  className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
-                />
-              </>
-            ) : prefilledService ? (
-              <>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Service requested (Based on Quiz) <span className="text-red-500">*</span></label>
-                <div className="w-full px-5 py-3 rounded-2xl bg-emerald-50 border-2 border-[#165D3F]/20 flex items-center justify-between group">
-                  <span className="text-[#165D3F] font-bold">{prefilledService}</span>
-                  <div className="bg-[#165D3F] text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md">
-                    Recommended
+            {!isNameChecker && (
+              prefilledService ? (
+                <>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Service requested (Based on Quiz) <span className="text-red-500">*</span></label>
+                  <div className="w-full px-5 py-3 rounded-2xl bg-emerald-50 border-2 border-[#165D3F]/20 flex items-center justify-between group">
+                    <span className="text-[#165D3F] font-bold">{prefilledService}</span>
+                    <div className="bg-[#165D3F] text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md">
+                      Recommended
+                    </div>
                   </div>
-                </div>
-                <input type="hidden" name="services" value={formData.services} />
-              </>
-            ) : (
-              <>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Services needed <span className="text-red-500">*</span></label>
-                <select
-                  name="services"
-                  value={formData.services}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
-                >
-                  <option value="">Choose one</option>
-                  <option value="business-setup">Business setup</option>
-                  <option value="tax-compliance">Tax & Compliance</option>
-                  <option value="ip-trademark">IP & Trademark Registration</option>
-                  <option value="others">Others</option>
-                </select>
-              </>
+                  <input type="hidden" name="services" value={formData.services} />
+                </>
+              ) : (
+                <>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Services needed <span className="text-red-500">*</span></label>
+                  <select
+                    name="services"
+                    value={formData.services}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2 rounded-full focus:ring-2 focus:ring-[#1B6B50] focus:border-transparent text-black bg-gray-100"
+                  >
+                    <option value="">Choose one</option>
+                    <option value="business-setup">Business setup</option>
+                    <option value="tax-compliance">Tax & Compliance</option>
+                    <option value="ip-trademark">IP & Trademark Registration</option>
+                    <option value="others">Others</option>
+                  </select>
+                </>
+              )
             )}
           </div>
 

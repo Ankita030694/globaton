@@ -18,7 +18,7 @@ export default function OPCPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center flex-wrap">
@@ -33,15 +33,15 @@ export default function OPCPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-2">
             <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-[#1B6B50]">One Person Company (OPC) Services in India</h1>
-            
+
 
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Quick Registration</h3>
                   <p className="text-gray-600">Expert assisted Online OPC registration in 7 business days</p>
@@ -49,11 +49,11 @@ export default function OPCPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">All-Inclusive Package</h3>
                   <p className="text-gray-600">Name approval, DSC, DIN allotment, PAN, TAN, and compliance filing Done</p>
@@ -61,11 +61,11 @@ export default function OPCPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Annual Compliance</h3>
                   <p className="text-gray-600">Support for annual compliance, financial statements, and statutory audits.</p>
@@ -84,12 +84,12 @@ export default function OPCPage() {
         <div className="w-full mx-auto px-4 md:px-20 py-8 md:py-16 bg-white">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span> 
+              <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span>
             </h2>
             <p className="text-gray-600">Select the perfect plan for your company registration needs</p>
-            
+
             {/* State Selection */}
-           
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-[100%] mx-auto scale-100 transform-origin-center">
@@ -143,7 +143,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -155,7 +155,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -167,7 +167,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -179,7 +179,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -191,7 +191,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -203,7 +203,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -215,7 +215,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -227,7 +227,7 @@ export default function OPCPage() {
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center
                         ${selectedPlan === 'basic' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-xs font-medium
@@ -239,8 +239,8 @@ export default function OPCPage() {
 
                   <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                     transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                    ${selectedPlan === 'basic' ? 
-                      'bg-[#165D3F]' : 
+                    ${selectedPlan === 'basic' ?
+                      'bg-[#165D3F]' :
                       'hidden'}`}>
                     Get Started
                   </button>
@@ -321,7 +321,7 @@ export default function OPCPage() {
                         <div className={`w-5 h-5 rounded-full flex items-center justify-center
                           ${selectedPlan === 'standard' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                           </svg>
                         </div>
                         <span className={`ml-2 text-xs font-medium
@@ -334,8 +334,8 @@ export default function OPCPage() {
 
                   <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                     transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                    ${selectedPlan === 'standard' ? 
-                      'bg-[#165D3F]' : 
+                    ${selectedPlan === 'standard' ?
+                      'bg-[#165D3F]' :
                       'hidden'}`}>
                     Most Popular
                   </button>
@@ -421,7 +421,7 @@ export default function OPCPage() {
                         <div className={`w-5 h-5 rounded-full flex items-center justify-center
                           ${selectedPlan === 'premium' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                           </svg>
                         </div>
                         <span className={`ml-2 text-xs font-medium
@@ -434,8 +434,8 @@ export default function OPCPage() {
 
                   <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                     transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                    ${selectedPlan === 'premium' ? 
-                      'bg-[#165D3F]' : 
+                    ${selectedPlan === 'premium' ?
+                      'bg-[#165D3F]' :
                       'hidden'}`}>
                     Go Premium
                   </button>
@@ -450,11 +450,11 @@ export default function OPCPage() {
           </div>
           <p className="text-black text-center mt-20">*Note: Approval is based on MCA review. <a href="/termsandcondition" className="text-[#C4942D]">Terms and Conditions</a> apply.</p>
         </div>
- {/* Not sure about packages banner */}
- <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">
+        {/* Not sure about packages banner */}
+        <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">
           <h2 className="text-2xl font-bold text-[#1B6B50] mb-4 md:mb-0">Not sure about packages?</h2>
-          <Link 
-            href="/form?service=opc-expert" 
+          <Link
+            href="/form?service=opc-expert"
             className="bg-[#1B6B50] text-white px-6 py-3 rounded-xl hover:bg-[#165D3F] transition-colors duration-300 font-medium w-full md:w-auto text-center"
           >
             Talk to registration expert
@@ -463,42 +463,42 @@ export default function OPCPage() {
         {/* Features of OPC */}
         <div className="mb-12">
           <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-[#1B6B50]">What is OPC?</h2>
-              <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                A One Person Company (OPC) is a relatively new type of business entity introduced under the Companies Act, 2013. It allows a single individual to operate a company with a separate legal identity, offering the benefits of limited liability, corporate structure, and full control. This structure is perfect for entrepreneurs who seek full control over their business decisions while benefiting from the formal status of a registered company.
-              </p>
-            </div>
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
-                  <FaCheck size={16} />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-800">Single Shareholder</h3>
-                  <p className="text-gray-600">Only one person can be the shareholder (owner) of the OPC</p>
-                </div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-[#1B6B50]">What is OPC?</h2>
+            <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+              A One Person Company (OPC) is a relatively new type of business entity introduced under the Companies Act, 2013. It allows a single individual to operate a company with a separate legal identity, offering the benefits of limited liability, corporate structure, and full control. This structure is perfect for entrepreneurs who seek full control over their business decisions while benefiting from the formal status of a registered company.
+            </p>
+          </div>
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
+                <FaCheck size={16} />
               </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
-                  <FaCheck size={16} />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-800">Limited Liability</h3>
-                  <p className="text-gray-600">The liability of the shareholder is limited to the extent of unpaid subscription money</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
-                  <FaCheck size={16} />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-800">Separate Legal Entity</h3>
-                  <p className="text-gray-600">OPC has its own legal identity separate from its owner</p>
-                </div>
+              <div>
+                <h3 className="font-medium text-gray-800">Single Shareholder</h3>
+                <p className="text-gray-600">Only one person can be the shareholder (owner) of the OPC</p>
               </div>
             </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
+                <FaCheck size={16} />
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-800">Limited Liability</h3>
+                <p className="text-gray-600">The liability of the shareholder is limited to the extent of unpaid subscription money</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#1B6B50]/10 flex items-center justify-center text-[#1B6B50]">
+                <FaCheck size={16} />
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-800">Separate Legal Entity</h3>
+                <p className="text-gray-600">OPC has its own legal identity separate from its owner</p>
+              </div>
+            </div>
+          </div>
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#1B6B50] mt-10">Features of One Person Company</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
@@ -595,8 +595,8 @@ export default function OPCPage() {
                   <tr>
                     <td className="px-6 py-4 text-sm font-medium text-gray-900">Conversion</td>
                     <td className="px-6 py-4 text-sm text-gray-600">
-                      Mandatory conversion into Pvt Ltd if:<br/>
-                      • Turnover &gt; ₹2 crore<br/>
+                      Mandatory conversion into Pvt Ltd if:<br />
+                      • Turnover &gt; ₹2 crore<br />
                       • Paid-up capital &gt; ₹50 lakh
                     </td>
                   </tr>
@@ -764,7 +764,7 @@ export default function OPCPage() {
                   <tr>
                     <td className="px-6 py-4 text-sm font-medium text-gray-900">Annual Filing</td>
                     <td className="px-6 py-4 text-sm text-gray-600">
-                      • Form AOC-4 (Financial Statements)<br/>
+                      • Form AOC-4 (Financial Statements)<br />
                       • Form MGT-7A (Annual Return)
                     </td>
                   </tr>
