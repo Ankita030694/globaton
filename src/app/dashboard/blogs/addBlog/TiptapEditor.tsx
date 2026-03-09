@@ -56,7 +56,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
       // Upload file
       const snapshot = await uploadBytes(storageRef, file);
-      
+
       // Get download URL
       const downloadURL = await getDownloadURL(snapshot.ref);
       return downloadURL;
@@ -155,7 +155,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
-      
+
       {/* Headings */}
       <div className="flex gap-1 mr-2">
         <button
@@ -193,7 +193,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
-      
+
       {/* Lists */}
       <div className="flex gap-1 mr-2">
         <button
@@ -223,7 +223,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
-      
+
       {/* Alignment */}
       <div className="flex gap-1 mr-2">
         <button
@@ -261,7 +261,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
-      
+
       {/* Special Elements */}
       <div className="flex gap-1 mr-2">
         <button
@@ -286,7 +286,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
           className="p-1 px-2 rounded hover:bg-gray-200"
           title="Horizontal Rule"
         >
-          —
+          -
         </button>
         <button
           type="button"
@@ -307,7 +307,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
-      
+
       {/* Color */}
       <div className="flex gap-1 mr-2">
         <select
@@ -334,7 +334,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
-      
+
       {/* Links and Media */}
       <div className="flex gap-1 mr-2">
         <button
@@ -357,7 +357,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'image/*';
-            
+
             input.onchange = async (e) => {
               const file = (e.target as HTMLInputElement).files?.[0];
               if (file) {
@@ -367,7 +367,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
                 }
               }
             };
-            
+
             input.click();
           }}
           className="p-1 px-2 rounded hover:bg-gray-200"
@@ -378,7 +378,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
       </div>
 
       <span className="border-r border-gray-300 mx-1"></span>
-      
+
       {/* Table */}
       <div className="flex gap-1 mr-2">
         <button

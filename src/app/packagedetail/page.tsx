@@ -12,7 +12,7 @@ export default function PackageDetail() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center">
@@ -20,7 +20,7 @@ export default function PackageDetail() {
           <span className="mx-2">›</span>
           <span className="text-[#165D3F] font-medium">Package</span>
         </div>
-        
+
         {/* Header Section with improved layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-2">
@@ -31,7 +31,7 @@ export default function PackageDetail() {
                 The AI Design certification is meticulously crafted to equip designers with the advanced knowledge and skills required to harness the transformative power of artificial intelligence in the design industry. This comprehensive program blends foundational AI concepts with practical applications in design, emphasizing innovation, strategic implementation, and continuous adaptation to emerging trends.
               </p>
             </div>
-            
+
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#165D3F]/10 flex items-center justify-center text-[#165D3F]">
@@ -42,17 +42,17 @@ export default function PackageDetail() {
                   <p className="text-gray-600">Registration starting at ₹999 + Govt Fee with no hidden charges.</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#165D3F]/10 flex items-center justify-center text-[#165D3F]">
                   <FaCheck size={16} />
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Comprehensive Compliance</h3>
-                  <p className="text-gray-600">SPICe-INC-32, eMoA-INC-33, eAOA-INC-34 filings, DSC, PAN, and TAN—all handled seamlessly.</p>
+                  <p className="text-gray-600">SPICe-INC-32, eMoA-INC-33, eAOA-INC-34 filings, DSC, PAN, and TAN - all handled seamlessly.</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#165D3F]/10 flex items-center justify-center text-[#165D3F]">
                   <FaCheck size={16} />
@@ -64,7 +64,7 @@ export default function PackageDetail() {
               </div>
             </div>
           </div>
-          
+
           {/* Pricing Card with enhanced design */}
           <div className="lg:col-span-1">
             <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-lg">
@@ -76,7 +76,7 @@ export default function PackageDetail() {
                   </div>
                   <span className="bg-[#CBA135] text-white text-xs font-bold px-3 py-1 rounded-full">50% OFF</span>
                 </div>
-                
+
                 <p className="text-red-600 text-sm mb-6 flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -87,15 +87,15 @@ export default function PackageDetail() {
                 <div className="mb-6">
                   <h3 className="font-medium text-gray-800 mb-4">This Plan Includes:</h3>
                   <ul className="space-y-3">
-                    {['4 Users', 'All apps', 'Unlimited editable exports', 
+                    {['4 Users', 'All apps', 'Unlimited editable exports',
                       'Folders and collaboration', 'All incoming apps'].map((feature, index) => (
-                      <li key={index} className="flex items-center text-gray-700">
-                        <div className="w-5 h-5 rounded-full bg-[#165D3F]/20 flex items-center justify-center mr-3">
-                          <FaCheck className="text-[#165D3F]" size={10} />
-                        </div>
-                        {feature}
-                      </li>
-                    ))}
+                        <li key={index} className="flex items-center text-gray-700">
+                          <div className="w-5 h-5 rounded-full bg-[#165D3F]/20 flex items-center justify-center mr-3">
+                            <FaCheck className="text-[#165D3F]" size={10} />
+                          </div>
+                          {feature}
+                        </li>
+                      ))}
                   </ul>
                 </div>
 
@@ -109,7 +109,7 @@ export default function PackageDetail() {
                   </svg>
                   All courses have 30-days money-back guarantee
                 </p>
-                
+
                 <div className="border-t border-gray-200 mt-6 pt-6">
                   <p className="text-sm text-gray-600 mb-3">Share this Package:</p>
                   <div className="flex gap-2">
@@ -165,7 +165,7 @@ export default function PackageDetail() {
                 </div>
               </div>
             </div>
-            
+
             {/* Expert Card 2 */}
             <div className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-md">
               <div className="p-6">
@@ -202,34 +202,34 @@ export default function PackageDetail() {
             <div className="bg-white p-8 rounded-xl border border-gray-200 shadow-md flex flex-col items-center justify-center">
               <div className="text-6xl font-bold text-gray-800 mb-2">4.8</div>
               <div className="flex text-[#CBA135] mb-2">
-                {[1,2,3,4,5].map(star => (
+                {[1, 2, 3, 4, 5].map(star => (
                   <FaStar key={star} size={24} className="mx-0.5" />
                 ))}
               </div>
               <p className="text-gray-600">Course Rating</p>
             </div>
-            
+
             <div className="md:col-span-2 space-y-4">
               {[
-                {rating: 5, percent: 70, stars: 5},
-                {rating: 4, percent: 21, stars: 4},
-                {rating: 3, percent: 5, stars: 3},
-                {rating: 2, percent: 3, stars: 2},
-                {rating: 1, percent: 1, stars: 1}
+                { rating: 5, percent: 70, stars: 5 },
+                { rating: 4, percent: 21, stars: 4 },
+                { rating: 3, percent: 5, stars: 3 },
+                { rating: 2, percent: 3, stars: 2 },
+                { rating: 1, percent: 1, stars: 1 }
               ].map((item) => (
                 <div key={item.rating} className="flex items-center gap-4">
                   <div className="flex text-[#CBA135] w-32">
-                    {Array.from({length: item.stars}).map((_, i) => (
+                    {Array.from({ length: item.stars }).map((_, i) => (
                       <FaStar key={i} size={16} className="mr-1" />
                     ))}
-                    {Array.from({length: 5 - item.stars}).map((_, i) => (
+                    {Array.from({ length: 5 - item.stars }).map((_, i) => (
                       <FaRegStar key={i} size={16} className="mr-1" />
                     ))}
                   </div>
                   <div className="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
-                    <div 
+                    <div
                       className="bg-[#CBA135] h-full rounded-full"
-                      style={{width: `${item.percent}%`}}
+                      style={{ width: `${item.percent}%` }}
                     />
                   </div>
                   <span className="text-gray-600 w-12 text-right">{item.percent}%</span>
@@ -247,7 +247,7 @@ export default function PackageDetail() {
               Customer feedback
             </h2>
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-              <select 
+              <select
                 value={selectedRating}
                 onChange={(e) => setSelectedRating(e.target.value)}
                 className="bg-transparent text-gray-700 py-3 px-4 pr-10 appearance-none focus:outline-none focus:ring-2 focus:ring-[#165D3F]/50"
@@ -302,7 +302,7 @@ export default function PackageDetail() {
                     </div>
                   </div>
                   <div className="flex text-[#CBA135]">
-                    {Array.from({length: review.rating}).map((_, i) => (
+                    {Array.from({ length: review.rating }).map((_, i) => (
                       <FaStar key={i} size={14} className="ml-0.5" />
                     ))}
                   </div>

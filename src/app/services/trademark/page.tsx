@@ -42,7 +42,7 @@ export default function TrademarkRegistrationPage() {
                 "A trademark means a mark capable of being represented graphically and capable of distinguishing the goods or services of one person from those of others and may include the shape of goods, their packaging, and combination of colors."
               </blockquote>
               <p className="text-sm md:text-base text-gray-600 mt-4">
-                A Trademark is more than just a name or logo—it's the identity of your business. Registering it ensures exclusive use, builds trust, and adds brand value.
+                A Trademark is more than just a name or logo - it's the identity of your business. Registering it ensures exclusive use, builds trust, and adds brand value.
               </p>
             </section>
 

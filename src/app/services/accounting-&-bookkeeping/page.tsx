@@ -77,14 +77,14 @@ export default function AccountingBookkeepingPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    
+
     try {
       await addDoc(collection(db, "consultations"), {
         ...formData,
         source: "accounting-bookkeeping-page",
         createdAt: new Date()
       });
-      
+
       setFormData({ name: "", email: "", phone: "", address: "", services: "" });
       setFormSubmitted(true);
     } catch (err) {
@@ -189,7 +189,7 @@ export default function AccountingBookkeepingPage() {
       <div className="w-full mx-auto px-4 sm:px-20 py-8 lg:py-16 bg-white">
         <div className="text-center mb-8 lg:mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span> 
+            <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span>
           </h2>
           <p className="text-gray-600">Select the perfect plan for your accounting and bookkeeping needs</p>
         </div>
@@ -202,9 +202,9 @@ export default function AccountingBookkeepingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-[100%] mx-auto scale-100 transform-origin-center">
             {plans.map(plan => {
               const isSelected = selectedPlan === plan.id;
-              
+
               return (
-                <div 
+                <div
                   key={plan.id}
                   className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
                     ${isSelected ? 'transform scale-105 z-10' : 'z-0'} 
@@ -220,7 +220,7 @@ export default function AccountingBookkeepingPage() {
                   {isSelected && (
                     <>
                       <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                        <div 
+                        <div
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                             bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                         />
@@ -228,7 +228,7 @@ export default function AccountingBookkeepingPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#CBA135]/50 to-transparent" />
                     </>
                   )}
-                  
+
                   <div className="relative px-6 pt-6 pb-5 text-center">
                     {plan.id === 'premium' && (
                       <span className={`absolute top-4 right-4 text-xs font-medium py-1 px-2 rounded-full
@@ -236,12 +236,12 @@ export default function AccountingBookkeepingPage() {
                         Most Popular
                       </span>
                     )}
-                    
+
                     <h3 className={`text-2xl font-extrabold mb-1 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-800'}`}>{plan.title}</h3>
                     <p className={`text-xs mb-4 max-w-[85%] mx-auto italic 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-600'}`}>{plan.description}</p>
-                    
+
                     <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                       <div className="flex justify-center items-start">
                         <span className={`text-lg mt-1 font-medium 
@@ -260,7 +260,7 @@ export default function AccountingBookkeepingPage() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className={`rounded-2xl p-4 backdrop-blur-md shadow-lg
                       ${isSelected ? 'bg-white/90' : 'bg-white'}`}>
                       <ul className="space-y-2">
@@ -269,7 +269,7 @@ export default function AccountingBookkeepingPage() {
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center
                               ${isSelected ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                               </svg>
                             </div>
                             <span className={`ml-2 text-xs font-medium
@@ -279,17 +279,17 @@ export default function AccountingBookkeepingPage() {
                           </li>
                         ))}
                       </ul>
-                      
+
                       <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                         transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                        ${isSelected ? 
-                          'bg-[#165D3F]' : 
+                        ${isSelected ?
+                          'bg-[#165D3F]' :
                           'hidden'}`}>
                         {plan.buttonText}
                       </button>
                     </div>
                   </div>
-                  
+
                   {/* Border glow effect for selected plan */}
                   {isSelected && (
                     <div className="absolute inset-0 rounded-3xl border-2 border-[#D4AB3A] z-[-1]"></div>
@@ -305,8 +305,8 @@ export default function AccountingBookkeepingPage() {
       {/* Not sure about packages banner */}
       <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">
         <h2 className="text-2xl font-bold text-[#1B6B50] mb-4 md:mb-0">Not sure about packages?</h2>
-        <Link 
-          href="/form?service=accounting-expert" 
+        <Link
+          href="/form?service=accounting-expert"
           className="bg-[#1B6B50] text-white px-6 py-3 rounded-xl hover:bg-[#165D3F] transition-colors duration-300 font-medium"
         >
           Talk to accounting expert
@@ -329,7 +329,7 @@ export default function AccountingBookkeepingPage() {
               <div className="flex items-start">
                 <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-3 mt-1">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
@@ -342,7 +342,7 @@ export default function AccountingBookkeepingPage() {
               <div className="flex items-start">
                 <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 mt-1">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
@@ -359,18 +359,18 @@ export default function AccountingBookkeepingPage() {
               </p>
             </div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-blue-100 to-green-100 p-8 rounded-2xl">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
               Why It Matters for Every Business
             </h3>
             <p className="text-gray-700 mb-6">
-              Regardless of size or industry, all businesses—startups, SMEs, or corporates—require accurate accounting systems to:
+              Regardless of size or industry, all businesses (startups, SMEs, or corporates) require accurate accounting systems to:
             </p>
             <ul className="space-y-3">
               {[
                 "Track financial performance",
-                "Ensure tax compliance", 
+                "Ensure tax compliance",
                 "Make strategic decisions",
                 "Raise capital or secure loans",
                 "Prevent fraud or mismanagement"
@@ -395,7 +395,7 @@ export default function AccountingBookkeepingPage() {
           </h2>
           <p className="text-gray-600">Comprehensive financial management that drives business success</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {[
             { title: "Accurate Financial Records", description: "Keeps track of income, expenses, and cash flow" },
@@ -428,7 +428,7 @@ export default function AccountingBookkeepingPage() {
           </h2>
           <p className="text-gray-600">Stay compliant with all regulatory requirements</p>
         </div>
-        
+
         <div className="overflow-x-auto">
           <table className="w-full border-collapse bg-white rounded-lg shadow-sm">
             <thead>
@@ -474,7 +474,7 @@ export default function AccountingBookkeepingPage() {
             Comprehensive financial services tailored to your business needs
           </p>
         </div>
-        
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
@@ -580,7 +580,7 @@ export default function AccountingBookkeepingPage() {
             Globaton Management Advisors is your reliable finance partner for scalable and compliant financial operations.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { title: "10+ Years of Experience", description: "Proven track record in finance & compliance" },
@@ -625,15 +625,15 @@ export default function AccountingBookkeepingPage() {
         <div className="space-y-4">
           {/* FAQ Item 1 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(0)} 
+            <button
+              onClick={() => toggleFAQ(0)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">What's the difference between bookkeeping and accounting?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 0 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 0 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -650,15 +650,15 @@ export default function AccountingBookkeepingPage() {
 
           {/* FAQ Item 2 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(1)} 
+            <button
+              onClick={() => toggleFAQ(1)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">How often should I update my books?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 1 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 1 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -675,15 +675,15 @@ export default function AccountingBookkeepingPage() {
 
           {/* FAQ Item 3 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(2)} 
+            <button
+              onClick={() => toggleFAQ(2)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">What documents do I need to provide for accounting services?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 2 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 2 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -700,15 +700,15 @@ export default function AccountingBookkeepingPage() {
 
           {/* FAQ Item 4 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(3)} 
+            <button
+              onClick={() => toggleFAQ(3)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">Do you handle GST and tax filings?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 3 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 3 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -725,15 +725,15 @@ export default function AccountingBookkeepingPage() {
 
           {/* FAQ Item 5 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(4)} 
+            <button
+              onClick={() => toggleFAQ(4)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">Can I access my financial data online?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 4 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 4 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

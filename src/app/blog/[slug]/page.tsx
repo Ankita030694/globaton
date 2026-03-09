@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { db } from '@/firebase/firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 
 // Define the blog post interface
 interface BlogPost {
@@ -28,12 +29,33 @@ async function getBlogBySlug(slug: string): Promise<BlogPost | null> {
   const blogsCollection = collection(db, 'blogs');
   const q = query(blogsCollection, where("slug", "==", slug));
   const querySnapshot = await getDocs(q);
-  
+
   if (querySnapshot.empty) {
     return null;
   }
-  
+
   return querySnapshot.docs[0].data() as BlogPost;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const blog = await getBlogBySlug(slug);
+
+  if (!blog) {
+    return {
+      title: "Blog Post Not Found",
+    };
+  }
+
+  return {
+    title: blog.metaTitle || blog.title,
+    description: blog.metaDescription || blog.subtitle,
+    openGraph: {
+      title: blog.metaTitle || blog.title,
+      description: blog.metaDescription || blog.subtitle,
+      images: [blog.image],
+    },
+  };
 }
 
 type Props = {
@@ -44,15 +66,15 @@ type Props = {
 export default async function BlogPost({ params }: Props) {
   const { slug } = await params;
   const blog = await getBlogBySlug(slug);
-  
+
   if (!blog) {
     notFound();
   }
-  
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <Navbar />
-      
+
       {/* Hero Section with Gradient Background */}
       <div className="relative bg-gradient-to-br from-[#165D3F] via-[#1B6B50] to-[#165D3F] py-16 md:py-24 overflow-hidden">
         {/* Animated background elements */}
@@ -61,7 +83,7 @@ export default async function BlogPost({ params }: Props) {
           <div className="absolute bottom-10 right-10 w-24 h-24 bg-white rounded-full animate-bounce"></div>
           <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#C4942D] rounded-full animate-spin"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Breadcrumb */}
@@ -76,19 +98,19 @@ export default async function BlogPost({ params }: Props) {
               <span className="text-white/60">→</span>
               <span className="text-[#EABE4C] font-medium">{blog.title}</span>
             </nav>
-            
+
             {/* Blog Title */}
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               {blog.title}
             </h1>
-            
+
             {/* Subtitle */}
             {blog.subtitle && (
               <h2 className="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-3xl mx-auto">
                 {blog.subtitle}
               </h2>
             )}
-            
+
             {/* Author and Date */}
             <div className="flex items-center justify-center space-x-6 text-white/80">
               {blog.author && (
@@ -121,7 +143,7 @@ export default async function BlogPost({ params }: Props) {
           </div>
         </div>
       </div>
-      
+
       <main className="container mx-auto px-4 -mt-16 relative z-20 flex-grow">
         <div className="max-w-4xl mx-auto">
           {/* Featured Image Card */}
@@ -143,7 +165,7 @@ export default async function BlogPost({ params }: Props) {
               <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-[#1B6B50] rounded-full opacity-40"></div>
             </div>
           )}
-          
+
           {/* Main Content Card */}
           <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-12">
             <div className="p-8 md:p-12">
@@ -170,11 +192,11 @@ export default async function BlogPost({ params }: Props) {
                            prose-th:bg-[#1B6B50] prose-th:text-white prose-th:p-3 prose-th:font-semibold
                            prose-td:border prose-td:border-gray-200 prose-td:p-3
                            prose-img:rounded-lg prose-img:shadow-md prose-img:my-6"
-                   dangerouslySetInnerHTML={{ __html: blog.description || '' }} 
+                dangerouslySetInnerHTML={{ __html: blog.description || '' }}
               />
             </div>
           </div>
-          
+
           {/* FAQs Section */}
           {blog.faqs && blog.faqs.length > 0 && (
             <div className="bg-gradient-to-br from-[#1B6B50]/5 via-white to-[#EABE4C]/5 rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-12">
@@ -184,7 +206,7 @@ export default async function BlogPost({ params }: Props) {
                 </h2>
                 <div className="w-24 h-1 bg-[#EABE4C] mx-auto mt-4 rounded-full"></div>
               </div>
-              
+
               <div className="p-8 md:p-12">
                 <div className="space-y-6">
                   {blog.faqs.map((faq, index) => (
@@ -206,7 +228,7 @@ export default async function BlogPost({ params }: Props) {
               </div>
             </div>
           )}
-          
+
           {/* Back to Blogs Section */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-12">
             <div className="flex items-center justify-between">
@@ -218,7 +240,7 @@ export default async function BlogPost({ params }: Props) {
                   Discover more insights and expert advice on our blog
                 </p>
               </div>
-              <Link 
+              <Link
                 href="/blog"
                 className="group flex items-center gap-3 bg-gradient-to-r from-[#1B6B50] to-[#165D3F] text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
@@ -231,7 +253,7 @@ export default async function BlogPost({ params }: Props) {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

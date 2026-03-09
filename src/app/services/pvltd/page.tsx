@@ -164,7 +164,7 @@ export default function ServicesPage() {
               </div>
               <div>
                 <h3 className="font-medium text-gray-900">Comprehensive Compliance:</h3>
-                <p className="text-gray-600">SPICe-INC-32, eMoA-INC-33, eAOA-INC-34 filings, DSC, PAN, and TAN—all handled seamlessly.</p>
+                <p className="text-gray-600">SPICe-INC-32, eMoA-INC-33, eAOA-INC-34 filings, DSC, PAN, and TAN - all handled seamlessly.</p>
               </div>
             </div>
 

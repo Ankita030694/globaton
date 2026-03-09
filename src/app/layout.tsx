@@ -14,9 +14,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Globaton | Management Advisors",
-  description: "Globaton",
+  title: {
+    default: "Globaton | Expert Management Advisors & Startup Registration",
+    template: "%s | Globaton"
+  },
+  description: "Globaton is a leading management advisory firm in India, specializing in company registration, legal compliance, and tax services for startups and entrepreneurs.",
+  keywords: "startup registration, company incorporation, legal services India, tax compliance, management advisors, sole proprietorship registration, pvt ltd company formation, trademark registration",
+  authors: [{ name: "Globaton Team" }],
+  creator: "Globaton",
+  publisher: "Globaton",
+  robots: "index, follow",
+  openGraph: {
+    title: "Globaton | Expert Management Advisors & Startup Registration",
+    description: "Globaton is a leading management advisory firm in India, specializing in company registration, legal compliance, and tax services for startups and entrepreneurs.",
+    url: "https://www.globaton.in",
+    siteName: "Globaton",
+    locale: "en_IN",
+    type: "website",
+  },
 };
+
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 export default function RootLayout({
   children,
@@ -38,6 +56,7 @@ export default function RootLayout({
           />
         </noscript>
         {children}
+        <WhatsAppWidget />
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
