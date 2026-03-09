@@ -6,6 +6,10 @@ import { db } from '@/firebase/firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import Breadcrumb from '@/components/Breadcrumb'
+import TOC from '@/components/TOC'
+import SidebarCTA from '@/components/SidebarCTA'
+import RelatedPages from '@/components/RelatedPages'
 
 // Define the blog post interface
 interface BlogPost {
@@ -71,186 +75,164 @@ export default async function BlogPost({ params }: Props) {
     notFound();
   }
 
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' },
+    { label: blog.title, href: `/blog/${slug}` },
+  ];
+
+  // Placeholder TOC items - in a real scenario, these would be parsed from blog.description
+  const tocItems = [
+    { id: 'article-header', label: 'Introduction' },
+    { id: 'main-content', label: 'Article Details' },
+    { id: 'faq-section', label: 'FAQs' },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
 
-      {/* Hero Section with Gradient Background */}
-      <div className="relative bg-gradient-to-br from-[#165D3F] via-[#1B6B50] to-[#165D3F] py-16 md:py-24 overflow-hidden">
+      {/* Highly Optimized Hero Section */}
+      <header className="relative bg-gradient-to-br from-[#165D3F] via-[#1B6B50] to-[#165D3F] pt-24 pb-20 px-6 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-[#EABE4C] rounded-full animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-24 h-24 bg-white rounded-full animate-bounce"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#C4942D] rounded-full animate-spin"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Breadcrumb */}
-            <nav className="flex justify-center items-center space-x-2 text-sm mb-8">
-              <Link href="/" className="text-white/80 hover:text-white transition-colors">
-                Home
-              </Link>
-              <span className="text-white/60">→</span>
-              <Link href="/blog" className="text-white/80 hover:text-white transition-colors">
-                Blog
-              </Link>
-              <span className="text-white/60">→</span>
-              <span className="text-[#EABE4C] font-medium">{blog.title}</span>
-            </nav>
-
-            {/* Blog Title */}
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            {/* Highly Optimized Title and Subtitle */}
+            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
               {blog.title}
             </h1>
 
-            {/* Subtitle */}
             {blog.subtitle && (
-              <h2 className="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-emerald-50/90 mb-10 font-light max-w-3xl mx-auto">
                 {blog.subtitle}
-              </h2>
+              </p>
             )}
 
-            {/* Author and Date */}
-            <div className="flex items-center justify-center space-x-6 text-white/80">
+            {/* CTA Button in Hero */}
+            <div className="flex justify-center mt-8">
+              <Link href="/form?service=consultation">
+                <button className="bg-[#CBA135] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#B58E2F] transition-all shadow-2xl hover:scale-105">
+                  Schedule a Free Call
+                </button>
+              </Link>
+            </div>
+
+            {/* Author and Date Meta */}
+            <div className="flex items-center justify-center space-x-6 text-white/80 mt-12">
               {blog.author && (
                 <div className="flex items-center gap-3">
-                  <div className="relative">
-                    <Image
-                      src="/logo3.jpg"
-                      alt={blog.author}
-                      width={48}
-                      height={48}
-                      className="rounded-full border-2 border-white/20"
-                    />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#EABE4C]/20 to-transparent"></div>
-                  </div>
+                  <Image
+                    src="/logo3.jpg"
+                    alt={blog.author}
+                    width={40}
+                    height={40}
+                    className="rounded-full border-2 border-white/20"
+                  />
                   <div className="text-left">
-                    <p className="text-white font-semibold">{blog.author}</p>
-                    <p className="text-white/60 text-sm">Author</p>
+                    <p className="text-white font-semibold text-sm">{blog.author}</p>
+                    <p className="text-white/60 text-xs">Expert Contributor</p>
                   </div>
                 </div>
               )}
               {blog.date && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-sm font-medium">
                   <svg className="w-5 h-5 text-[#EABE4C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <span className="text-white font-medium">{blog.date}</span>
+                  <span>{blog.date}</span>
                 </div>
               )}
             </div>
           </div>
         </div>
+      </header>
+
+      {/* Breadcrumb detected by rich results - below the hero section */}
+      <div className="border-b border-gray-100 bg-white">
+        <div className="w-full px-4 lg:px-8">
+          <Breadcrumb items={breadcrumbItems} />
+        </div>
       </div>
 
-      <main className="container mx-auto px-4 -mt-16 relative z-20 flex-grow">
-        <div className="max-w-4xl mx-auto">
-          {/* Featured Image Card */}
-          {blog.image && (
-            <div className="relative mb-12 group">
-              <div className="relative w-full h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+      <main className="w-full px-4 lg:px-8 py-12 flex-grow">
+        {/* 3 Column Layout combined occupy the full width */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+
+          {/* Left Column: Table of Contents (20%) */}
+          <div className="lg:w-1/5">
+            <TOC items={tocItems} />
+          </div>
+
+          {/* Middle Column: Main Content (60%) */}
+          <article id="main-content" className="lg:w-3/5 flex-grow scroll-mt-24">
+            {blog.image && (
+              <div className="relative w-full h-64 md:h-[450px] rounded-2xl overflow-hidden shadow-lg mb-10">
                 <Image
                   src={blog.image}
                   alt={blog.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  className="object-cover"
+                  priority
                   unoptimized
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-[#EABE4C] rounded-full opacity-60"></div>
-              <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-[#1B6B50] rounded-full opacity-40"></div>
-            </div>
-          )}
+            )}
 
-          {/* Main Content Card */}
-          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-12">
-            <div className="p-8 md:p-12">
-              {/* Blog Content with Tiptap Editor Styles */}
-              <div className="prose prose-lg max-w-none text-gray-800 
-                           prose-headings:font-bold prose-headings:text-inherit
-                           prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-8
-                           prose-h2:text-3xl prose-h2:mb-5 prose-h2:mt-7
-                           prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6
-                           prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
-                           prose-strong:font-semibold prose-strong:text-inherit
-                           prose-em:text-gray-600 prose-em:italic
-                           prose-a:underline prose-a:font-medium prose-a:text-inherit
-                           prose-a:hover:text-[#165D3F] prose-a:transition-colors
-                           prose-blockquote:border-l-4 prose-blockquote:border-[#EABE4C] 
-                           prose-blockquote:bg-gray-50 prose-blockquote:p-4 prose-blockquote:rounded-r-lg
-                           prose-blockquote:text-gray-700 prose-blockquote:italic
-                           prose-ul:text-gray-700 prose-ol:text-gray-700
-                           prose-li:mb-2 prose-li:text-gray-700
-                           prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
-                           prose-code:font-mono prose-code:text-sm prose-code:text-inherit
-                           prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg
-                           prose-table:border-collapse prose-table:w-full
-                           prose-th:bg-[#1B6B50] prose-th:text-white prose-th:p-3 prose-th:font-semibold
-                           prose-td:border prose-td:border-gray-200 prose-td:p-3
-                           prose-img:rounded-lg prose-img:shadow-md prose-img:my-6"
-                dangerouslySetInnerHTML={{ __html: blog.description || '' }}
-              />
-            </div>
-          </div>
+            <div id="article-header" className="prose prose-lg max-w-none text-gray-800 
+                         prose-headings:text-[#165D3F] prose-headings:font-bold
+                         prose-p:leading-relaxed prose-p:text-gray-700
+                         prose-strong:text-[#165D3F]
+                         prose-a:text-[#1B6B50] prose-a:font-semibold hover:prose-a:text-[#165D3F]
+                         prose-img:rounded-2xl prose-img:shadow-md
+                         prose-blockquote:border-[#EABE4C] prose-blockquote:bg-gray-50 prose-blockquote:rounded-r-xl"
+              dangerouslySetInnerHTML={{ __html: blog.description || '' }}
+            />
 
-          {/* FAQs Section */}
-          {blog.faqs && blog.faqs.length > 0 && (
-            <div className="bg-gradient-to-br from-[#1B6B50]/5 via-white to-[#EABE4C]/5 rounded-3xl shadow-xl border border-gray-100 overflow-hidden mb-12">
-              <div className="bg-gradient-to-r from-[#1B6B50] to-[#165D3F] p-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-white text-center">
-                  Frequently Asked Questions
-                </h2>
-                <div className="w-24 h-1 bg-[#EABE4C] mx-auto mt-4 rounded-full"></div>
-              </div>
-
-              <div className="p-8 md:p-12">
+            {/* FAQs Section within middle content */}
+            {blog.faqs && blog.faqs.length > 0 && (
+              <section id="faq-section" className="mt-16 pt-16 border-t border-gray-100 scroll-mt-24">
+                <h2 className="text-3xl font-bold text-[#165D3F] mb-8">Frequently Asked Questions</h2>
                 <div className="space-y-6">
                   {blog.faqs.map((faq, index) => (
-                    <div key={index} className="group bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-[#1B6B50]/30">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[#1B6B50] to-[#165D3F] rounded-full flex items-center justify-center text-white font-bold text-sm">
-                          {index + 1}
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg md:text-xl font-bold text-[#1B6B50] mb-3 group-hover:text-[#165D3F] transition-colors">
-                            {faq.question}
-                          </h3>
-                          <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                        </div>
-                      </div>
+                    <div key={index} className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <h3 className="text-xl font-bold text-[#1B6B50] mb-3">{faq.question}</h3>
+                      <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          )}
+              </section>
+            )}
 
-          {/* Back to Blogs Section */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-12">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-xl font-bold text-[#1B6B50] mb-2">
-                  Explore More Articles
-                </h3>
-                <p className="text-gray-600">
-                  Discover more insights and expert advice on our blog
-                </p>
-              </div>
-              <Link
-                href="/blog"
-                className="group flex items-center gap-3 bg-gradient-to-r from-[#1B6B50] to-[#165D3F] text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
-              >
-                <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Back to Blog */}
+            <div className="mt-16 pt-10 border-t border-gray-100 flex items-center justify-between">
+              <Link href="/blog" className="text-[#1B6B50] font-bold flex items-center gap-2 hover:translate-x-[-4px] transition-transform">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                Back to all blogs
+                Back to Blog
               </Link>
+              <div className="flex gap-4">
+                {/* Social Share Placeholder */}
+              </div>
+            </div>
+          </article>
+
+          {/* Right Column: CTA and Related Pages (20%) */}
+          <div className="lg:w-1/5 space-y-8">
+            <div className="sticky top-24">
+              {/* 1st CTA container */}
+              <SidebarCTA />
+
+              {/* below that related pages container */}
+              <RelatedPages />
             </div>
           </div>
+
         </div>
       </main>
 

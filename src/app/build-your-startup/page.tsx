@@ -12,7 +12,6 @@ import Form from '@/components/Form';
 import Footer from '@/components/Footer';
 
 export default function BuildYourStartup() {
-    const [selectedCard, setSelectedCard] = useState<'name' | 'structure' | 'founders' | null>(null);
 
     return (
         <ClientPageWrapper>
@@ -37,22 +36,12 @@ export default function BuildYourStartup() {
                 <section
                     id="tool"
                     className="pt-4 pb-10 px-4 sm:px-10 md:px-16 bg-white/50 backdrop-blur-sm cursor-default"
-                    onClick={() => setSelectedCard(null)}
                 >
-                    <div className="max-w-7xl mx-auto" onClick={(e) => e.stopPropagation()}>
+                    <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                            <NameCheckerCard
-                                isSelected={selectedCard === 'name'}
-                                onClick={() => setSelectedCard('name')}
-                            />
-                            <StructureMatchmaker
-                                isSelected={selectedCard === 'structure'}
-                                onClick={() => setSelectedCard('structure')}
-                            />
-                            <FoundersPackCard
-                                isSelected={selectedCard === 'founders'}
-                                onClick={() => setSelectedCard('founders')}
-                            />
+                            <NameCheckerCard />
+                            <StructureMatchmaker />
+                            <FoundersPackCard />
                         </div>
                     </div>
                 </section>
@@ -87,7 +76,7 @@ export default function BuildYourStartup() {
                     </div>
                 </section>
 
-               
+
 
                 {/* Reviews and Consultation Section */}
                 <Form />

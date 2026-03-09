@@ -96,11 +96,12 @@ const Form = () => {
             </div>
           </div>
 
-          <div className="flex gap-2 md:gap-4 pb-4">
+          <div className="flex flex-wrap gap-2 md:gap-4 pb-4">
             {testimonials.slice(0, 8).map((testimonial, index) => (
               <div
                 key={index}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0 cursor-pointer border-2 transition-all border-transparent hover:border-white/50"
+                style={{ borderColor: currentTestimonial === index ? 'white' : 'transparent' }}
                 onClick={() => setCurrentTestimonial(index)}
               >
                 <Image
@@ -113,10 +114,10 @@ const Form = () => {
               </div>
             ))}
             <div
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer flex-shrink-0"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 flex items-center justify-center cursor-pointer flex-shrink-0 hover:bg-white/30 transition-colors"
               onClick={() => setCurrentTestimonial((currentTestimonial + 1) % testimonials.length)}
             >
-              <span>▶</span>
+              <span className="text-white">▶</span>
             </div>
           </div>
         </div>

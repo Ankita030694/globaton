@@ -22,7 +22,7 @@ import Portal from './Portal';
  * - Refactored icons to store Components instead of Elements to avoid "Object as Child" errors.
  * - Optimized result logic for better stability.
  */
-const StructureMatchmaker = ({ isSelected, onClick }: { isSelected?: boolean; onClick?: () => void }) => {
+const StructureMatchmaker = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
     const [step, setStep] = useState('quiz'); // quiz, result
@@ -143,22 +143,8 @@ const StructureMatchmaker = ({ isSelected, onClick }: { isSelected?: boolean; on
     return (
         <>
             <div
-                onClick={onClick}
-                className={`w-full max-w-xl mx-auto rounded-[2.5rem] shadow-2xl overflow-hidden border transition-all duration-500 ease-in-out cursor-pointer flex flex-col h-full relative group
-                    ${isSelected ? 'transform scale-105 z-10 bg-[#EABE4C] border-[#D4AB3A]' : 'bg-white border-emerald-50 hover:border-[#CBA135]'}`}
+                className="w-full max-w-xl mx-auto rounded-[2.5rem] shadow-2xl overflow-hidden border-2 transition-all duration-300 ease-in-out cursor-default flex flex-col h-full relative group bg-white border-transparent hover:border-[#CBA135]"
             >
-                {/* Curved gradient hover/selected effect */}
-                <div className={`absolute inset-0 transition-opacity duration-300 ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
-                    <div className={`absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t rounded-b-3xl ${isSelected ? 'from-[#CBA135]/50' : 'from-[#D4AB3A]/30'} to-transparent`} />
-                </div>
-
-                {/* Selected card background shape */}
-                {isSelected && (
-                    <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden pointer-events-none">
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] bg-[#CBA135] rounded-[100%] translate-y-[75%]" />
-                    </div>
-                )}
-
                 {/* Header */}
                 <div className="p-8 pb-4 flex justify-between items-center relative z-20">
                     <div></div>
@@ -166,13 +152,13 @@ const StructureMatchmaker = ({ isSelected, onClick }: { isSelected?: boolean; on
 
                 <div className="p-8 pt-0 flex-grow flex flex-col relative z-20">
                     <div className="text-center flex-grow flex flex-col items-center">
-                        <div className={`w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 transition-colors ${isSelected ? 'bg-white/20' : 'bg-emerald-50'}`}>
-                            <ShieldCheck size={40} className={isSelected ? 'text-white' : 'text-[#165D3F]'} />
+                        <div className="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 transition-colors bg-emerald-50">
+                            <ShieldCheck size={40} className="text-[#165D3F]" />
                         </div>
-                        <h2 className={`text-3xl font-black leading-tight mb-10 transition-colors ${isSelected ? 'text-white' : 'text-[#165D3F]'}`}>
-                            Structure <span className={isSelected ? 'text-black' : 'text-[#CBA135]'}>Matchmaker</span>
+                        <h2 className="text-3xl font-black leading-tight mb-10 transition-colors text-[#165D3F]">
+                            Structure <span className="text-[#CBA135]">Matchmaker</span>
                         </h2>
-                        <p className={`mb-12 leading-relaxed flex items-center justify-center transition-colors ${isSelected ? 'text-white/90' : 'text-slate-500'}`}>
+                        <p className="mb-12 leading-relaxed flex items-center justify-center transition-colors text-slate-500">
                             Choosing the wrong business structure can cost you lakhs in taxes or missed funding. Find your perfect fit in 60 seconds.
                         </p>
                         <button
@@ -181,13 +167,13 @@ const StructureMatchmaker = ({ isSelected, onClick }: { isSelected?: boolean; on
                                 resetQuiz();
                                 setIsModalOpen(true);
                             }}
-                            className="w-full bg-[#165D3F] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-emerald-900 transition-all shadow-lg mt-auto"
+                            className="w-full bg-[#165D3F] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-emerald-900 transition-all shadow-lg mt-auto cursor-pointer"
                         >
                             Start Matchmaker <ArrowRight size={20} />
                         </button>
 
-                        <div className={`mt-8 pt-6 border-t w-full flex items-center justify-center gap-2 text-xs font-medium transition-colors ${isSelected ? 'border-white/20 text-white/70' : 'border-slate-100 text-slate-400'}`}>
-                            <CheckCircle2 size={14} className={isSelected ? 'text-white' : 'text-[#CBA135]'} />
+                        <div className="mt-8 pt-6 border-t w-full flex items-center justify-center gap-2 text-xs font-medium transition-colors border-slate-100 text-slate-400">
+                            <CheckCircle2 size={14} className="text-[#CBA135]" />
                             Perfect Structure for Higher Growth
                         </div>
                     </div>
@@ -263,7 +249,7 @@ const StructureMatchmaker = ({ isSelected, onClick }: { isSelected?: boolean; on
                                 )}
 
                                 {step === 'result' && result && (
-                                    <div className="py-2 text-center">
+                                    <div className="py-2 text-center px-4 md:px-0">
                                         <div className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-[#165D3F] text-xs font-bold uppercase tracking-widest mb-4">
                                             Recommended Structure
                                         </div>
@@ -329,7 +315,7 @@ const StructureMatchmaker = ({ isSelected, onClick }: { isSelected?: boolean; on
                             </button>
 
                             <div className="p-8 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
-                                <div className="mb-6 text-center">
+                                <div className="mb-6 text-center px-4 md:px-0">
                                     <h1 className="text-2xl font-black text-[#165D3F] mb-2 uppercase tracking-tight">
                                         Book Your Audit
                                     </h1>

@@ -13,7 +13,6 @@ import NameCheckerCard from "@/components/NameCheckerCard";
 import FoundersPackCard from "@/components/FoundersPackCard";
 
 export default function HomeClient() {
-    const [selectedCard, setSelectedCard] = useState<'name' | 'structure' | 'founders' | null>(null);
 
     return (
         <ClientPageWrapper>
@@ -23,9 +22,8 @@ export default function HomeClient() {
                 <Hero />
                 <section
                     className="bg-[#F9FBF9] py-16 px-4 sm:px-8 md:px-16 border-b border-emerald-50 cursor-default"
-                    onClick={() => setSelectedCard(null)}
                 >
-                    <div className="max-w-7xl mx-auto" onClick={(e) => e.stopPropagation()}>
+                    <div className="max-w-7xl mx-auto">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#165D3F] text-center mb-16 max-w-4xl mx-auto leading-tight tracking-tight">
                             Turn your <span className="text-[#CBA135]">ideation</span> into a <span className="relative inline-block">
                                 legally solid
@@ -33,18 +31,9 @@ export default function HomeClient() {
                             </span> startup
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <NameCheckerCard
-                                isSelected={selectedCard === 'name'}
-                                onClick={() => setSelectedCard('name')}
-                            />
-                            <StructureMatchmaker
-                                isSelected={selectedCard === 'structure'}
-                                onClick={() => setSelectedCard('structure')}
-                            />
-                            <FoundersPackCard
-                                isSelected={selectedCard === 'founders'}
-                                onClick={() => setSelectedCard('founders')}
-                            />
+                            <NameCheckerCard />
+                            <StructureMatchmaker />
+                            <FoundersPackCard />
                         </div>
                     </div>
                 </section>

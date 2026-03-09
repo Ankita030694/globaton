@@ -119,7 +119,7 @@ export default function ConsultationForm({
           )}
 
           <div className="text-left">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name <span className="text-red-500">*</span></label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Your Name <span className="text-red-500">*</span></label>
             <input
               type="text"
               name="name"
