@@ -149,8 +149,8 @@ export default function TrademarkRegistrationPage() {
               <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Trademark Classes</h2>
               <p className="text-gray-600 mb-4">There are 45 classes under the Nice Classification:</p>
               <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4">
-                <li>Class 1–34: Goods</li>
-                <li>Class 35–45: Services</li>
+                <li>Class 1-34: Goods</li>
+                <li>Class 35-45: Services</li>
               </ul>
               <p className="text-gray-600">Choosing the correct class is crucial for proper protection. Common examples:</p>
               <ul className="list-disc list-inside text-gray-700 space-y-1">

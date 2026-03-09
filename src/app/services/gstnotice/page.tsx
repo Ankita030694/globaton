@@ -40,7 +40,7 @@ export default function GSTNoticePage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center flex-wrap">
@@ -67,11 +67,11 @@ export default function GSTNoticePage() {
 
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Official Communication</h3>
                   <p className="text-gray-600">Formal intimation from GST Department</p>
@@ -79,11 +79,11 @@ export default function GSTNoticePage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Compliance Tool</h3>
                   <p className="text-gray-600">Ensures adherence to GST regulations</p>
@@ -91,11 +91,11 @@ export default function GSTNoticePage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Time-Sensitive</h3>
                   <p className="text-gray-600">Requires prompt and accurate response</p>
@@ -181,7 +181,7 @@ export default function GSTNoticePage() {
         {/* Notice Content and Response Process */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Comprehensive Overview: Format and Response Process</h2>
-          
+
           {/* Typical Content Section */}
           <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-8 mb-6">
             <h3 className="text-xl font-semibold mb-4 text-gray-900">Typical Content of a GST Notice</h3>
@@ -193,7 +193,7 @@ export default function GSTNoticePage() {
                 'Period of discrepancy',
                 'Legal reference (Section 73, 74, 61, etc.)',
                 'Nature of default (non-filing, wrong ITC, etc.)',
-                'Timeframe for response (7–30 days)'
+                'Timeframe for response (7-30 days)'
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-3">
                   <div className="w-6 h-6 rounded-full bg-[#1B6B50]/20 flex items-center justify-center">
@@ -263,7 +263,7 @@ export default function GSTNoticePage() {
             <p className="mb-4">Respected Sir/Madam,</p>
             <p className="mb-4">In reference to the notice ASMT-10 dated [dd/mm/yyyy] for FY [year], regarding the discrepancy in ITC claimed in GSTR-3B and reflected in GSTR-2A, we submit the following:</p>
             <ul className="list-disc list-inside mb-4 space-y-2">
-              <li>The discrepancy amounting to ₹[amount] arose due to [reason – e.g., supplier delayed filing, clerical error].</li>
+              <li>The discrepancy amounting to ₹[amount] arose due to [reason - e.g., supplier delayed filing, clerical error].</li>
               <li>Attached are the supporting invoices and reconciliation statements.</li>
               <li>We kindly request you to consider the explanation and close the notice.</li>
             </ul>
@@ -307,7 +307,7 @@ export default function GSTNoticePage() {
               </div>
             </div>
           </div>
-          <p className="text-red-600 mt-4">❗ Ignoring GST notices can result in hefty penalties, interest, and legal prosecution under Section 122–132 of the CGST Act.</p>
+          <p className="text-red-600 mt-4">❗ Ignoring GST notices can result in hefty penalties, interest, and legal prosecution under Section 122-132 of the CGST Act.</p>
         </div>
 
         {/* Penalties Section */}

@@ -129,6 +129,7 @@ const FoundersPackCard = ({ isSelected, onClick }: { isSelected?: boolean; onCli
                                 <ConsultationForm
                                     source="Founders Pack Card Popup"
                                     hideTitle={true}
+                                    shouldRedirect={false}
                                     onSuccess={() => {
                                         setIsModalOpen(false);
                                         setShowDownloadModal(true);

@@ -18,8 +18,8 @@ const Navbar = () => {
 
   // Detect iOS device
   useEffect(() => {
-    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
     setIsIOS(isIOSDevice)
   }, [])
 
@@ -192,10 +192,10 @@ const Navbar = () => {
       <div className="flex items-center flex-shrink-0">
         <Link href="/">
           {isIOS ? (
-            <img 
-              src="/logogb.png" 
-              alt="Globaton Logo" 
-              className="w-[180px] h-[90px] object-cover mt-3 logo-optimized" 
+            <img
+              src="/logogb.png"
+              alt="Globaton Logo"
+              className="w-[180px] h-[90px] object-cover mt-3 logo-optimized"
               style={{
                 imageRendering: '-webkit-optimize-contrast',
                 transform: 'translateZ(0)',
@@ -203,13 +203,13 @@ const Navbar = () => {
               }}
             />
           ) : (
-            <Image 
-              src="/logogb.png" 
-              alt="Globaton Logo" 
-              width={1000} 
-              height={1000} 
-              className="w-[180px] h-[90px] object-cover mt-3 logo-optimized" 
-              priority 
+            <Image
+              src="/logogb.png"
+              alt="Globaton Logo"
+              width={1000}
+              height={1000}
+              className="w-[180px] h-[90px] object-cover mt-3 logo-optimized"
+              priority
               sizes="180px"
               style={{
                 imageRendering: '-webkit-optimize-contrast',
@@ -234,9 +234,8 @@ const Navbar = () => {
 
           {/* Dropdown Menu */}
           <div
-            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${
-              activeDropdown === "business" ? "opacity-100 visible" : "opacity-0 invisible"
-            } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
+            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${activeDropdown === "business" ? "opacity-100 visible" : "opacity-0 invisible"
+              } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
             onMouseEnter={() => handleDropdownAreaEnter("business")}
             onMouseLeave={handleDropdownAreaLeave}
           >
@@ -274,11 +273,10 @@ const Navbar = () => {
 
                 {/* Nested dropdown for Company Registration */}
                 <div
-                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                    activeSubmenu === "business-company-registration"
+                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === "business-company-registration"
                       ? "opacity-100 visible"
                       : "opacity-0 invisible"
-                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                    } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                   onMouseEnter={() => handleSubMenuEnter("business-company-registration")}
                   onMouseLeave={handleSubMenuLeave}
                 >
@@ -287,26 +285,26 @@ const Navbar = () => {
 
                   <div className="py-4">
                     <div className="px-6 space-y-3">
-                      <Link 
-                        href="/services/pvltd" 
+                      <Link
+                        href="/services/pvltd"
                         className="block hover:text-[#1B6B50] text-black text-xs"
                       >
                         PVT Ltd Company
                       </Link>
-                      <Link 
-                        href="/services/llp" 
+                      <Link
+                        href="/services/llp"
                         className="block hover:text-[#1B6B50] text-black text-xs"
                       >
                         LLP
                       </Link>
-                      <Link 
-                        href="/services/opc" 
+                      <Link
+                        href="/services/opc"
                         className="block hover:text-[#1B6B50] text-black text-xs"
                       >
                         OPC
                       </Link>
-                      <Link 
-                        href="/services/soleprop" 
+                      <Link
+                        href="/services/soleprop"
                         className="block hover:text-[#1B6B50] text-black text-xs"
                       >
                         Sole Proprietorship
@@ -317,8 +315,8 @@ const Navbar = () => {
                       <Link href="/form?service=producer-company" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>
                         Producer Company
                       </Link>
-                      <Link 
-                        href="/services/partnership" 
+                      <Link
+                        href="/services/partnership"
                         className="block hover:text-[#1B6B50] text-black text-xs"
                       >
                         Partnership Firm
@@ -399,11 +397,10 @@ const Navbar = () => {
 
                 {/* Nested dropdown for Licenses & Registration */}
                 <div
-                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                    activeSubmenu === "business-licenses-registration"
+                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === "business-licenses-registration"
                       ? "opacity-100 visible"
                       : "opacity-0 invisible"
-                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                    } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                   onMouseEnter={() => handleSubMenuEnter("business-licenses-registration")}
                   onMouseLeave={handleSubMenuLeave}
                 >
@@ -454,32 +451,31 @@ const Navbar = () => {
           className="relative group"
           onMouseEnter={() => handleDropdownAreaEnter("tax")}
           onMouseLeave={() => handleDropdownAreaLeave()}
-          >
-            <button className="flex items-center hover:text-[#1B6B50] transition-colors py-1 text-black text-sm">
+        >
+          <button className="flex items-center hover:text-[#1B6B50] transition-colors py-1 text-black text-sm">
             Tax & Compliance <span className="ml-1"><Image src="/droparrow.png" alt="Down Arrow" width={20} height={20} /></span>
           </button>
 
           {/* Tax & Compliance Dropdown */}
           <div
-            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${
-              activeDropdown === "tax" ? "opacity-100 visible" : "opacity-0 invisible"
-            } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
+            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${activeDropdown === "tax" ? "opacity-100 visible" : "opacity-0 invisible"
+              } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
             onMouseEnter={() => handleSubMenuEnter('tax')}
             onMouseLeave={() => handleSubMenuLeave()}
           >
             {/* Seamless connection effect */}
             <div className="h-2 bg-gray-50 -mt-1"></div>
-            
+
             <div className="py-2">
               {/* GST Registration with nested dropdown */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => handleSubMenuEnter('gst-registration')}
                 onMouseLeave={() => handleSubMenuLeave()}
               >
-                
-                <Link 
-                  href="/services/gst" 
+
+                <Link
+                  href="/services/gst"
                   className="block px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
                 >
                   GST
@@ -487,23 +483,22 @@ const Navbar = () => {
                     <polyline points="9 18 15 12 9 6"></polyline>
                   </svg>
                 </Link>
-                
+
                 {/* Nested dropdown for GST Registration */}
-                <div 
-                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                    activeSubmenu === 'gst-registration' ? 'opacity-100 visible' : 'opacity-0 invisible'
-                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                <div
+                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === 'gst-registration' ? 'opacity-100 visible' : 'opacity-0 invisible'
+                    } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                 >
                   {/* Seamless connection effect */}
                   <div className="h-full w-2 bg-white absolute -left-1 top-0"></div>
-                  
+
                   <div className="py-4">
                     <div className="px-6 space-y-3">
                       <Link href="/services/gst" className="block hover:text-[#1B6B50] text-black text-xs">GST Registration</Link>
                       <Link href="/services/gstfiling" className="block hover:text-[#1B6B50] text-black text-xs">GST Filing</Link>
                       <Link href="/services/gstnotice" className="block hover:text-[#1B6B50] text-black text-xs">GST Notice</Link>
                     </div>
-                    
+
                     {/* Book Appointment Section */}
                     <div className="mt-4 px-6 py-3 bg-gray-50">
                       <div className="flex items-center gap-2 text-sm">
@@ -522,14 +517,14 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Accounting & Tax with nested dropdown */}
             <div
               className="relative"
               onMouseEnter={() => handleSubMenuEnter("accounting-tax")}
               onMouseLeave={() => handleSubMenuLeave()}
             >
-              <button 
+              <button
                 className="block w-full text-left px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
               >
                 Accounting & Tax
@@ -550,11 +545,10 @@ const Navbar = () => {
 
               {/* Nested dropdown for Accounting & Tax */}
               <div
-                className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                  activeSubmenu === "accounting-tax"
+                className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === "accounting-tax"
                     ? "opacity-100 visible"
                     : "opacity-0 invisible"
-                } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                 onMouseEnter={() => handleSubMenuEnter("accounting-tax")}
                 onMouseLeave={handleSubMenuLeave}
               >
@@ -563,21 +557,21 @@ const Navbar = () => {
 
                 <div className="py-4">
                   <div className="px-6 space-y-3">
-                    <Link 
-                      href="/services/accounting-&-bookkeeping" 
+                    <Link
+                      href="/services/accounting-&-bookkeeping"
                       className="block hover:text-[#1B6B50] text-black text-xs"
                     >
                       Accounting & Bookkeeping
                     </Link>
-                    <Link 
-                      href="/form?service=itr-filing" 
+                    <Link
+                      href="/form?service=itr-filing"
                       className="block hover:text-[#1B6B50] text-black text-xs"
                       onClick={handleFormLinkClick}
                     >
                       ITR Filing
                     </Link>
-                    <Link 
-                      href="/form?service=itr-notice" 
+                    <Link
+                      href="/form?service=itr-notice"
                       className="block hover:text-[#1B6B50] text-black text-xs"
                       onClick={handleFormLinkClick}
                     >
@@ -602,14 +596,14 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Annual Compliance with nested dropdown */}
             <div
               className="relative"
               onMouseEnter={() => handleSubMenuEnter("annual-compliance")}
               onMouseLeave={() => handleSubMenuLeave()}
             >
-              <button 
+              <button
                 className="block w-full text-left px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
               >
                 Annual Compliance
@@ -630,11 +624,10 @@ const Navbar = () => {
 
               {/* Nested dropdown for Annual Compliance */}
               <div
-                className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                  activeSubmenu === "annual-compliance"
+                className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === "annual-compliance"
                     ? "opacity-100 visible"
                     : "opacity-0 invisible"
-                } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                 onMouseEnter={() => handleSubMenuEnter("annual-compliance")}
                 onMouseLeave={handleSubMenuLeave}
               >
@@ -643,7 +636,7 @@ const Navbar = () => {
 
                 <div className="py-4">
                   <div className="px-6 space-y-3">
-                    <button 
+                    <button
                       onClick={() => {
                         scrollToLLPAnnualCompliance()
                         handleMobileMenuItemClick()
@@ -652,7 +645,7 @@ const Navbar = () => {
                     >
                       LLP Annual Compliance
                     </button>
-                    <button 
+                    <button
                       onClick={() => {
                         scrollToPVTLTDAnnualCompliance()
                         handleMobileMenuItemClick()
@@ -694,38 +687,36 @@ const Navbar = () => {
 
           {/* Trademark & IP Dropdown */}
           <div
-            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${
-              activeDropdown === "trademark" ? "opacity-100 visible" : "opacity-0 invisible"
-            } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
+            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${activeDropdown === "trademark" ? "opacity-100 visible" : "opacity-0 invisible"
+              } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
             onMouseEnter={() => handleSubMenuEnter('trademark')}
             onMouseLeave={() => handleSubMenuLeave()}
           >
             {/* Seamless connection effect */}
             <div className="h-2 bg-gray-50 -mt-1"></div>
-            
+
             <div className="py-2">
               {/* Trademark Registration with nested dropdown */}
               <div className="relative">
-                <Link 
-                  href="/services/trademark" 
+                <Link
+                  href="/services/trademark"
                   className="block px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
                 >
                   Trademark Registration
                 </Link>
-                
+
                 {/* Nested dropdown for Trademark Registration */}
-                <div 
-                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                    activeSubmenu === 'trademark-registration' ? 'opacity-100 visible' : 'opacity-0 invisible'
-                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                <div
+                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === 'trademark-registration' ? 'opacity-100 visible' : 'opacity-0 invisible'
+                    } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                   onMouseEnter={() => handleSubMenuEnter('trademark-registration')}
                   onMouseLeave={() => handleSubMenuLeave()}
                 >
                   {/* Seamless connection effect */}
                   <div className="h-full w-2 bg-white absolute -left-1 top-0"></div>
-                  
+
                   <div className="py-4">
-                    
+
                     {/* Book Appointment Section */}
                     <div className="mt-4 px-6 py-3 bg-gray-50">
                       <div className="flex items-center gap-2 text-sm">
@@ -744,7 +735,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            
+
             <Link href="/form?service=copyright-registration" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Copyright Registration
             </Link>
@@ -762,41 +753,39 @@ const Navbar = () => {
           onMouseEnter={() => handleDropdownAreaEnter("documentation")}
           onMouseLeave={() => handleDropdownAreaLeave()}
         >
-            <button className="flex items-center hover:text-[#1B6B50] transition-colors py-1 text-black text-sm">
+          <button className="flex items-center hover:text-[#1B6B50] transition-colors py-1 text-black text-sm">
             Documentation <span className="ml-1"><Image src="/droparrow.png" alt="Down Arrow" width={20} height={20} /></span>
           </button>
 
           {/* Documentation Dropdown */}
           <div
-            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${
-              activeDropdown === "documentation" ? "opacity-100 visible" : "opacity-0 invisible"
-            } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
+            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${activeDropdown === "documentation" ? "opacity-100 visible" : "opacity-0 invisible"
+              } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
             onMouseEnter={() => handleSubMenuEnter('documentation')}
             onMouseLeave={() => handleSubMenuLeave()}
           >
             {/* Seamless connection effect */}
             <div className="h-2 bg-gray-50 -mt-1"></div>
-            
+
             <div className="py-2">
               {/* Legal Agreements with nested dropdown */}
               <div className="relative">
-                <Link 
-                  href="/form?service=legal-agreements" 
+                <Link
+                  href="/form?service=legal-agreements"
                   className="block px-6 py-1 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
                   onClick={handleFormLinkClick}
                 >
                   Legal Agreements
                 </Link>
-                
+
                 {/* Nested dropdown for Legal Agreements */}
-                <div 
-                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                    activeSubmenu === 'legal-agreements' ? 'opacity-100 visible' : 'opacity-0 invisible'
-                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                <div
+                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === 'legal-agreements' ? 'opacity-100 visible' : 'opacity-0 invisible'
+                    } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                 >
                   {/* Seamless connection effect */}
                   <div className="h-full w-2 bg-white absolute -left-1 top-0"></div>
-                  
+
                   <div className="py-1">
                     <div className="px-6 space-y-1">
                       <Link href="/form?service=employment-agreement" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Employment Agreement</Link>
@@ -804,7 +793,7 @@ const Navbar = () => {
                       <Link href="/form?service=partnership-agreement" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Partnership Agreement</Link>
                       <Link href="/form?service=vendor-agreement" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Vendor Agreement</Link>
                     </div>
-                    
+
                     {/* Book Appointment Section */}
                     <div className="mt-4 px-6 py-3 bg-gray-50">
                       <div className="flex items-center gap-2 text-sm">
@@ -823,7 +812,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            
+
             <Link href="/form?service=moa-aoa" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               MOA & AOA
             </Link>
@@ -847,35 +836,33 @@ const Navbar = () => {
 
           {/* Others Dropdown */}
           <div
-            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${
-              activeDropdown === "others" ? "opacity-100 visible" : "opacity-0 invisible"
-            } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
+            className={`absolute top-full left-0 w-72 bg-gray-50 shadow-lg rounded-lg transform ${activeDropdown === "others" ? "opacity-100 visible" : "opacity-0 invisible"
+              } transition-all duration-300 ease-in-out -mt-0.5 z-50`}
             onMouseEnter={() => handleSubMenuEnter('others')}
             onMouseLeave={() => handleSubMenuLeave()}
           >
             {/* Seamless connection effect */}
             <div className="h-2 bg-gray-50 -mt-1"></div>
-            
+
             <div className="py-2">
               {/* Legal Advisory with nested dropdown */}
               <div className="relative">
-                <Link 
-                  href="/form?service=legal-advisory" 
+                <Link
+                  href="/form?service=legal-advisory"
                   className="block px-6 py-2.5 hover:bg-gray-100 hover:text-[#1B6B50] text-black flex items-center justify-between text-xs"
                   onClick={handleFormLinkClick}
                 >
                   Legal Advisory
                 </Link>
-                
+
                 {/* Nested dropdown for Legal Advisory */}
-                <div 
-                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${
-                    activeSubmenu === 'legal-advisory' ? 'opacity-100 visible' : 'opacity-0 invisible'
-                  } transition-all duration-300 ease-in-out ml-0.5 z-50`}
+                <div
+                  className={`absolute top-0 left-full w-80 bg-white shadow-lg rounded-lg transform ${activeSubmenu === 'legal-advisory' ? 'opacity-100 visible' : 'opacity-0 invisible'
+                    } transition-all duration-300 ease-in-out ml-0.5 z-50`}
                 >
                   {/* Seamless connection effect */}
                   <div className="h-full w-2 bg-white absolute -left-1 top-0"></div>
-                  
+
                   <div className="py-4">
                     <div className="px-6 space-y-3">
                       <Link href="/form?service=business-legal-advisory" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Business Legal Advisory</Link>
@@ -883,7 +870,7 @@ const Navbar = () => {
                       <Link href="/form?service=compliance-advisory" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Compliance Advisory</Link>
                       <Link href="/form?service=regulatory-advisory" className="block hover:text-[#1B6B50] text-black text-xs" onClick={handleFormLinkClick}>Regulatory Advisory</Link>
                     </div>
-                    
+
                     {/* Book Appointment Section */}
                     <div className="mt-4 px-6 py-3 bg-gray-50">
                       <div className="flex items-center gap-2 text-sm">
@@ -902,7 +889,10 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            
+
+            <Link href="/build-your-startup" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
+              Build Your Startup
+            </Link>
             <Link href="/form?service=business-support" className="block px-6 py-2.5 hover:bg-gray-100 text-black text-xs" onClick={handleFormLinkClick}>
               Business Support
             </Link>
@@ -918,7 +908,7 @@ const Navbar = () => {
 
       {/* Right Container - Consult Expert & Burger Menu */}
       <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
-        <Link 
+        <Link
           href="/form?service=consult-expert"
           className="bg-[#C4942D] text-white px-4 py-2 rounded hover:bg-[#b38528] transition-colors text-xs"
           onClick={handleFormLinkClick}
@@ -928,7 +918,7 @@ const Navbar = () => {
 
         {/* Burger Menu */}
         <div className="relative">
-          <button 
+          <button
             onClick={() => setBurgerOpen(!isBurgerOpen)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
@@ -951,27 +941,26 @@ const Navbar = () => {
           </button>
 
           {/* Burger Menu Dropdown */}
-          <div 
-            className={`absolute top-full right-0 w-48 bg-white shadow-lg rounded-lg transform ${
-              isBurgerOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-            } transition-all duration-300 ease-in-out mt-2 z-50`}
+          <div
+            className={`absolute top-full right-0 w-48 bg-white shadow-lg rounded-lg transform ${isBurgerOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+              } transition-all duration-300 ease-in-out mt-2 z-50`}
           >
             <div className="py-2">
-              <Link 
+              <Link
                 href="/about"
                 className="block px-4 py-2 text-black hover:bg-gray-100 hover:text-[#1B6B50] transition-colors"
                 onClick={() => setBurgerOpen(false)}
               >
                 About Us
               </Link>
-              <Link 
+              <Link
                 href="/blog"
                 className="block px-4 py-2 text-black hover:bg-gray-100 hover:text-[#1B6B50] transition-colors"
                 onClick={() => setBurgerOpen(false)}
               >
                 Blog
               </Link>
-              <Link 
+              <Link
                 href="/form?service=contact-us"
                 className="block px-4 py-2 text-black hover:bg-gray-100 hover:text-[#1B6B50] transition-colors"
                 onClick={() => {
@@ -981,7 +970,7 @@ const Navbar = () => {
               >
                 Contact Us
               </Link>
-              <button 
+              <button
                 onClick={scrollToTestimonials}
                 className="block w-full text-left px-4 py-2 text-black hover:bg-gray-100 hover:text-[#1B6B50] transition-colors"
               >
@@ -994,7 +983,7 @@ const Navbar = () => {
 
       {/* Mobile menu button */}
       <div className="lg:hidden">
-        <button 
+        <button
           onClick={toggleMobileMenu}
           className="p-2 text-[#CBA135]"
         >
@@ -1018,7 +1007,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={toggleMobileMenu}
         />
@@ -1032,20 +1021,19 @@ const Navbar = () => {
         const [openMobileDropdowns, setOpenMobileDropdowns] = useState<{ [key: string]: boolean }>({});
         and update the toggle logic accordingly.
       */}
-      <div 
-        className={`fixed top-0 right-0 h-full w-full bg-gradient-to-br from-white via-gray-50 to-gray-100 shadow-2xl transform transition-transform duration-300 ease-in-out z-50 lg:hidden ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+      <div
+        className={`fixed top-0 right-0 h-full w-full bg-gradient-to-br from-white via-gray-50 to-gray-100 shadow-2xl transform transition-transform duration-300 ease-in-out z-50 lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         {/* Header with Close Button and Logo */}
         <div className="p-6 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               {isIOS ? (
-                <img 
-                  src="/logogb.png" 
-                  alt="Globaton Logo" 
-                  className="w-[120px] h-[60px] object-cover logo-optimized" 
+                <img
+                  src="/logogb.png"
+                  alt="Globaton Logo"
+                  className="w-[120px] h-[60px] object-cover logo-optimized"
                   style={{
                     imageRendering: '-webkit-optimize-contrast',
                     transform: 'translateZ(0)',
@@ -1053,13 +1041,13 @@ const Navbar = () => {
                   }}
                 />
               ) : (
-                <Image 
-                  src="/logogb.png" 
-                  alt="Globaton Logo" 
-                  width={120} 
-                  height={60} 
-                  className="w-[120px] h-[60px] object-cover logo-optimized" 
-                  priority 
+                <Image
+                  src="/logogb.png"
+                  alt="Globaton Logo"
+                  width={120}
+                  height={60}
+                  className="w-[120px] h-[60px] object-cover logo-optimized"
+                  priority
                   sizes="120px"
                   style={{
                     imageRendering: '-webkit-optimize-contrast',
@@ -1069,7 +1057,7 @@ const Navbar = () => {
                 />
               )}
             </div>
-            <button 
+            <button
               onClick={toggleMobileMenu}
               className="p-3 hover:bg-gray-100 rounded-full transition-all duration-200 hover:rotate-90"
             >
@@ -1097,7 +1085,7 @@ const Navbar = () => {
           <div className="py-4">
             {/* Business Setup */}
             <div className="mb-2">
-              <button 
+              <button
                 className="flex items-center justify-between w-full text-left px-6 py-4 text-lg font-semibold text-gray-800 hover:bg-white/60 transition-all duration-200 border-l-4 border-transparent hover:border-[#1B6B50]"
                 onClick={() =>
                   setOpenMobileDropdowns((prev: any) => ({
@@ -1115,9 +1103,8 @@ const Navbar = () => {
                   Business Setup
                 </div>
                 <svg
-                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${
-                    openMobileDropdowns?.['mobile-business'] ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${openMobileDropdowns?.['mobile-business'] ? 'rotate-180' : ''
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1149,9 +1136,8 @@ const Navbar = () => {
                           Company Registration
                         </div>
                         <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-company-registration'] ? 'rotate-180' : ''
-                          }`}
+                          className={`w-4 h-4 transform transition-transform duration-200 ${openMobileDropdowns?.['mobile-company-registration'] ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1161,8 +1147,8 @@ const Navbar = () => {
                       </button>
                       {openMobileDropdowns?.['mobile-company-registration'] && (
                         <div className="bg-white/60 rounded-lg p-3 ml-4 space-y-2">
-                          <Link 
-                            href="/services/pvltd" 
+                          <Link
+                            href="/services/pvltd"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1172,8 +1158,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             PVT Ltd Company
                           </Link>
-                          <Link 
-                            href="/services/llp" 
+                          <Link
+                            href="/services/llp"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1183,8 +1169,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             LLP
                           </Link>
-                          <Link 
-                            href="/services/opc" 
+                          <Link
+                            href="/services/opc"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1194,8 +1180,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             OPC
                           </Link>
-                          <Link 
-                            href="/services/soleprop" 
+                          <Link
+                            href="/services/soleprop"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1205,8 +1191,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Sole Proprietorship
                           </Link>
-                          <Link 
-                            href="/form?service=nidhi-company" 
+                          <Link
+                            href="/form?service=nidhi-company"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1216,8 +1202,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Nidhi Company
                           </Link>
-                          <Link 
-                            href="/form?service=producer-company" 
+                          <Link
+                            href="/form?service=producer-company"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1227,8 +1213,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Producer Company
                           </Link>
-                          <Link 
-                            href="/services/partnership" 
+                          <Link
+                            href="/services/partnership"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1238,8 +1224,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Partnership Firm
                           </Link>
-                          <Link 
-                            href="/form?service=startup-india" 
+                          <Link
+                            href="/form?service=startup-india"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1252,8 +1238,8 @@ const Navbar = () => {
                         </div>
                       )}
                     </div>
-                    <Link 
-                      href="/form?service=change-company-name" 
+                    <Link
+                      href="/form?service=change-company-name"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1263,8 +1249,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
                       Change Company Name
                     </Link>
-                    <Link 
-                      href="/form?service=insolvency-liquidation" 
+                    <Link
+                      href="/form?service=insolvency-liquidation"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1274,8 +1260,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
                       Insolvency & Liquidation
                     </Link>
-                    <Link 
-                      href="/form?service=valuation-of-business" 
+                    <Link
+                      href="/form?service=valuation-of-business"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1309,9 +1295,8 @@ const Navbar = () => {
                           Licenses & Registration
                         </div>
                         <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-licenses-registration'] ? 'rotate-180' : ''
-                          }`}
+                          className={`w-4 h-4 transform transition-transform duration-200 ${openMobileDropdowns?.['mobile-licenses-registration'] ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1421,7 +1406,7 @@ const Navbar = () => {
 
             {/* Tax & Compliance */}
             <div className="mb-2">
-              <button 
+              <button
                 className="flex items-center justify-between w-full text-left px-6 py-4 text-lg font-semibold text-gray-800 hover:bg-white/60 transition-all duration-200 border-l-4 border-transparent hover:border-[#C4942D]"
                 onClick={() =>
                   setOpenMobileDropdowns((prev: any) => ({
@@ -1443,9 +1428,8 @@ const Navbar = () => {
                   Tax & Compliance
                 </div>
                 <svg
-                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${
-                    openMobileDropdowns?.['mobile-tax'] ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${openMobileDropdowns?.['mobile-tax'] ? 'rotate-180' : ''
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1477,9 +1461,8 @@ const Navbar = () => {
                           GST
                         </div>
                         <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-gst'] ? 'rotate-180' : ''
-                          }`}
+                          className={`w-4 h-4 transform transition-transform duration-200 ${openMobileDropdowns?.['mobile-gst'] ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1489,8 +1472,8 @@ const Navbar = () => {
                       </button>
                       {openMobileDropdowns?.['mobile-gst'] && (
                         <div className="bg-white/60 rounded-lg p-3 ml-4 space-y-2">
-                          <Link 
-                            href="/services/gst" 
+                          <Link
+                            href="/services/gst"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1500,8 +1483,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             GST Registration
                           </Link>
-                          <Link 
-                            href="/services/gstfiling" 
+                          <Link
+                            href="/services/gstfiling"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1511,8 +1494,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             GST Filing
                           </Link>
-                          <Link 
-                            href="/services/gstnotice" 
+                          <Link
+                            href="/services/gstnotice"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1545,9 +1528,8 @@ const Navbar = () => {
                           Accounting & Tax
                         </div>
                         <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-accounting-tax'] ? 'rotate-180' : ''
-                          }`}
+                          className={`w-4 h-4 transform transition-transform duration-200 ${openMobileDropdowns?.['mobile-accounting-tax'] ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1557,8 +1539,8 @@ const Navbar = () => {
                       </button>
                       {openMobileDropdowns?.['mobile-accounting-tax'] && (
                         <div className="bg-white/60 rounded-lg p-3 ml-4 space-y-2">
-                          <Link 
-                            href="/services/accounting-&-bookkeeping" 
+                          <Link
+                            href="/services/accounting-&-bookkeeping"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1568,8 +1550,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Accounting & Bookkeeping
                           </Link>
-                          <Link 
-                            href="/form?service=itr-filing" 
+                          <Link
+                            href="/form?service=itr-filing"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1579,8 +1561,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             ITR Filing
                           </Link>
-                          <Link 
-                            href="/form?service=itr-notice" 
+                          <Link
+                            href="/form?service=itr-notice"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1595,7 +1577,7 @@ const Navbar = () => {
                     </div>
                     {/* Annual Compliance Submenu */}
                     <div className="space-y-1">
-                      <button 
+                      <button
                         className="flex items-center justify-between w-full text-left py-3 px-3 text-gray-700 hover:bg-white/60 rounded-lg transition-all duration-200 font-medium"
                         onClick={() =>
                           setOpenMobileDropdowns((prev: any) => ({
@@ -1616,9 +1598,8 @@ const Navbar = () => {
                           Annual Compliance
                         </div>
                         <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-annual-compliance'] ? 'rotate-180' : ''
-                          }`}
+                          className={`w-4 h-4 transform transition-transform duration-200 ${openMobileDropdowns?.['mobile-annual-compliance'] ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1628,7 +1609,7 @@ const Navbar = () => {
                       </button>
                       {openMobileDropdowns?.['mobile-annual-compliance'] && (
                         <div className="bg-white/60 rounded-lg p-3 ml-4 space-y-2">
-                          <button 
+                          <button
                             onClick={() => {
                               scrollToLLPAnnualCompliance()
                               handleMobileMenuItemClick()
@@ -1638,7 +1619,7 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             LLP Annual Compliance
                           </button>
-                          <button 
+                          <button
                             onClick={() => {
                               scrollToPVTLTDAnnualCompliance()
                               handleMobileMenuItemClick()
@@ -1658,7 +1639,7 @@ const Navbar = () => {
 
             {/* Trademark & IP */}
             <div className="mb-2">
-              <button 
+              <button
                 className="flex items-center justify-between w-full text-left px-6 py-4 text-lg font-semibold text-gray-800 hover:bg-white/60 transition-all duration-200 border-l-4 border-transparent hover:border-indigo-500"
                 onClick={() =>
                   setOpenMobileDropdowns((prev: any) => ({
@@ -1676,9 +1657,8 @@ const Navbar = () => {
                   Trademark & IP
                 </div>
                 <svg
-                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${
-                    openMobileDropdowns?.['mobile-trademark'] ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${openMobileDropdowns?.['mobile-trademark'] ? 'rotate-180' : ''
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1691,8 +1671,8 @@ const Navbar = () => {
                   <div className="py-3 px-4 space-y-1">
                     {/* Trademark Registration Submenu */}
                     <div className="space-y-1">
-                      <Link 
-                        href="/services/trademark" 
+                      <Link
+                        href="/services/trademark"
                         className="flex items-center py-3 px-3 text-gray-700 hover:bg-white/60 rounded-lg transition-all duration-200 font-medium"
                         onClick={() => {
                           handleMobileMenuItemClick()
@@ -1709,8 +1689,8 @@ const Navbar = () => {
                         </div>
                       </Link>
                     </div>
-                    <Link 
-                      href="/form?service=copyright-registration" 
+                    <Link
+                      href="/form?service=copyright-registration"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1720,8 +1700,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                       Copyright Registration
                     </Link>
-                    <Link 
-                      href="/form?service=patent-filing" 
+                    <Link
+                      href="/form?service=patent-filing"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1731,8 +1711,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
                       Patent Filing
                     </Link>
-                    <Link 
-                      href="/form?service=design-registration" 
+                    <Link
+                      href="/form?service=design-registration"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1749,7 +1729,7 @@ const Navbar = () => {
 
             {/* Documentation */}
             <div className="mb-2">
-              <button 
+              <button
                 className="flex items-center justify-between w-full text-left px-6 py-4 text-lg font-semibold text-gray-800 hover:bg-white/60 transition-all duration-200 border-l-4 border-transparent hover:border-teal-500"
                 onClick={() =>
                   setOpenMobileDropdowns((prev: any) => ({
@@ -1771,9 +1751,8 @@ const Navbar = () => {
                   Documentation
                 </div>
                 <svg
-                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${
-                    openMobileDropdowns?.['mobile-documentation'] ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${openMobileDropdowns?.['mobile-documentation'] ? 'rotate-180' : ''
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1808,9 +1787,8 @@ const Navbar = () => {
                           Legal Agreements
                         </div>
                         <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-legal-agreements'] ? 'rotate-180' : ''
-                          }`}
+                          className={`w-4 h-4 transform transition-transform duration-200 ${openMobileDropdowns?.['mobile-legal-agreements'] ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1820,8 +1798,8 @@ const Navbar = () => {
                       </button>
                       {openMobileDropdowns?.['mobile-legal-agreements'] && (
                         <div className="bg-white/60 rounded-lg p-3 ml-4 space-y-2">
-                          <Link 
-                            href="/form" 
+                          <Link
+                            href="/form"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1831,8 +1809,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Employment Agreement
                           </Link>
-                          <Link 
-                            href="/form" 
+                          <Link
+                            href="/form"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1842,8 +1820,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Consulting Agreement
                           </Link>
-                          <Link 
-                            href="/form?service=partnership-agreement" 
+                          <Link
+                            href="/form?service=partnership-agreement"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1853,8 +1831,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Partnership Agreement
                           </Link>
-                          <Link 
-                            href="/form?service=vendor-agreement" 
+                          <Link
+                            href="/form?service=vendor-agreement"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1867,8 +1845,8 @@ const Navbar = () => {
                         </div>
                       )}
                     </div>
-                    <Link 
-                      href="/form?service=moa-aoa" 
+                    <Link
+                      href="/form?service=moa-aoa"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1878,8 +1856,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                       MOA & AOA
                     </Link>
-                    <Link 
-                      href="/form?service=business-contracts" 
+                    <Link
+                      href="/form?service=business-contracts"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1889,8 +1867,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                       Business Contracts
                     </Link>
-                    <Link 
-                      href="/form?service=nda-agreements" 
+                    <Link
+                      href="/form?service=nda-agreements"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -1907,7 +1885,7 @@ const Navbar = () => {
 
             {/* Others */}
             <div className="mb-2">
-              <button 
+              <button
                 className="flex items-center justify-between w-full text-left px-6 py-4 text-lg font-semibold text-gray-800 hover:bg-white/60 transition-all duration-200 border-l-4 border-transparent hover:border-amber-500"
                 onClick={() =>
                   setOpenMobileDropdowns((prev: any) => ({
@@ -1926,9 +1904,8 @@ const Navbar = () => {
                   Others
                 </div>
                 <svg
-                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${
-                    openMobileDropdowns?.['mobile-others'] ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 transform transition-transform duration-200 text-gray-500 ${openMobileDropdowns?.['mobile-others'] ? 'rotate-180' : ''
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1959,9 +1936,8 @@ const Navbar = () => {
                           Legal Advisory
                         </div>
                         <svg
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            openMobileDropdowns?.['mobile-legal-advisory'] ? 'rotate-180' : ''
-                          }`}
+                          className={`w-4 h-4 transform transition-transform duration-200 ${openMobileDropdowns?.['mobile-legal-advisory'] ? 'rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1971,8 +1947,8 @@ const Navbar = () => {
                       </button>
                       {openMobileDropdowns?.['mobile-legal-advisory'] && (
                         <div className="bg-white/60 rounded-lg p-3 ml-4 space-y-2">
-                          <Link 
-                            href="/form?service=business-legal-advisory" 
+                          <Link
+                            href="/form?service=business-legal-advisory"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1982,8 +1958,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Business Legal Advisory
                           </Link>
-                          <Link 
-                            href="/form?service=startup-advisory" 
+                          <Link
+                            href="/form?service=startup-advisory"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -1993,8 +1969,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Startup Advisory
                           </Link>
-                          <Link 
-                            href="/form?service=compliance-advisory" 
+                          <Link
+                            href="/form?service=compliance-advisory"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -2004,8 +1980,8 @@ const Navbar = () => {
                             <div className="w-2 h-2 bg-[#1B6B50] rounded-full mr-3"></div>
                             Compliance Advisory
                           </Link>
-                          <Link 
-                            href="/form?service=regulatory-advisory" 
+                          <Link
+                            href="/form?service=regulatory-advisory"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
@@ -2018,8 +1994,19 @@ const Navbar = () => {
                         </div>
                       )}
                     </div>
-                    <Link 
-                      href="/form?service=business-support" 
+                    <Link
+                      href="/build-your-startup"
+                      className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
+                      onClick={() => {
+                        handleMobileMenuItemClick()
+                        handleFormLinkClick()
+                      }}
+                    >
+                      <div className="w-2 h-2 bg-[#C4942D] rounded-full mr-3"></div>
+                      Build Your Startup
+                    </Link>
+                    <Link
+                      href="/form?service=business-support"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -2029,8 +2016,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
                       Business Support
                     </Link>
-                    <Link 
-                      href="/form?service=investor-relations" 
+                    <Link
+                      href="/form?service=investor-relations"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -2040,8 +2027,8 @@ const Navbar = () => {
                       <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                       Investor Relations
                     </Link>
-                    <Link 
-                      href="/form?service=faqs" 
+                    <Link
+                      href="/form?service=faqs"
                       className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/60 rounded-md transition-all duration-200"
                       onClick={() => {
                         handleMobileMenuItemClick()
@@ -2060,7 +2047,7 @@ const Navbar = () => {
             <div className="mb-20 pt-4 border-t border-gray-200">
               <div className="px-4 space-y-1">
                 <h3 className="px-2 text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Quick Links</h3>
-                <Link 
+                <Link
                   href="/about"
                   className="flex items-center py-3 px-4 text-gray-700 hover:text-[#1B6B50] hover:bg-white/60 rounded-lg transition-all duration-200"
                   onClick={() => {
@@ -2076,7 +2063,7 @@ const Navbar = () => {
                   </div>
                   About Us
                 </Link>
-                <Link 
+                <Link
                   href="/blog"
                   className="flex items-center py-3 px-4 text-gray-700 hover:text-[#1B6B50] hover:bg-white/60 rounded-lg transition-all duration-200"
                   onClick={() => {
@@ -2092,7 +2079,7 @@ const Navbar = () => {
                   </div>
                   Blog
                 </Link>
-                <Link 
+                <Link
                   href="/form?service=contact-us"
                   className="flex items-center py-3 px-4 text-gray-700 hover:text-[#1B6B50] hover:bg-white/60 rounded-lg transition-all duration-200"
                   onClick={() => {
@@ -2108,7 +2095,7 @@ const Navbar = () => {
                   </div>
                   Contact Us
                 </Link>
-                <button 
+                <button
                   onClick={() => {
                     scrollToTestimonials()
                     handleMobileMenuItemClick()
@@ -2129,7 +2116,7 @@ const Navbar = () => {
 
         {/* Bottom CTA Section */}
         <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent z-10 mt-10">
-          <Link 
+          <Link
             href="/form?service=consult-expert"
             className="block w-full bg-gradient-to-r from-[#C4942D] to-[#d4a03d] text-white text-center px-6 py-4 rounded-xl hover:from-[#b38528] hover:to-[#c4942d] transition-all duration-200 text-lg font-semibold shadow-lg transform hover:scale-105"
             onClick={() => {

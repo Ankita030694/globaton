@@ -677,11 +677,11 @@ export default function OPCPage() {
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-[#1B6B50]">Pre-Incorporation Compliance</h2>
           <div className="space-y-4">
             {[
-              'Digital Signature Certificate (DSC) – Required for shareholder and nominee.',
-              'Name Approval – File SPICe+ Part A for reserving a unique company name with suffix "OPC Private Limited".',
-              'Consent of Nominee – Submit nominee consent in Form INC-3.',
-              'Draft MOA & AOA – Memorandum and Articles of Association.',
-              'Directors Declaration – That he/she has not been convicted or declared insolvent.'
+              'Digital Signature Certificate (DSC) - Required for shareholder and nominee.',
+              'Name Approval - File SPICe+ Part A for reserving a unique company name with suffix "OPC Private Limited".',
+              'Consent of Nominee - Submit nominee consent in Form INC-3.',
+              'Draft MOA & AOA - Memorandum and Articles of Association.',
+              'Directors Declaration - That he/she has not been convicted or declared insolvent.'
             ].map((item, idx) => (
               <div key={idx} className="flex items-start gap-3">
                 <div className="w-6 h-6 rounded-full bg-[#1B6B50]/20 flex items-center justify-center mt-1">

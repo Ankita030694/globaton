@@ -16,7 +16,7 @@ export default function GSTRegistrationPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center">
@@ -34,46 +34,46 @@ export default function GSTRegistrationPage() {
 
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Quick Registration</h3>
-                  <p className="text-gray-600">GST Application Filing in Just 2 Business Days – Starting at ₹499 T&amp;C*</p>
+                  <p className="text-gray-600">GST Application Filing in Just 2 Business Days - Starting at ₹499 T&amp;C*</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Simplified Process</h3>
                   <p className="text-gray-600">Simplified process for new GST registration, application status
-                  tracking, and resolving clarifications with the GST authorities.</p>
+                    tracking, and resolving clarifications with the GST authorities.</p>
                 </div>
               </div>
 
-              
+
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Tailored Services</h3>
                   <p className="text-gray-600">Tailored GST services for businesses, eCommerce sellers, startups, and government
-                  offices.</p>
+                    offices.</p>
                 </div>
-                
+
               </div>
             </div>
-            
+
           </div>
 
           {/* Form Section */}
@@ -131,19 +131,19 @@ export default function GSTRegistrationPage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">What is GST Registration?</h2>
           <p className="text-gray-600 leading-relaxed mb-8">
-            Goods and Services Tax (GST) is a comprehensive indirect tax levied on the supply of goods and services in India. 
-            Introduced on 1st July 2017, it replaced multiple indirect taxes like VAT, service tax, excise duty, etc. 
-            GST Registration is mandatory for businesses above the prescribed turnover or engaged in certain operations like 
+            Goods and Services Tax (GST) is a comprehensive indirect tax levied on the supply of goods and services in India.
+            Introduced on 1st July 2017, it replaced multiple indirect taxes like VAT, service tax, excise duty, etc.
+            GST Registration is mandatory for businesses above the prescribed turnover or engaged in certain operations like
             inter-state trade or e-commerce. It provides a legal identity, enables input credit, and fosters credibility.
           </p>
 
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-            <div className="mt-1">
-              <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-            </div>
+              <div className="mt-1">
+                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
               <div>
                 <h3 className="font-medium text-gray-800">Legal Recognition</h3>
                 <p className="text-gray-600">Official business identity under GST law</p>
@@ -151,11 +151,11 @@ export default function GSTRegistrationPage() {
             </div>
 
             <div className="flex items-center gap-3">
-            <div className="mt-1">
-              <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-            </div>
+              <div className="mt-1">
+                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
               <div>
                 <h3 className="font-medium text-gray-800">Input Tax Credit</h3>
                 <p className="text-gray-600">Claim tax credits on business purchases</p>
@@ -163,11 +163,11 @@ export default function GSTRegistrationPage() {
             </div>
 
             <div className="flex items-center gap-3">
-            <div className="mt-1">
-              <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-            </div>
+              <div className="mt-1">
+                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
               <div>
                 <h3 className="font-medium text-gray-800">Business Expansion</h3>
                 <p className="text-gray-600">Enable inter-state trade and e-commerce operations</p>
@@ -267,7 +267,7 @@ export default function GSTRegistrationPage() {
 
         {/* GST Threshold Limits */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">GST Threshold Limits (FY 2024–25)</h2>
+          <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">GST Threshold Limits (FY 2024-2025)</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white border border-gray-200 rounded-lg">
               <thead className="bg-gray-50">
@@ -489,7 +489,7 @@ export default function GSTRegistrationPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <FaCheck className="text-[#1B6B50]" size={12} />
-                  <span className="text-gray-700">Professional Fees: ₹500 – ₹5,000</span>
+                  <span className="text-gray-700">Professional Fees: ₹500 - ₹5,000</span>
                 </li>
               </ul>
             </div>

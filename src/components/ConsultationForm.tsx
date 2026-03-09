@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface ConsultationFormProps {
   source: string;
@@ -7,9 +8,18 @@ interface ConsultationFormProps {
   isNameChecker?: boolean;
   prefilledService?: string;
   hideTitle?: boolean;
+  shouldRedirect?: boolean;
 }
 
-export default function ConsultationForm({ source, onSuccess, isNameChecker, prefilledService, hideTitle }: ConsultationFormProps) {
+export default function ConsultationForm({
+  source,
+  onSuccess,
+  isNameChecker,
+  prefilledService,
+  hideTitle,
+  shouldRedirect = true
+}: ConsultationFormProps) {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,7 +72,12 @@ export default function ConsultationForm({ source, onSuccess, isNameChecker, pre
 
       // Clear form and show local success if not closed
       setFormData({ name: "", email: "", phone: "", address: "", services: "", customService: "" });
-      setFormSubmitted(true);
+
+      if (shouldRedirect) {
+        router.push('/thank-you');
+      } else {
+        setFormSubmitted(true);
+      }
     } catch (err: unknown) {
       console.error("Error initiating submission: ", err);
       // We don't block here anymore since we already triggered Success

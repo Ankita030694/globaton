@@ -328,7 +328,7 @@ export default function ServicesPage() {
           </div>
         )}
         <p className="text-black text-center mt-20">*Note: Approval is based on MCA review. <a href="/termsandcondition" className="text-[#C4942D]">Terms and Conditions</a> apply.</p>
-        <p className="text-black text-center">GST Registration along with Premium Package + Bank A/C Opening (Complimentary) – 5,500/-</p>
+        <p className="text-black text-center">GST Registration along with Premium Package + Bank A/C Opening (Complimentary) - 5,500/-</p>
       </div>
       {/* Not sure about packages banner */}
       <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">

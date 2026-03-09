@@ -564,11 +564,11 @@ export default function LLPPage() {
               <h3 className="text-xl font-semibold mb-4 text-gray-900">For Partners</h3>
               <ul className="space-y-3">
                 {[
-                  'PAN Card – Mandatory for Indian Nationals',
-                  'Passport – Mandatory for Foreign Nationals',
-                  'Identity Proof – Voter ID / Passport / Driving License / Aadhar',
-                  'Address Proof – Bank Statement / Electricity Bill / Mobile Bill (not older than 2 months)',
-                  'Photographs – Passport size photographs of partners'
+                  'PAN Card - Mandatory for Indian Nationals',
+                  'Passport - Mandatory for Foreign Nationals',
+                  'Identity Proof - Voter ID / Passport / Driving License / Aadhar',
+                  'Address Proof - Bank Statement / Electricity Bill / Mobile Bill (not older than 2 months)',
+                  'Photographs - Passport size photographs of partners'
                 ].map((doc, idx) => (
                   <li key={idx} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-[#1B6B50]/20 flex items-center justify-center">
@@ -585,10 +585,10 @@ export default function LLPPage() {
               <h3 className="text-xl font-semibold mb-4 text-gray-900">For Registered Office</h3>
               <ul className="space-y-3">
                 {[
-                  'Ownership Proof – Sale Deed (if owned)',
-                  'Rent Agreement – If the office is rented',
-                  'No Objection Certificate (NOC) – From the property owner',
-                  'Utility Bill – Electricity / Water / Property Tax Receipt (not older than 2 months)'
+                  'Ownership Proof - Sale Deed (if owned)',
+                  'Rent Agreement - If the office is rented',
+                  'No Objection Certificate (NOC) - From the property owner',
+                  'Utility Bill - Electricity / Water / Property Tax Receipt (not older than 2 months)'
                 ].map((doc, idx) => (
                   <li key={idx} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-[#1B6B50]/20 flex items-center justify-center">
@@ -654,9 +654,9 @@ export default function LLPPage() {
           <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Post-Incorporation Compliance (Annual)</h2>
           <div className="space-y-4">
             {[
-              'Form 11 – Annual Return of LLP (Due: 30th May every year)',
-              'Form 8 – Statement of Accounts and Solvency (Due: 30th October every year)',
-              'Income Tax Return Filing – By 31st July (Audit not required) or 30th September (Audit required)',
+              'Form 11 - Annual Return of LLP (Due: 30th May every year)',
+              'Form 8 - Statement of Accounts and Solvency (Due: 30th October every year)',
+              'Income Tax Return Filing - By 31st July (Audit not required) or 30th September (Audit required)',
               'Maintenance of Books of Accounts'
             ].map((compliance, idx) => (
               <div key={idx} className="flex items-center gap-3">

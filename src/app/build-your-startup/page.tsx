@@ -57,11 +57,42 @@ export default function BuildYourStartup() {
                     </div>
                 </section>
                 {/* Global Footer */}
-                {/* Expert Consultation Section */}
-                <ExpertCTA />
+
+                {/* Trust Bar */}
+                <div className="bg-white py-12 border-y border-slate-100 mt-12 overflow-hidden">
+                    <div className="max-w-4xl mx-auto text-center px-4">
+                        <p className="text-slate-400 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-8">Trusted by Founders from</p>
+                        <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 opacity-40 grayscale">
+                            <span className="font-black text-lg sm:text-xl italic whitespace-nowrap">QuicReach</span>
+                            <span className="font-black text-lg sm:text-xl italic whitespace-nowrap">Moodscale</span>
+                            <span className="font-black text-lg sm:text-xl italic whitespace-nowrap">Appomize</span>
+                            <span className="font-black text-lg sm:text-xl italic whitespace-nowrap"> AMA Legal Solutions</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Ready to go official? CTA */}
+                <section className="py-20 px-6 text-center">
+                    <div className="max-w-3xl mx-auto bg-[#165D3F] p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -translate-y-16 translate-x-16"></div>
+                        <h2 className="text-3xl font-bold mb-4">Ready to go official?</h2>
+                        <p className="text-emerald-100/80 mb-8">Get incorporated in 7 days with India's most trusted startup advisors.</p>
+                        <div className="flex flex-col md:flex-row gap-4 justify-center">
+                            <Link href="/form?service=contact-us">
+                                <button className="bg-[#CBA135] px-8 py-4 rounded-xl font-bold hover:bg-[#B58E2F] transition-all">
+                                    Book Day 0 Call
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
+               
 
                 {/* Reviews and Consultation Section */}
                 <Form />
+
+
 
                 <Footer />
             </div>

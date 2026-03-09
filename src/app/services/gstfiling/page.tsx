@@ -16,7 +16,7 @@ export default function GSTFilingPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center">
@@ -34,20 +34,20 @@ export default function GSTFilingPage() {
             <div className="mb-8">
               <h2 className="text-lg font-medium text-gray-700 mb-3">What is GST Filing?</h2>
               <p className="text-gray-600 leading-relaxed">
-                Goods and Services Tax (GST) is a comprehensive indirect tax levied on the supply of goods and services in India. 
-                Introduced on 1st July 2017, it replaced multiple indirect taxes like VAT, service tax, excise duty, etc. 
-                GST Filing is mandatory for businesses above the prescribed turnover or engaged in certain operations like 
+                Goods and Services Tax (GST) is a comprehensive indirect tax levied on the supply of goods and services in India.
+                Introduced on 1st July 2017, it replaced multiple indirect taxes like VAT, service tax, excise duty, etc.
+                GST Filing is mandatory for businesses above the prescribed turnover or engaged in certain operations like
                 inter-state trade or e-commerce. It provides a legal identity, enables input credit, and fosters credibility.
               </p>
             </div>
 
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Legal Recognition</h3>
                   <p className="text-gray-600">Official business identity under GST law</p>
@@ -55,11 +55,11 @@ export default function GSTFilingPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Input Tax Credit</h3>
                   <p className="text-gray-600">Claim tax credits on business purchases</p>
@@ -67,11 +67,11 @@ export default function GSTFilingPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Business Expansion</h3>
                   <p className="text-gray-600">Enable inter-state trade and e-commerce operations</p>
@@ -93,7 +93,7 @@ export default function GSTFilingPage() {
             <table className="min-w-full bg-white border border-gray-200 rounded-lg">
               <thead className="bg-gray-50">
                 <tr>
-                  {['Return Form','Purpose','Applicability','Frequency','Due Date'].map((h) => (
+                  {['Return Form', 'Purpose', 'Applicability', 'Frequency', 'Due Date'].map((h) => (
                     <th key={h} className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">{h}</th>
                   ))}
                 </tr>
@@ -155,7 +155,7 @@ export default function GSTFilingPage() {
               'Submit & File with DSC/EVC: Submit the return and validate with Digital Signature Certificate (DSC) or Electronic Verification Code (EVC)',
             ].map((step, idx) => (
               <div key={idx} className="flex items-start gap-4 bg-white p-6 rounded-xl border border-gray-200 hover:border-[#1B6B50] transition-colors">
-                <div className="flex-shrink-0 w-10 h-10 bg-[#1B6B50] rounded-full flex items-center justify-center text-white font-bold">{idx+1}</div>
+                <div className="flex-shrink-0 w-10 h-10 bg-[#1B6B50] rounded-full flex items-center justify-center text-white font-bold">{idx + 1}</div>
                 <p className="text-gray-700 mt-2">{step}</p>
               </div>
             ))}
@@ -189,8 +189,8 @@ export default function GSTFilingPage() {
           <h2 className="text-2xl font-bold mb-6 text-[#1B6B50]">Penalties for Late Filing</h2>
           <ul className="space-y-4">
             {[
-              'Late Filing – GSTR-3B or GSTR-1: ₹50/day (₹20/day for nil returns) – max ₹5,000 per return',
-              'Late Filing – GSTR-9/9C: ₹200/day (₹100 CGST + ₹100 SGST) – max 0.25% of turnover',
+              'Late Filing - GSTR-3B or GSTR-1: ₹50/day (₹20/day for nil returns) - max ₹5,000 per return',
+              'Late Filing - GSTR-9/9C: ₹200/day (₹100 CGST + ₹100 SGST) - max 0.25% of turnover',
               'Interest on Late Tax Payment: 18% per annum on tax due',
               'Wrong ITC Claim: Penalty of 100% of tax + interest',
               'Non-filing for 2 months: E-Way Bill generation gets blocked'
@@ -234,7 +234,7 @@ export default function GSTFilingPage() {
               { q: 'What is the composition scheme in GST?', a: 'The composition scheme allows small businesses with turnover up to ₹1.5 crores (₹75 lakhs for specific states) to pay a fixed percentage of turnover as tax instead of regular GST rates.' },
               { q: 'How many returns are there under GST?', a: 'There are 22 types of GST returns, but only a few apply to most taxpayers, such as GSTR-1, GSTR-3B, GSTR-9, and GSTR-4 (for composition taxpayers).' },
               { q: 'What are the consequences of missing GST filing deadlines?', a: 'Late filing attracts a penalty of ₹50 per day (₹20 for NIL returns) and 18% annual interest on unpaid tax. Continuous non-filing may lead to GST registration cancellation.' },
-              { q: 'How much does it cost to file GST returns?', a: 'Costs vary based on the filing method: self-filing is free; online platforms charge ₹250 – ₹2,000 per month; professional CA consultation is ₹500 – ₹5,000 per return.' },
+              { q: 'How much does it cost to file GST returns?', a: 'Costs vary based on the filing method: self-filing is free; online platforms charge ₹250 - ₹2,000 per month; professional CA consultation is ₹500 - ₹5,000 per return.' },
               { q: 'What is the process for filing GST returns on the GST portal?', a: 'Log in to www.gst.gov.in, select return type, upload invoices and tax details, preview, validate, submit the return, and pay the required GST.' },
               { q: 'Can GST returns be revised after submission?', a: 'No, GST returns cannot be revised. Corrections must be made in the next filing by adjusting errors in subsequent returns.' },
               { q: 'How does the QRMP scheme simplify GST filing?', a: 'The QRMP scheme allows taxpayers with turnover up to ₹5 crores to file GSTR-1 and GSTR-3B quarterly while making monthly tax payments, reducing compliance burden.' },

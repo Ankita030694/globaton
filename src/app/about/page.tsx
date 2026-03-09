@@ -161,7 +161,7 @@ export default function AboutPage() {
               {
                 title: "Late Adv. Narendra Kumar Mittal",
                 description: "Tax Expert, LLB with 60+ years of experience",
-                image: "/team/.jpg"
+                image: "/team/Adv. Rahul Kumar Mittal.png"
               },
               {
                 title: "FCS Sarvesh Sharan Srivastava",
