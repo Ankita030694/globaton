@@ -171,7 +171,7 @@ export default function AboutPage() {
               {
                 title: "Adv. Rahul Kumar Mittal",
                 description: "Income Tax Practitioner, LLB with 35+ years of experience",
-                image: "/team/.jpg"
+                image: "/team/Adv. Rahul Kumar Mittal.png"
               },
             ].map((item, index) => (
               <div key={index} className="bg-gray-100 rounded-3xl p-4 lg:p-6">
@@ -198,6 +198,31 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
+                title: "Adv. Bhuvnesh Mittal",
+                description: "B.Com | LL.B (H) | Tax Planner | 10+ years of experience",
+                image: "/team/Adv. Bhuvnesh Mittal.png"
+              },
+              {
+                title: "CA Harshita Gupta",
+                description: "Association Member - ICAI | Chartered Accountant | Financial Advisor | Ex - Delloite",
+                image: "/team/4.jpg"
+              },
+              {
+                title: "Adv. Harshita Khare",
+                description: "B.A., LL.B. (Hons.) | IPR & Corporate Arbitrator | 5+ years of experience",
+                image: "/team/Adv. Harshita Khare.png"
+              },
+              {
+                title: "CA Pushpit Dixit",
+                description: "Association Member - ICAI | Chartered Accountant | Auditor | Financial Advisor | 10+ years of experience",
+                image: "/team/CA Pushpit Dixit.png"
+              },
+              {
+                title: "CA Utkarsh Gupta",
+                description: "Association Member - ICAI | Chartered Accountant | Auditor | 10+ years of experience",
+                image: "/team/5.jpg"
+              },
+              {
                 title: "Adv. Anuj Anand Malik",
                 description: "B.A. LL.B (H) | Association Member - IACC | Debt Settlement Specialist | Alternative Dispute Resolution | Negotiator | Cyber Frauds | IP Laws",
                 image: "/team/2.jpg"
@@ -206,26 +231,6 @@ export default function AboutPage() {
                 title: "Adv. Shrey Arora",
                 description: "B.A. LL.B (H) | BCI & BCD Member | Dispute Resolution | Banking & Finance | Debt Settlement | Contract Negotiation | IPR & Cyber Fraud Advisor",
                 image: "/team/1.jpg"
-              },
-              {
-                title: "CA Harshita Gupta",
-                description: "Association Member - ICAI | Chartered Accountant | Financial Advisor | Ex - Delloite",
-                image: "/team/4.jpg"
-              },
-              {
-                title: "CA Utkarsh Gupta",
-                description: "Association Member - ICAI | Chartered Accountant | Auditor | 10+ years of experience",
-                image: "/team/5.jpg"
-              },
-              {
-                title: "CA Pushpit Dixit",
-                description: "Association Member - ICAI | Chartered Accountant | Auditor | Financial Advisor | 10+ years of experience",
-                image: "/team/.jpg"
-              },
-              {
-                title: "Adv. Bhuvnesh Mittal",
-                description: "B.Com | LL.B (H) | Tax Planner | 10+ years of experience",
-                image: "/team/.jpg"
               }
             ].map((item, index) => (
               <div key={index} className="bg-gray-100 rounded-3xl p-4 lg:p-6">
