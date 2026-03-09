@@ -18,7 +18,7 @@ export default function LLPPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow container mx-auto px-4 md:px-8 py-8 max-w-7xl">
         {/* Breadcrumb */}
         <div className="text-sm text-gray-600 mb-6 flex items-center flex-wrap">
@@ -36,11 +36,11 @@ export default function LLPPage() {
 
             <div className="space-y-6 mt-10">
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Quick Registration</h3>
                   <p className="text-gray-600">Complete your LLP registration within 14 business days T&amp;C*</p>
@@ -48,11 +48,11 @@ export default function LLPPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">All-Inclusive Package</h3>
                   <p className="text-gray-600">LLP agreement drafting, name approval and compliance requirements covered</p>
@@ -60,27 +60,27 @@ export default function LLPPage() {
               </div>
 
               <div className="flex items-center gap-3">
-              <div className="mt-1">
-                <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
+                <div className="">
+                  <svg className="w-5 h-5 text-[#C4942D]" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-800">Tailored Services</h3>
                   <p className="text-gray-600">Tailored services for startups, professionals, and businesses to set up an LLP
-seamlessly.</p>
+                    seamlessly.</p>
                 </div>
               </div>
             </div>
             <div className="flex gap-4 mt-8">
-            {/* VIEW PACKAGE TO BE LINKED TO SCROLL TO PACKAGES */}
-            <button className="flex items-center gap-2 text-gray-700 hover:text-[#1B6B50]">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              View Package
-            </button>
-          </div>
+              {/* VIEW PACKAGE TO BE LINKED TO SCROLL TO PACKAGES */}
+              <button className="flex items-center gap-2 text-gray-700 hover:text-[#1B6B50]">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                View Package
+              </button>
+            </div>
           </div>
 
           {/* Form Section */}
@@ -93,7 +93,7 @@ seamlessly.</p>
         <div className="w-full mx-auto px-4 md:px-20 py-8 md:py-16 bg-white">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-[#C4942D]">Choose Your </span> <span className="text-black">Package</span> 
+              <span className="text-[#C4942D]">Choose Your </span> <span className="text-black">Package</span>
             </h2>
             <p className="text-gray-600">Select the perfect plan for your LLP registration needs</p>
           </div>
@@ -162,9 +162,9 @@ seamlessly.</p>
               }
             ].map(plan => {
               const isSelected = selectedPlan === plan.id;
-              
+
               return (
-                <div 
+                <div
                   key={plan.id}
                   className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
                     ${isSelected ? 'transform scale-105 z-10' : 'z-0'} 
@@ -180,7 +180,7 @@ seamlessly.</p>
                   {isSelected && (
                     <>
                       <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                        <div 
+                        <div
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                             bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                         />
@@ -196,10 +196,10 @@ seamlessly.</p>
                         Most Popular
                       </span>
                     )}
-                    
+
                     <h3 className={`text-2xl font-extrabold mb-1 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-800'}`}>{plan.title}</h3>
-                    
+
                     <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                       <div className="flex justify-center items-start">
                         <span className={`text-lg mt-1 font-medium 
@@ -231,7 +231,7 @@ seamlessly.</p>
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center
                               ${isSelected ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                               </svg>
                             </div>
                             <span className={`ml-2 text-xs font-medium
@@ -254,14 +254,14 @@ seamlessly.</p>
 
                       <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                         transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                        ${isSelected ? 
-                          'bg-[#165D3F]' : 
+                        ${isSelected ?
+                          'bg-[#165D3F]' :
                           'hidden'}`}>
                         {plan.id === 'standard' ? 'Most Popular' : plan.id === 'premium' ? 'Go Premium' : 'Get Started'}
                       </button>
                     </div>
                   </div>
-                  
+
                   {/* Border glow effect for selected plan */}
                   {isSelected && (
                     <div className="absolute inset-0 rounded-3xl border-2 border-[#D4AB3A] z-[-1]"></div>
@@ -276,7 +276,7 @@ seamlessly.</p>
         <div id="annual-compliance" className="w-full mx-auto px-4 md:px-20 py-8 md:py-16 bg-white">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-[#C4942D]">Annual</span> <span className="text-black">Compliance</span> 
+              <span className="text-[#C4942D]">Annual</span> <span className="text-black">Compliance</span>
             </h2>
             <p className="text-gray-600">Choose the perfect annual compliance package for your LLP</p>
           </div>
@@ -337,9 +337,9 @@ seamlessly.</p>
               }
             ].map(plan => {
               const isSelected = selectedPlan === plan.id;
-              
+
               return (
-                <div 
+                <div
                   key={plan.id}
                   className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
                     ${isSelected ? 'transform scale-105 z-10' : 'z-0'} 
@@ -355,7 +355,7 @@ seamlessly.</p>
                   {isSelected && (
                     <>
                       <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                        <div 
+                        <div
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                             bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                         />
@@ -371,10 +371,10 @@ seamlessly.</p>
                         Most Popular
                       </span>
                     )}
-                    
+
                     <h3 className={`text-2xl font-extrabold mb-1 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-800'}`}>{plan.title}</h3>
-                    
+
                     <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                       <div className="flex justify-center items-start">
                         <span className={`text-lg mt-1 font-medium 
@@ -406,7 +406,7 @@ seamlessly.</p>
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center
                               ${isSelected ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                               </svg>
                             </div>
                             <span className={`ml-2 text-xs font-medium
@@ -419,14 +419,14 @@ seamlessly.</p>
 
                       <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                         transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                        ${isSelected ? 
-                          'bg-[#165D3F]' : 
+                        ${isSelected ?
+                          'bg-[#165D3F]' :
                           'hidden'}`}>
                         {plan.id === 'standard-compliance' ? 'Most Popular' : plan.id === 'premium-compliance' ? 'Go Premium' : 'Get Started'}
                       </button>
                     </div>
                   </div>
-                  
+
                   {/* Border glow effect for selected plan */}
                   {isSelected && (
                     <div className="absolute inset-0 rounded-3xl border-2 border-[#D4AB3A] z-[-1]"></div>
@@ -440,8 +440,8 @@ seamlessly.</p>
         {/* Not sure about packages banner */}
         <div className="w-full bg-[#1B6B50]/5 py-6 md:py-8 px-4 md:px-6 rounded-xl mb-8 md:mb-12 flex flex-col md:flex-row items-center justify-between">
           <h2 className="text-xl md:text-2xl font-bold text-[#1B6B50] mb-4 md:mb-0 text-center md:text-left">Not sure about packages?</h2>
-          <Link 
-            href="/form?service=llp-expert" 
+          <Link
+            href="/form?service=llp-expert"
             className="bg-[#1B6B50] text-white px-6 py-3 rounded-xl hover:bg-[#165D3F] transition-colors duration-300 font-medium w-full md:w-auto text-center"
           >
             Talk to registration expert
@@ -545,8 +545,8 @@ seamlessly.</p>
               'Draft of the LLP Agreement',
               'PAN and TAN application'
             ].map((item, idx) => (
-              <div key={idx} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#1B6B50]/20 flex items-center justify-center mt-1">
+              <div key={idx} className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#1B6B50]/20 flex items-center justify-center">
                   <FaCheck className="text-[#1B6B50]" size={12} />
                 </div>
                 <span className="text-gray-700">{item}</span>
@@ -570,8 +570,8 @@ seamlessly.</p>
                   'Address Proof – Bank Statement / Electricity Bill / Mobile Bill (not older than 2 months)',
                   'Photographs – Passport size photographs of partners'
                 ].map((doc, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#1B6B50]/20 flex items-center justify-center mt-1">
+                  <li key={idx} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#1B6B50]/20 flex items-center justify-center">
                       <FaCheck className="text-[#1B6B50]" size={10} />
                     </div>
                     <span className="text-gray-700">{doc}</span>
@@ -590,8 +590,8 @@ seamlessly.</p>
                   'No Objection Certificate (NOC) – From the property owner',
                   'Utility Bill – Electricity / Water / Property Tax Receipt (not older than 2 months)'
                 ].map((doc, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#1B6B50]/20 flex items-center justify-center mt-1">
+                  <li key={idx} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#1B6B50]/20 flex items-center justify-center">
                       <FaCheck className="text-[#1B6B50]" size={10} />
                     </div>
                     <span className="text-gray-700">{doc}</span>
@@ -659,8 +659,8 @@ seamlessly.</p>
               'Income Tax Return Filing – By 31st July (Audit not required) or 30th September (Audit required)',
               'Maintenance of Books of Accounts'
             ].map((compliance, idx) => (
-              <div key={idx} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#1B6B50]/20 flex items-center justify-center mt-1">
+              <div key={idx} className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-[#1B6B50]/20 flex items-center justify-center">
                   <FaCheck className="text-[#1B6B50]" size={12} />
                 </div>
                 <span className="text-gray-700">{compliance}</span>

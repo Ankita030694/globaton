@@ -18,10 +18,10 @@ const NameCheckerCard = () => {
                 <div className="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
                     <Search size={40} className="text-[#165D3F]" />
                 </div>
-                <h2 className="text-3xl font-black text-[#165D3F] leading-tight mb-4">
+                <h2 className="text-3xl font-black text-[#165D3F] leading-tight mb-10">
                     Name <span className="text-[#CBA135]">Checker</span>
                 </h2>
-                <p className="text-slate-500 mb-8 leading-relaxed h-12 flex items-center justify-center">
+                <p className="text-slate-500 mb-12 leading-relaxed flex items-center justify-center">
                     Is your dream company name available? Check in real-time against the MCA database before you register.
                 </p>
 

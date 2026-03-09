@@ -17,7 +17,7 @@ export default function BuildYourStartup() {
                 <Navbar />
 
                 {/* Hero Section */}
-                <header className="py-20 px-6 text-center max-w-4xl mx-auto">
+                <header className="pt-16 pb-8 px-6 text-center max-w-4xl mx-auto">
                     <span className="bg-emerald-100 text-[#165D3F] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest animate-pulse">
                         For Pre-Incorporation Founders
                     </span>
@@ -30,9 +30,9 @@ export default function BuildYourStartup() {
                 </header>
 
                 {/* The "Ideation Stage" Toolset */}
-                <section id="tool" className="py-16 px-6 bg-white/50 backdrop-blur-sm">
+                <section id="tool" className="pt-4 pb-10 px-4 sm:px-10 md:px-16 bg-white/50 backdrop-blur-sm">
                     <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
                             <NameCheckerCard />
                             <StructureMatchmaker />
                             <FoundersPackCard />

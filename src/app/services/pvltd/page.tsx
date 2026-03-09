@@ -50,7 +50,7 @@ export default function ServicesPage() {
       description: "Perfect for growing businesses needing more features",
       features: [
         "Expert Advisor",
-          "Company Name reserved in 2-4 days*",
+        "Company Name reserved in 2-4 days*",
         "DSC",
         "SPICe+ Forms filing in 14 days",
         "Incorporation Certificate in 28-35 days",
@@ -81,7 +81,7 @@ export default function ServicesPage() {
       ],
       buttonText: "Go Premium",
       disclaimer: "+ Gov. Fees",
-      
+
     }
   ]);
   const [plansLoading, setPlansLoading] = useState(false);
@@ -102,14 +102,14 @@ export default function ServicesPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    
+
     try {
       await addDoc(collection(db, "consultations"), {
         ...formData,
         source: "services-page",
         createdAt: new Date()
       });
-      
+
       setFormData({ name: "", email: "", phone: "", address: "", services: "" });
       setFormSubmitted(true);
     } catch (err) {
@@ -215,7 +215,7 @@ export default function ServicesPage() {
       <div className="w-full mx-auto px-4 sm:px-20 py-8 lg:py-16 bg-white">
         <div className="text-center mb-8 lg:mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span> 
+            <span className="text-[#C4942D]">Choose Your</span> <span className="text-black">Package</span>
           </h2>
           <p className="text-gray-600">Select the perfect plan for your company registration needs</p>
         </div>
@@ -228,9 +228,9 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-[100%] mx-auto scale-100 transform-origin-center">
             {plans.map(plan => {
               const isSelected = selectedPlan === plan.id;
-              
+
               return (
-                <div 
+                <div
                   key={plan.id}
                   className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
                     ${isSelected ? 'transform scale-105 z-10' : 'z-0'} 
@@ -246,7 +246,7 @@ export default function ServicesPage() {
                   {isSelected && (
                     <>
                       <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                        <div 
+                        <div
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                             bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                         />
@@ -254,7 +254,7 @@ export default function ServicesPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#CBA135]/50 to-transparent" />
                     </>
                   )}
-                  
+
                   <div className="relative px-6 pt-6 pb-5 text-center">
                     {plan.id === 'standard' && (
                       <span className={`absolute top-4 right-4 text-xs font-medium py-1 px-2 rounded-full
@@ -262,12 +262,12 @@ export default function ServicesPage() {
                         Most Popular
                       </span>
                     )}
-                    
+
                     <h3 className={`text-2xl font-extrabold mb-1 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-800'}`}>{plan.title}</h3>
                     <p className={`text-xs mb-4 max-w-[85%] mx-auto italic 
                       ${isSelected ? 'text-[#000000]' : 'text-gray-600'}`}>{plan.description}</p>
-                    
+
                     <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                       <div className="flex justify-center items-start">
                         <span className={`text-lg mt-1 font-medium 
@@ -286,7 +286,7 @@ export default function ServicesPage() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className={`rounded-2xl p-4 backdrop-blur-md shadow-lg
                       ${isSelected ? 'bg-white/90' : 'bg-white'}`}>
                       <ul className="space-y-2">
@@ -295,7 +295,7 @@ export default function ServicesPage() {
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center
                               ${isSelected ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                               </svg>
                             </div>
                             <span className={`ml-2 text-xs font-medium
@@ -305,19 +305,19 @@ export default function ServicesPage() {
                           </li>
                         ))}
                       </ul>
-                      
+
                       <button className={`w-full py-3 px-4 rounded-xl mt-4 text-white font-medium
                         transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                        ${isSelected ? 
-                          'bg-[#165D3F]' : 
+                        ${isSelected ?
+                          'bg-[#165D3F]' :
                           'hidden'}`}>
                         {plan.buttonText}
                       </button>
 
-                      
+
                     </div>
                   </div>
-                  
+
                   {/* Border glow effect for selected plan */}
                   {isSelected && (
                     <div className="absolute inset-0 rounded-3xl border-2 border-[#D4AB3A] z-[-1]"></div>
@@ -330,29 +330,29 @@ export default function ServicesPage() {
         <p className="text-black text-center mt-20">*Note: Approval is based on MCA review. <a href="/termsandcondition" className="text-[#C4942D]">Terms and Conditions</a> apply.</p>
         <p className="text-black text-center">GST Registration along with Premium Package + Bank A/C Opening (Complimentary) – 5,500/-</p>
       </div>
-       {/* Not sure about packages banner */}
-       <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">
-          <h2 className="text-2xl font-bold text-[#1B6B50] mb-4 md:mb-0">Not sure about packages?</h2>
-          <Link 
-            href="/form?service=pvltd-expert" 
-            className="bg-[#1B6B50] text-white px-6 py-3 rounded-xl hover:bg-[#165D3F] transition-colors duration-300 font-medium w-full md:w-auto text-center"
-          >
-            Talk to registration expert
-          </Link>
-        </div>
+      {/* Not sure about packages banner */}
+      <div className="w-full bg-[#1B6B50]/5 py-8 px-6 rounded-xl mb-12 flex flex-col md:flex-row items-center justify-between">
+        <h2 className="text-2xl font-bold text-[#1B6B50] mb-4 md:mb-0">Not sure about packages?</h2>
+        <Link
+          href="/form?service=pvltd-expert"
+          className="bg-[#1B6B50] text-white px-6 py-3 rounded-xl hover:bg-[#165D3F] transition-colors duration-300 font-medium w-full md:w-auto text-center"
+        >
+          Talk to registration expert
+        </Link>
+      </div>
 
       {/* Annual Compliance Pricing Section */}
       <div id="annual-compliance" className="w-full mx-auto px-4 sm:px-20 py-8 lg:py-16 bg-white">
         <div className="text-center mb-8 lg:mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            <span className="text-[#C4942D]">Annual</span> <span className="text-black">Compliance</span> 
+            <span className="text-[#C4942D]">Annual</span> <span className="text-black">Compliance</span>
           </h2>
           <p className="text-gray-600 text-sm lg:text-base">Choose the perfect annual compliance package for your company</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-[100%] mx-auto scale-100 transform-origin-center">
           {/* Basic Annual Compliance Package */}
-          <div 
+          <div
             className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
               ${selectedPlan === 'basic-compliance' ? 'transform scale-105 z-10 bg-[#EABE4C]' : 'bg-gray-50 z-0'}`}
             onClick={() => setSelectedPlan('basic-compliance')}
@@ -366,7 +366,7 @@ export default function ServicesPage() {
             {selectedPlan === 'basic-compliance' && (
               <>
                 <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                  <div 
+                  <div
                     className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                       bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                   />
@@ -380,7 +380,7 @@ export default function ServicesPage() {
                 ${selectedPlan === 'basic-compliance' ? 'text-[#000000]' : 'text-gray-800'}`}>Basic</h3>
               <p className={`text-xs mb-3 lg:mb-4 max-w-[85%] mx-auto italic 
                 ${selectedPlan === 'basic-compliance' ? 'text-[#000000]' : 'text-gray-600'}`}>Essential annual compliance services</p>
-              
+
               <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                 <div className="flex justify-center items-start">
                   <span className={`text-base lg:text-lg mt-1 font-medium 
@@ -396,7 +396,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className={`rounded-2xl p-3 lg:p-4 backdrop-blur-md shadow-lg
                 ${selectedPlan === 'basic-compliance' ? 'bg-white/90' : 'bg-white'}`}>
                 <ul className="space-y-2">
@@ -419,7 +419,7 @@ export default function ServicesPage() {
                       <div className={`w-4 h-4 lg:w-5 lg:h-5 rounded-full flex items-center justify-center flex-shrink-0
                         ${selectedPlan === 'basic-compliance' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-2 h-2 lg:w-3 lg:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-[11px] lg:text-xs font-medium
@@ -429,11 +429,11 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-                
+
                 <button className={`w-full py-2 lg:py-3 px-3 lg:px-4 rounded-xl mt-3 lg:mt-4 text-white font-medium text-sm lg:text-base
                   transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                  ${selectedPlan === 'basic-compliance' ? 
-                    'bg-[#165D3F]' : 
+                  ${selectedPlan === 'basic-compliance' ?
+                    'bg-[#165D3F]' :
                     'hidden'}`}>
                   Get Started
                 </button>
@@ -442,7 +442,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Standard Annual Compliance Package */}
-          <div 
+          <div
             className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
               ${selectedPlan === 'standard-compliance' ? 'transform scale-105 z-10 bg-[#EABE4C]' : 'bg-gray-50 z-0'}`}
             onClick={() => setSelectedPlan('standard-compliance')}
@@ -456,7 +456,7 @@ export default function ServicesPage() {
             {selectedPlan === 'standard-compliance' && (
               <>
                 <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                  <div 
+                  <div
                     className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                       bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                   />
@@ -474,7 +474,7 @@ export default function ServicesPage() {
                 ${selectedPlan === 'standard-compliance' ? 'text-[#000000]' : 'text-gray-800'}`}>Standard</h3>
               <p className={`text-xs mb-3 lg:mb-4 max-w-[85%] mx-auto italic 
                 ${selectedPlan === 'standard-compliance' ? 'text-[#000000]' : 'text-gray-600'}`}>Comprehensive compliance coverage</p>
-              
+
               <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                 <div className="flex justify-center items-start">
                   <span className={`text-base lg:text-lg mt-1 font-medium 
@@ -490,7 +490,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className={`rounded-2xl p-3 lg:p-4 backdrop-blur-md shadow-lg
                 ${selectedPlan === 'standard-compliance' ? 'bg-white/90' : 'bg-white'}`}>
                 <ul className="space-y-2">
@@ -518,7 +518,7 @@ export default function ServicesPage() {
                       <div className={`w-4 h-4 lg:w-5 lg:h-5 rounded-full flex items-center justify-center flex-shrink-0
                         ${selectedPlan === 'standard-compliance' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-2 h-2 lg:w-3 lg:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-[11px] lg:text-xs font-medium
@@ -528,11 +528,11 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-                
+
                 <button className={`w-full py-2 lg:py-3 px-3 lg:px-4 rounded-xl mt-3 lg:mt-4 text-white font-medium text-sm lg:text-base
                   transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                  ${selectedPlan === 'standard-compliance' ? 
-                    'bg-[#165D3F]' : 
+                  ${selectedPlan === 'standard-compliance' ?
+                    'bg-[#165D3F]' :
                     'hidden'}`}>
                   Most Popular
                 </button>
@@ -541,7 +541,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Premium Annual Compliance Package */}
-          <div 
+          <div
             className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out 
               ${selectedPlan === 'premium-compliance' ? 'transform scale-105 z-10 bg-[#EABE4C]' : 'bg-gray-50 z-0'}`}
             onClick={() => setSelectedPlan('premium-compliance')}
@@ -555,7 +555,7 @@ export default function ServicesPage() {
             {selectedPlan === 'premium-compliance' && (
               <>
                 <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-                  <div 
+                  <div
                     className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400%] h-[400%] 
                       bg-[#CBA135] rounded-[100%] translate-y-[75%] transition-transform duration-500"
                   />
@@ -569,7 +569,7 @@ export default function ServicesPage() {
                 ${selectedPlan === 'premium-compliance' ? 'text-[#000000]' : 'text-gray-800'}`}>Premium</h3>
               <p className={`text-xs mb-3 lg:mb-4 max-w-[85%] mx-auto italic 
                 ${selectedPlan === 'premium-compliance' ? 'text-[#000000]' : 'text-gray-600'}`}>Complete compliance solution</p>
-              
+
               <div className="mb-4 transform transition-transform group-hover:scale-110 duration-500">
                 <div className="flex justify-center items-start">
                   <span className={`text-base lg:text-lg mt-1 font-medium 
@@ -585,7 +585,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className={`rounded-2xl p-3 lg:p-4 backdrop-blur-md shadow-lg
                 ${selectedPlan === 'premium-compliance' ? 'bg-white/90' : 'bg-white'}`}>
                 <ul className="space-y-2">
@@ -614,7 +614,7 @@ export default function ServicesPage() {
                       <div className={`w-4 h-4 lg:w-5 lg:h-5 rounded-full flex items-center justify-center flex-shrink-0
                         ${selectedPlan === 'premium-compliance' ? 'bg-[#2B553B]' : 'bg-[#2B553B]'}`}>
                         <svg className="w-2 h-2 lg:w-3 lg:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                         </svg>
                       </div>
                       <span className={`ml-2 text-[11px] lg:text-xs font-medium
@@ -624,11 +624,11 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-                
+
                 <button className={`w-full py-2 lg:py-3 px-3 lg:px-4 rounded-xl mt-3 lg:mt-4 text-white font-medium text-sm lg:text-base
                   transition-all duration-300 transform hover:scale-105 hover:shadow-lg
-                  ${selectedPlan === 'premium-compliance' ? 
-                    'bg-[#165D3F]' : 
+                  ${selectedPlan === 'premium-compliance' ?
+                    'bg-[#165D3F]' :
                     'hidden'}`}>
                   Go Premium
                 </button>
@@ -640,8 +640,9 @@ export default function ServicesPage() {
 
       {/* Private Limited Company Information Section */}
       <div className="w-full mx-auto px-4 sm:px-50 py-8 lg:py-16 bg-white">
-        <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">
-          <span className="text-black">What Is a</span> <span className="text-[#C4942D]">Private Limited Company?</span>
+        <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6 leading-tight text-center lg:text-left">
+          <span className="text-black">What Is a </span>
+          <span className="text-[#C4942D]">Private Limited Company?</span>
         </h2>
 
         <p className="text-gray-600 mb-4 lg:mb-6 text-sm lg:text-base">
@@ -658,7 +659,7 @@ export default function ServicesPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <div className="flex justify-center items-center text-center mt-8 lg:mt-20">
-            <Image 
+            <Image
               src="/newspaper.png"
               alt="Company Registration Document"
               width={250}
@@ -666,10 +667,10 @@ export default function ServicesPage() {
               className="object-contain w-[200px] lg:w-[300px]"
             />
           </div>
-          
+
           <div>
             <h3 className="text-xl font-semibold mb-4 text-black">Definition as per the Companies Act, 2013</h3>
-            
+
             <p className="mb-4 text-black">Section 2(68) of the Companies Act, 2013, defines a Private Limited Company as an entity that:</p>
 
             <ul className="space-y-4">
@@ -679,7 +680,7 @@ export default function ServicesPage() {
               </li>
 
               <li>
-                <p className="font-bold text-black mb-1">• Limits the Number of Members:</p> 
+                <p className="font-bold text-black mb-1">• Limits the Number of Members:</p>
                 <p className="text-black pl-4">A private limited company can have a maximum of 200 members, excluding current and former employees who hold shares. This limit ensures the company remains a private entity. (Exception: A One Person Company (OPC) can have only one member.)</p>
               </li>
 
@@ -701,10 +702,10 @@ export default function ServicesPage() {
 
       {/* Key Features Section */}
       <div className="w-full mx-auto px-4 sm:px-50 py-8 lg:py-16 bg-white">
-        <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6 flex flex-col lg:flex-row items-center gap-2">
-          <span className="text-black">What Are the</span>
+        <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6 leading-tight text-center lg:text-left">
+          <span className="text-black">What Are the </span>
           <span className="text-[#C4942D]">Key Features</span>
-          <span className="text-black">and Benefits of a Private Limited Company?</span>
+          <span className="text-black"> and Benefits of a Private Limited Company?</span>
         </h2>
 
         <p className="text-black mb-8 lg:mb-12 text-sm lg:text-base">
@@ -715,7 +716,7 @@ export default function ServicesPage() {
           {/* Feature cards */}
           <div className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border">
             <div className="mb-3 lg:mb-4">
-              <Image 
+              <Image
                 src="/building-icon.png"
                 alt="Building Icon"
                 width={32}
@@ -733,7 +734,7 @@ export default function ServicesPage() {
           {/* Feature cards */}
           <div className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border">
             <div className="mb-3 lg:mb-4">
-              <Image 
+              <Image
                 src="/building-icon.png"
                 alt="Building Icon"
                 width={32}
@@ -751,7 +752,7 @@ export default function ServicesPage() {
           {/* Feature cards */}
           <div className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border">
             <div className="mb-3 lg:mb-4">
-              <Image 
+              <Image
                 src="/building-icon.png"
                 alt="Building Icon"
                 width={32}
@@ -769,7 +770,7 @@ export default function ServicesPage() {
           {/* Feature cards */}
           <div className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border">
             <div className="mb-3 lg:mb-4">
-              <Image 
+              <Image
                 src="/building-icon.png"
                 alt="Building Icon"
                 width={32}
@@ -787,7 +788,7 @@ export default function ServicesPage() {
           {/* Feature cards */}
           <div className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border">
             <div className="mb-3 lg:mb-4">
-              <Image 
+              <Image
                 src="/building-icon.png"
                 alt="Building Icon"
                 width={32}
@@ -805,7 +806,7 @@ export default function ServicesPage() {
           {/* Feature cards */}
           <div className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border">
             <div className="mb-3 lg:mb-4">
-              <Image 
+              <Image
                 src="/building-icon.png"
                 alt="Building Icon"
                 width={32}
@@ -823,7 +824,7 @@ export default function ServicesPage() {
           {/* Feature cards */}
           <div className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border">
             <div className="mb-3 lg:mb-4">
-              <Image 
+              <Image
                 src="/building-icon.png"
                 alt="Building Icon"
                 width={32}
@@ -845,7 +846,7 @@ export default function ServicesPage() {
 
       {/* Registration Process Section */}
       <div className="w-full mx-auto px-4 sm:px-50 py-8 lg:py-16">
-        <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">
+        <h2 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6 leading-tight text-center lg:text-left">
           <span className="text-[#C4942D]">Step-by-Step</span> <span className="text-black">Private Limited Company Registration Process</span>
         </h2>
 
@@ -916,7 +917,7 @@ export default function ServicesPage() {
 
       {/* FAQs Section */}
       <div className="w-full mx-auto px-4 sm:px-50 py-8 lg:py-16">
-        <h2 className="text-center text-3xl lg:text-4xl font-bold mb-6 lg:mb-8">
+        <h2 className="text-center text-3xl lg:text-4xl font-bold mb-6 lg:mb-8 leading-tight">
           <span className="text-[#C4942D]">FAQs</span> <span className="text-black">on Private Limited Company Registration</span>
         </h2>
 
@@ -932,15 +933,15 @@ export default function ServicesPage() {
         <div className="space-y-4">
           {/* FAQ Item 1 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(0)} 
+            <button
+              onClick={() => toggleFAQ(0)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">What is the minimum requirement to register a Private Limited Company in India?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 0 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 0 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -957,15 +958,15 @@ export default function ServicesPage() {
 
           {/* FAQ Item 2 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(1)} 
+            <button
+              onClick={() => toggleFAQ(1)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">Can a Private Limited Company operate multiple businesses?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 1 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 1 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -982,15 +983,15 @@ export default function ServicesPage() {
 
           {/* FAQ Item 3 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(2)} 
+            <button
+              onClick={() => toggleFAQ(2)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">What documents are required for Private Limited Company registration?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 2 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 2 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1007,15 +1008,15 @@ export default function ServicesPage() {
 
           {/* FAQ Item 4 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(3)} 
+            <button
+              onClick={() => toggleFAQ(3)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">Can foreign nationals or NRIs be directors in a Private Limited Company?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 3 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 3 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1032,15 +1033,15 @@ export default function ServicesPage() {
 
           {/* FAQ Item 5 */}
           <div className="border-b border-gray-200">
-            <button 
-              onClick={() => toggleFAQ(4)} 
+            <button
+              onClick={() => toggleFAQ(4)}
               className="w-full flex items-center justify-between py-4 text-left"
             >
               <span className="text-black font-medium">Can I use my residential address as my company's registered office?</span>
-              <svg 
-                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 4 ? 'transform rotate-180' : ''}`} 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <svg
+                className={`w-6 h-6 text-gray-400 transition-transform ${openFAQ === 4 ? 'transform rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
