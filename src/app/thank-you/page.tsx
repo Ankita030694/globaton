@@ -51,9 +51,8 @@ export default function ThankYouPage() {
                         <div className="flex justify-center gap-6">
                             {[
                                 { icon: Instagram, href: "https://www.instagram.com/globaton.in/" },
-                                { icon: Twitter, href: "#" },
-                                { icon: Linkedin, href: "#" },
-                                { icon: Facebook, href: "https://www.facebook.com/globaton.in/" }
+                                { icon: Linkedin, href: "https://www.linkedin.com/company/globaton/about/?viewAsMember=true" },
+                                { icon: Facebook, href: "https://www.facebook.com/GlobatonManagementAdvisors" }
                             ].map((social, idx) => (
                                 <Link
                                     key={idx}
