@@ -156,25 +156,20 @@ export default function AboutPage() {
             multidimensional approach to every challenge.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
             {[
-              {
-                title: "Late Adv. Narendra Kumar Mittal",
-                description: "Tax Expert, LLB with 60+ years of experience",
-                image: "/team/Adv. Rahul Kumar Mittal.png"
-              },
               {
                 title: "FCS Sarvesh Sharan Srivastava",
                 description: "Fellow Member - ICSI, CMA, LLB, Insolvency Professional with 35+ years of experience",
-                image: "/team/3.jpg"
+                image: "/team/CS Sarvesh Sharan Srivastava.png"
               },
               {
                 title: "Adv. Rahul Kumar Mittal",
                 description: "Income Tax Practitioner, LLB with 35+ years of experience",
-                image: "/team/Adv. Rahul Kumar Mittal.png"
+                image: "/team/Adv. Rahul Kumar Mittal (4).png"
               },
             ].map((item, index) => (
-              <div key={index} className="bg-gray-100 rounded-3xl p-4 lg:p-6">
+              <div key={index} className="bg-gray-100 rounded-3xl p-4 lg:p-6 w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] max-w-sm">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -209,7 +204,7 @@ export default function AboutPage() {
               },
               {
                 title: "Adv. Harshita Khare",
-                description: "B.A., LL.B. (Hons.) | IPR & Corporate Arbitrator | 5+ years of experience",
+                description: "B.A., LL.B. (Hons.) | IPR & Corporate Advisory | 5+ years of experience",
                 image: "/team/Adv. Harshita Khare.png"
               },
               {
@@ -231,6 +226,11 @@ export default function AboutPage() {
                 title: "Adv. Shrey Arora",
                 description: "B.A. LL.B (H) | BCI & BCD Member | Dispute Resolution | Banking & Finance | Debt Settlement | Contract Negotiation | IPR & Cyber Fraud Advisor",
                 image: "/team/1.jpg"
+              },
+              {
+                title: "Adv. Shourya Garg",
+                description: "BBA. LLB (Hons) | Corporate Litigation & Dispute Resolution | 7+ Years experience",
+                image: "/team/Adv. Shourya Garg.png"
               }
             ].map((item, index) => (
               <div key={index} className="bg-gray-100 rounded-3xl p-4 lg:p-6">

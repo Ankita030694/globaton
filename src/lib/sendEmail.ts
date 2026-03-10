@@ -2,24 +2,24 @@ import nodemailer from "nodemailer";
 import path from "path";
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.zoho.in",
-    port: 465,
-    secure: true,
-    auth: {
-        user: process.env.ZOHO_EMAIL,
-        pass: process.env.ZOHO_PASSWORD,
-    },
+  host: "smtp.zoho.in",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.ZOHO_EMAIL,
+    pass: process.env.ZOHO_PASSWORD,
+  },
 });
 
 export async function sendConsultationEmail(name: string, email: string) {
-    const pdfPath = path.join(process.cwd(), "public", "Founders Compliance Checklist for 2026.pdf");
+  const pdfPath = path.join(process.cwd(), "public", "Founders Compliance Checklist for 2026.pdf");
 
-    await transporter.sendMail({
-        from: `"Globaton" <${process.env.ZOHO_EMAIL}>`,
-        to: email,
-        subject: "Your Founder's Compliance Checklist (+ a small surprise)",
-        html: `
-      <div style="font-family: Arial, sans-serif; font-size: 15px; color: #222; max-width: 600px;">
+  await transporter.sendMail({
+    from: `"Globaton" <${process.env.ZOHO_EMAIL}>`,
+    to: email,
+    subject: "Your Founder's Compliance Checklist (+ a small surprise)",
+    html: `
+      <div style="font-family: Calibri, sans-serif; font-size: 10px; color: #222; max-width: 600px;">
         <p>Hi ${name},</p>
 
         <p>Starting a business is hard. Keeping it legal shouldn't be.</p>
@@ -44,11 +44,11 @@ export async function sendConsultationEmail(name: string, email: string) {
         <p>Warm regards,<br/><strong>Team Globaton</strong></p>
       </div>
     `,
-        attachments: [
-            {
-                filename: "2026-Founders-Compliance-Checklist.pdf",
-                path: pdfPath,
-            },
-        ],
-    });
+    attachments: [
+      {
+        filename: "2026-Founders-Compliance-Checklist.pdf",
+        path: pdfPath,
+      },
+    ],
+  });
 }
