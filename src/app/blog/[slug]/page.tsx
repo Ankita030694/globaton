@@ -11,6 +11,8 @@ import TOC from '@/components/TOC'
 import SidebarCTA from '@/components/SidebarCTA'
 import RelatedPages from '@/components/RelatedPages'
 
+export const dynamic = 'force-dynamic';
+
 // Define the blog post interface
 interface BlogPost {
   title: string;

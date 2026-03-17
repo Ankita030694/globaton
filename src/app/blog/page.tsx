@@ -3,6 +3,8 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import BlogClient from './BlogClient';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "Explore the latest insights, business excellence tips, and industry analysis from the Globaton team.",
