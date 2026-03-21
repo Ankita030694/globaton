@@ -4,19 +4,20 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <div className="bg-[#1B5E41] p-4 md:p-8 mt-auto">
-      <div className="flex flex-col md:flex-row justify-between items-start max-w-7xl mx-auto space-y-8 md:space-y-0">
-        <div className="w-full md:w-1/4 flex flex-col items-center">
-          <Link href="/">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto items-start">
+        {/* Column 1: Logo + Follow Us */}
+        <div className="flex flex-col items-center">
+          <Link href="/" className="-mt-4 block">
             <Image
               src="/logo1.png"
               alt="Globaton Logo"
-              width={400}
-              height={400}
-              className="w-48 md:w-auto"
+              width={160}
+              height={160}
+              className="w-36 h-auto"
             />
           </Link>
-          <h3 className="text-white font-bold mb-3 text-center">FOLLOW US</h3>
-          <div className="flex space-x-4 justify-center">
+          <h3 className="text-white font-bold mt-3 mb-3">FOLLOW US</h3>
+          <div className="flex space-x-4">
             <a href="https://www.facebook.com/GlobatonManagementAdvisors" className="text-white hover:text-gray-300">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
@@ -35,7 +36,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-1/4 text-center md:text-left">
+        {/* Column 2: Legal */}
+        <div className="flex flex-col items-start">
           <h3 className="text-white font-bold mb-4">Legal</h3>
           <ul className="text-[#A6A6A6]">
             <li className="mb-2"><a href="/termsandcondition">Terms of Use</a></li>
@@ -45,7 +47,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="w-full md:w-1/4 text-center md:text-left">
+        {/* Column 3: Reach Us */}
+        <div className="flex flex-col items-start">
           <h3 className="text-white font-bold mb-4">Reach Us</h3>
           <ul className="text-[#A6A6A6]">
             <li className="mb-2">+91-9315393217</li>
@@ -53,7 +56,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="w-full md:w-1/4 text-center md:text-left">
+        {/* Column 4: Address */}
+        <div className="flex flex-col items-start">
           <h3 className="text-white font-bold mb-4">Address</h3>
           <p className="text-[#A6A6A6]">
             WeWork, Platina Tower,<br />
