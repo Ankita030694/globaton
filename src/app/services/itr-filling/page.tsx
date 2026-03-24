@@ -132,6 +132,20 @@ export default function ITRFillingPage() {
             </div>
           </div>
         </section>
+
+        {/* Trust Bar */}
+        <div className="bg-white py-12 border-y border-slate-100 overflow-hidden">
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <p className="text-slate-400 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-8">Trusted by Founders from</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 opacity-80 text-slate-600">
+              <span className="font-black text-lg sm:text-xl italic whitespace-nowrap">QuicReach</span>
+              <span className="font-black text-lg sm:text-xl italic whitespace-nowrap">Moodscale</span>
+              <span className="font-black text-lg sm:text-xl italic whitespace-nowrap">Appomize</span>
+              <span className="font-black text-lg sm:text-xl italic whitespace-nowrap"> AMA Legal Solutions</span>
+            </div>
+          </div>
+        </div>
+        
       </main>
 
       <Footer />

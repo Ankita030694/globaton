@@ -23,6 +23,24 @@ export default function ITRFillingForm({ source }: ITRFillingFormProps) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+
+    if (name === "name") {
+      // Only allow alphabets and spaces
+      if (value !== "" && !/^[a-zA-Z\s]*$/.test(value)) {
+        return;
+      }
+    }
+
+    if (name === "phone") {
+      // Only allow digits and limit to 10
+      if (value !== "" && !/^\d*$/.test(value)) {
+        return;
+      }
+      if (value.length > 10) {
+        return;
+      }
+    }
+
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -34,23 +52,37 @@ export default function ITRFillingForm({ source }: ITRFillingFormProps) {
     setLoading(true);
     setError("");
 
+    // Final validation checks
+    if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
+      setError("Please enter a valid name (alphabets only).");
+      setLoading(false);
+      return;
+    }
+
+    if (formData.phone.length !== 10) {
+      setError("Phone number must be exactly 10 digits.");
+      setLoading(false);
+      return;
+    }
+
     localStorage.setItem('isfilled', 'true');
 
     try {
-      fetch("/api/form", {
+      const response = await fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, source }),
-      }).then(res => {
-        if (!res.ok) console.error("Background submission failed");
-      }).catch(err => {
-        console.error("Background error: ", err);
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
 
       setFormData({ name: "", email: "", phone: "", address: "", services: "", customService: "" });
       router.push('/thank-you');
     } catch (err: unknown) {
       console.error("Error initiating submission: ", err);
+      setError("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -69,7 +101,7 @@ export default function ITRFillingForm({ source }: ITRFillingFormProps) {
       ) : (
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="text-left">
-            <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Full Name</label>
+            <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Full Name <span className="text-red-500">*</span></label>
             <input
               type="text"
               name="name"
@@ -83,7 +115,7 @@ export default function ITRFillingForm({ source }: ITRFillingFormProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="text-left">
-              <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Email</label>
+              <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Email <span className="text-red-500">*</span></label>
               <input
                 type="email"
                 name="email"
@@ -95,7 +127,7 @@ export default function ITRFillingForm({ source }: ITRFillingFormProps) {
               />
             </div>
             <div className="text-left">
-              <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Phone Number</label>
+              <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Phone Number <span className="text-red-500">*</span></label>
               <div className="flex">
                 <span className="inline-flex items-center px-3.5 rounded-l-lg border border-r-0 border-gray-200 bg-gray-50/80 text-gray-600 text-[14px] font-bold">
                   +91
@@ -114,7 +146,7 @@ export default function ITRFillingForm({ source }: ITRFillingFormProps) {
           </div>
 
           <div className="text-left">
-            <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Primary Tax Requirement</label>
+            <label className="block text-[13px] font-bold text-gray-900 mb-1.5">Primary Tax Requirement <span className="text-red-500">*</span></label>
             <div className="relative">
               <select
                 name="services"
