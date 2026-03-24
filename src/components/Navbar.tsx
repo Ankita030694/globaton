@@ -564,7 +564,7 @@ const Navbar = () => {
                       Accounting & Bookkeeping
                     </Link>
                     <Link
-                      href="/form?service=itr-filing"
+                      href="/services/itr-filling"
                       className="block hover:text-[#1B6B50] text-black text-xs"
                       onClick={handleFormLinkClick}
                     >
@@ -1551,7 +1551,7 @@ const Navbar = () => {
                             Accounting & Bookkeeping
                           </Link>
                           <Link
-                            href="/form?service=itr-filing"
+                            href="/services/itr-filling"
                             className="flex items-center py-2 px-3 text-gray-600 hover:text-[#1B6B50] hover:bg-white/80 rounded-md transition-all duration-200"
                             onClick={() => {
                               handleMobileMenuItemClick()
